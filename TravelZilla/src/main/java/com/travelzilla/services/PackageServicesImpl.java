@@ -9,7 +9,7 @@ import com.travelzilla.exceptions.PackageException;
 import com.travelzilla.repositories.PackageDAO;
 
 @Service
-public class packageServicesImpl implements PackageServices {
+public class PackageServicesImpl implements PackageServices {
 
 	@Autowired
 	private PackageDAO pDao;

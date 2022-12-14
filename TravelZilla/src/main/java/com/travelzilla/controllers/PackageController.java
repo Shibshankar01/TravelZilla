@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.travelzilla.exceptions.PackageException;
-import com.travelzilla.services.packageServicesImpl;
+import com.travelzilla.services.PackageServicesImpl;
 
 import jakarta.validation.Valid;
 
@@ -23,7 +23,7 @@ import jakarta.validation.Valid;
 public class PackageController {
 
 	@Autowired
-	packageServicesImpl pService;
+	PackageServicesImpl pService;
 	
 	@PostMapping("/addPackage")
 	public ResponseEntity<Package> addPackage(@Valid @RequestBody Package pack){
