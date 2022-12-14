@@ -25,28 +25,25 @@ public class HotelController {
 
 	@Autowired
 	HotelServicesImpl pService;
-	
+
 	@PostMapping("/addHotel")
-	public ResponseEntity<Hotel> addHotel(@Valid @RequestBody Hotel pack){
+	public ResponseEntity<Hotel> addHotel(@Valid @RequestBody Hotel pack) {
 		return new ResponseEntity<Hotel>(pService.addHotel(pack), HttpStatus.OK);
 	}
-	
-	
+
 	@DeleteMapping("/deleteHotel/{id}")
-	public ResponseEntity<Hotel> deleteHotel(@PathVariable("id") Integer id) throws HotelException{
+	public ResponseEntity<Hotel> deleteHotel(@PathVariable("id") Integer id) throws HotelException {
 		return new ResponseEntity<Hotel>(pService.deleteHotelById(id), HttpStatus.OK);
 	}
-	
-	
+
 	@GetMapping("/searchHotelById/{id}")
-	public ResponseEntity<Hotel> searchHotelById(@PathVariable("id") Integer id) throws HotelException{
+	public ResponseEntity<Hotel> searchHotelById(@PathVariable("id") Integer id) throws HotelException {
 		return new ResponseEntity<Hotel>(pService.searchHotelById(id), HttpStatus.OK);
 	}
-	
-	
+
 	@GetMapping("/viewAllHotels")
-	public ResponseEntity<List<Hotel>> viewAllHotels(){
-		return new ResponseEntity <List<Hotel>>(pService.viewAllHotels(), HttpStatus.OK);
+	public ResponseEntity<List<Hotel>> viewAllHotels() {
+		return new ResponseEntity<List<Hotel>>(pService.viewAllHotels(), HttpStatus.OK);
 	}
-	
+
 }
