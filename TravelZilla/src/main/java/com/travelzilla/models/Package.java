@@ -14,7 +14,7 @@ public class Package {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
-	private int packageId;
+	private Integer packageId;
 
 	@NotNull(message = "Package Name Cannot Be Null!")
 	@Size(min = 10, max = 100, message = "Package Name Length must be between 10 to 100 characters.")
@@ -26,7 +26,7 @@ public class Package {
 
 	@NotNull(message = "Route ID Cannot Be Null!")
 	@Min(value = 1, message = "Invalid Route ID, must be > 0")
-	private int routeId;
+	private Integer routeId;
 
 	@NotNull(message = "Hotel Cannot Be Null!")
 	private Hotel hotel;
@@ -37,14 +37,14 @@ public class Package {
 
 	@NotNull(message = "Package Cost Cannot be Null")
 	@Min(value = 2000, message = "Package Cost Cannot be Less Than 2000.")
-	private int packageCost;
+	private Integer packageCost;
 
 	public Package() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Package(int packageId, String packageName, String packageDescription, int routeId, Hotel hotel, Bus bus,
-			int packageCost) {
+	public Package(Integer packageId, String packageName, String packageDescription, Integer routeId, Hotel hotel, Bus bus,
+			Integer packageCost) {
 		super();
 		this.packageId = packageId;
 		this.packageName = packageName;
@@ -56,11 +56,11 @@ public class Package {
 
 	}
 
-	public int getPackageId() {
+	public Integer getPackageId() {
 		return packageId;
 	}
 
-	public void setPackageId(int packageId) {
+	public void setPackageId(Integer packageId) {
 		this.packageId = packageId;
 	}
 
@@ -80,11 +80,11 @@ public class Package {
 		this.packageDescription = packageDescription;
 	}
 
-	public int getRouteId() {
+	public Integer getRouteId() {
 		return routeId;
 	}
 
-	public void setRouteId(int routeId) {
+	public void setRouteId(Integer routeId) {
 		this.routeId = routeId;
 	}
 
@@ -104,11 +104,11 @@ public class Package {
 		this.bus = bus;
 	}
 
-	public int getPackageCost() {
+	public Integer getPackageCost() {
 		return packageCost;
 	}
 
-	public void setPackageCost(int packageCost) {
+	public void setPackageCost(Integer packageCost) {
 		this.packageCost = packageCost;
 	}
 

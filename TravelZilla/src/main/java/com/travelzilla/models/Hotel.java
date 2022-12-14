@@ -14,7 +14,7 @@ public class Hotel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int hotel_Id;
+	private Integer hotel_Id;
 	@NotNull(message = "Hotel Name Cannot be Null")
 	@Size(min = 1, max = 20, message = "Hotel Name Must be Between 1 to 20 Characters")
 	private String hotelName;
@@ -40,7 +40,7 @@ public class Hotel {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Hotel(int hotel_Id, String hotelName, HotelType hotelType, String hotelDescription, HotelAddress hotelAddress,
+	public Hotel( Integer  hotel_Id, String hotelName, HotelType hotelType, String hotelDescription, HotelAddress hotelAddress,
 			double hotelRent, HotelStatus hotelStatus) {
 		super();
 		this.hotel_Id = hotel_Id;
@@ -52,11 +52,11 @@ public class Hotel {
 		this.hotelStatus = hotelStatus;
 	}
 
-	public int getHotel_Id() {
+	public Integer getHotel_Id() {
 		return hotel_Id;
 	}
 
-	public void setHotel_Id(int hotel_Id) {
+	public void setHotel_Id( Integer  hotel_Id) {
 		this.hotel_Id = hotel_Id;
 	}
 
