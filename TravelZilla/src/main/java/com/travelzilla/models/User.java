@@ -1,4 +1,4 @@
-package com.travelzilla.model;
+package com.travelzilla.models;
 
 public class User {
 	
