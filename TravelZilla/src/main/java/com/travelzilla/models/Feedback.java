@@ -31,7 +31,7 @@ public class Feedback {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Feedback(Integer feedbackId, String feedback, Integer rating, LocalDate submitDate, Integer customerId,
+	public Feedback(Integer feedbackId, String feedback, Integer rating, LocalDateTime submitDate, Integer customerId,
 			Integer bookingId) {
 		super();
 		this.feedbackId = feedbackId;
@@ -66,11 +66,11 @@ public class Feedback {
 		this.rating = rating;
 	}
 
-	public LocalDate getSubmitDate() {
+	public LocalDateTime getSubmitDate() {
 		return submitDate;
 	}
 
-	public void setSubmitDate(LocalDate submitDate) {
+	public void setSubmitDate(LocalDateTime submitDate) {
 		this.submitDate = submitDate;
 	}
 
