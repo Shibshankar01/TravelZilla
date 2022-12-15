@@ -10,7 +10,7 @@ import jakarta.persistence.*;
 public class Bus {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer busId ;
 	private String busType;
 	private String busNumber;

@@ -12,7 +12,7 @@ import jakarta.persistence.OneToOne;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userID;
 	
 	@Embedded

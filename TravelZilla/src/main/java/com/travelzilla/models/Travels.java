@@ -14,7 +14,7 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class Travels {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer travelId;
 	private String travelName;
 	private String agentName;
