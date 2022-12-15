@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.travelzilla.exceptions.HotelException;
 import com.travelzilla.models.Hotel;
+import com.travelzilla.services.HotelServices;
 import com.travelzilla.services.HotelServicesImpl;
 
 import jakarta.validation.Valid;
@@ -24,7 +25,7 @@ import jakarta.validation.Valid;
 public class HotelController {
 
 	@Autowired
-	HotelServicesImpl pService;
+	public HotelServices pService;
 
 	@PostMapping("/addHotel")
 	public ResponseEntity<Hotel> addHotel(@Valid @RequestBody Hotel pack) {
