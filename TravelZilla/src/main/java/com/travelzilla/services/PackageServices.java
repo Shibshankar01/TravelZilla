@@ -1,17 +1,20 @@
 package com.travelzilla.services;
 
+
+
 import java.util.List;
 
 import com.travelzilla.exceptions.PackageException;
+import com.travelzilla.models.Packages;
 
 public interface PackageServices {
 
-	public Package addPackage(Package pack);
+	public Packages addPackage(Packages pack);
 
-	public Package deletePackageById(Integer id) throws PackageException;
+	public Packages deletePackageById(Integer id) throws PackageException;
 
-	public Package searchPackageById(Integer id) throws PackageException;
+	public Packages searchPackageById(Integer id) throws PackageException;
 
-	public List<Package> viewAllPackages() throws PackageException;
+	public List<Packages> viewAllPackages();
 
 }

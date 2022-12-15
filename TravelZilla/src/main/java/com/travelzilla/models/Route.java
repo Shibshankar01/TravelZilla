@@ -23,7 +23,7 @@ public class Route {
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<Package> packageList;
+	private List<Packages> packageList;
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL)
@@ -42,7 +42,7 @@ public class Route {
 	
 	
 	public Route(Integer routeId, String routeFrom, String routeTo, LocalDateTime departureTime,
-			LocalDateTime arrivalTime, LocalDateTime doj, String pickupPoint, double fare, List<Package> packageList,
+			LocalDateTime arrivalTime, LocalDateTime doj, String pickupPoint, double fare, List<Packages> packageList,
 			List<Bus> busList) {
 		super();
 		this.routeId = routeId;
@@ -144,12 +144,12 @@ public void setFare(double fare) {
 }
 
 
-public List<Package> getPackageList() {
+public List<Packages> getPackageList() {
 	return packageList;
 }
 
 
-public void setPackageList(List<Package> packageList) {
+public void setPackageList(List<Packages> packageList) {
 	this.packageList = packageList;
 }
 
