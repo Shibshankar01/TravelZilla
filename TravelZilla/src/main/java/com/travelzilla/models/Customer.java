@@ -26,6 +26,7 @@ public class Customer {
 	@NotBlank
 	@Size(min = 10, max = 10)
 	private String mobile;
+	
 	@NotBlank
 	private Integer userId;
 	
