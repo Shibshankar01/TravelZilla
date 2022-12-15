@@ -14,7 +14,7 @@ import jakarta.validation.constraints.NotNull;
 public class Report {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int reportID;
 	
 	@NotBlank

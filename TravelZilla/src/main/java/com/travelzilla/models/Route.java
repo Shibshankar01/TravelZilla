@@ -11,7 +11,7 @@ import jakarta.persistence.*;
 @Entity
 public class Route {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer routeId;
 	private String routeFrom;
 	private String routeTo;

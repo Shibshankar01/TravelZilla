@@ -12,7 +12,7 @@ import jakarta.persistence.ManyToOne;
 public class TicketDetails {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer ticketdetails_Id ;
 
 	private String type;
