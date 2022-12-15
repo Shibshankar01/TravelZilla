@@ -1,14 +1,9 @@
 package com.travelzilla.models;
 
-	
-
 import java.util.Objects;
 
-<<<<<<< HEAD:TravelZilla/src/main/java/com/travelzilla/models/Package.java
-=======
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
->>>>>>> 9e10bba05273986d70539cbe28f376fc69f6124d:TravelZilla/src/main/java/com/travelzilla/models/Packages.java
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,7 +22,6 @@ public class Packages {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer packageId;
-
 
 	@NotBlank(message = "Package Name Cannot Be Blank!")
 	@Size(min = 10, max = 100, message = "Package Name Length must be between 10 to 100 characters.")
@@ -160,6 +154,5 @@ public class Packages {
 				+ packageDescription + ", route=" + route + ", hotel=" + hotel + ", bus=" + bus + ", packageCost="
 				+ packageCost + "]";
 	}
-
 
 }

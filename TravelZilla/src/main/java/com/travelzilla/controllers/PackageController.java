@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.travelzilla.exceptions.PackageException;
-<<<<<<< HEAD
-=======
+
 import com.travelzilla.models.Packages;
->>>>>>> 9e10bba05273986d70539cbe28f376fc69f6124d
+
 import com.travelzilla.services.PackageServices;
 import com.travelzilla.services.PackageServicesImpl;
 
@@ -28,11 +27,9 @@ import jakarta.validation.Valid;
 public class PackageController {
 
 	@Autowired
-<<<<<<< HEAD
+
 	public PackageServices pService;
-=======
-	private PackageServices pService;
->>>>>>> 9e10bba05273986d70539cbe28f376fc69f6124d
+
 	
 	@PostMapping("/addPackage")
 	public ResponseEntity<Packages> addPackage(@Valid @RequestBody Packages pack){
