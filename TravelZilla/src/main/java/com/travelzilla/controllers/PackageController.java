@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.travelzilla.exceptions.PackageException;
+<<<<<<< HEAD
+=======
+import com.travelzilla.models.Packages;
+>>>>>>> 9e10bba05273986d70539cbe28f376fc69f6124d
 import com.travelzilla.services.PackageServices;
 import com.travelzilla.services.PackageServicesImpl;
 
@@ -24,29 +28,33 @@ import jakarta.validation.Valid;
 public class PackageController {
 
 	@Autowired
+<<<<<<< HEAD
 	public PackageServices pService;
+=======
+	private PackageServices pService;
+>>>>>>> 9e10bba05273986d70539cbe28f376fc69f6124d
 	
 	@PostMapping("/addPackage")
-	public ResponseEntity<Package> addPackage(@Valid @RequestBody Package pack){
-		return new ResponseEntity<Package>(pService.addPackage(pack), HttpStatus.OK);
+	public ResponseEntity<Packages> addPackage(@Valid @RequestBody Packages pack){
+		return new ResponseEntity<Packages>(pService.addPackage(pack), HttpStatus.OK);
 	}
 	
 	
 	@DeleteMapping("/deletePackage/{id}")
-	public ResponseEntity<Package> deletePackage(@PathVariable("id") Integer id) throws PackageException{
-		return new ResponseEntity<Package>(pService.deletePackageById(id), HttpStatus.OK);
+	public ResponseEntity<Packages> deletePackage(@PathVariable("id") Integer id) throws PackageException{
+		return new ResponseEntity<Packages>(pService.deletePackageById(id), HttpStatus.OK);
 	}
 	
 	
 	@GetMapping("/searchPackageById/{id}")
-	public ResponseEntity<Package> searchPackageById(@PathVariable("id") Integer id) throws PackageException{
-		return new ResponseEntity<Package>(pService.searchPackageById(id), HttpStatus.OK);
+	public ResponseEntity<Packages> searchPackageById(@PathVariable("id") Integer id) throws PackageException{
+		return new ResponseEntity<Packages>(pService.searchPackageById(id), HttpStatus.OK);
 	}
 	
 	
 	@GetMapping("/viewAllPackages")
-	public ResponseEntity<List<Package>> viewAllPackages(){
-		return new ResponseEntity <List<Package>>(pService.viewAllPackages(), HttpStatus.OK);
+	public ResponseEntity<List<Packages>> viewAllPackages(){
+		return new ResponseEntity <List<Packages>>(pService.viewAllPackages(), HttpStatus.OK);
 	}
 	
 }

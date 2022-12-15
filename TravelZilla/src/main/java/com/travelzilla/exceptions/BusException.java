@@ -1,4 +1,4 @@
-package com.travelzilla.Exception;
+package com.travelzilla.exceptions;
 
 public class BusException  extends Exception{
 

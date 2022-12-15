@@ -1,4 +1,4 @@
-package com.travelzilla.Controller;
+package com.travelzilla.controllers;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.travelzilla.Exception.BusException;
+import com.travelzilla.exceptions.BusException;
 import com.travelzilla.models.Bus;
 import com.travelzilla.services.BusService;
 

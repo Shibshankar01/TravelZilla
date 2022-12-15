@@ -1,4 +1,4 @@
-package com.travelzilla.Controller;
+package com.travelzilla.controllers;
 
 import java.util.List;
 

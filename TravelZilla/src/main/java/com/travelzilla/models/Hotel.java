@@ -46,7 +46,7 @@ public class Hotel {
 
 	@OneToMany(mappedBy = "hotel",cascade = CascadeType.ALL)
 //	@JsonIgnore
-	private Set<Package> pSet = new HashSet<Package>();
+	private Set<Packages> pSet = new HashSet<Packages>();
 	
 	public Hotel() {
 		// TODO Auto-generated constructor stub
@@ -78,7 +78,7 @@ public class Hotel {
 
 
 	
-	public void setpSet(Set<Package> pSet) {
+	public void setpSet(Set<Packages> pSet) {
 		this.pSet = pSet;
 	}
 
