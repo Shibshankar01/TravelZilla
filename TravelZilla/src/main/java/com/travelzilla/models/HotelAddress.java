@@ -1,5 +1,7 @@
 package com.travelzilla.models;
 
+import java.util.Objects;
+
 public class HotelAddress {
 
 	private String state;
@@ -49,6 +51,24 @@ public class HotelAddress {
 
 	public void setPin(String pin) {
 		this.pin = pin;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(city, landmark, pin, state);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		HotelAddress other = (HotelAddress) obj;
+		return Objects.equals(city, other.city) && Objects.equals(landmark, other.landmark)
+				&& Objects.equals(pin, other.pin) && Objects.equals(state, other.state);
 	}
 
 	@Override

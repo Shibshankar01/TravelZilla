@@ -1,9 +1,14 @@
 package com.travelzilla.models;
 
+import java.util.Objects;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -26,13 +31,18 @@ public class Package {
 
 	@NotNull(message = "Route ID Cannot Be Null!")
 	@Min(value = 1, message = "Invalid Route ID, must be > 0")
-	private Integer routeId;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "routeId")
+	private Route route;
 
 	@NotNull(message = "Hotel Cannot Be Null!")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "hotel_Id")
 	private Hotel hotel;
 
 	@NotNull(message = "Bus Cannot be Null")
-	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "busId")
 	private Bus bus;
 
 	@NotNull(message = "Package Cost Cannot be Null")
@@ -43,13 +53,13 @@ public class Package {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Package(Integer packageId, String packageName, String packageDescription, Integer routeId, Hotel hotel, Bus bus,
+	public Package(Integer packageId, String packageName, String packageDescription, Route route, Hotel hotel, Bus bus,
 			Integer packageCost) {
 		super();
 		this.packageId = packageId;
 		this.packageName = packageName;
 		this.packageDescription = packageDescription;
-		this.routeId = routeId;
+		this.route = route;
 		this.hotel = hotel;
 		this.bus = bus;
 		this.packageCost = packageCost;
@@ -80,12 +90,12 @@ public class Package {
 		this.packageDescription = packageDescription;
 	}
 
-	public Integer getRouteId() {
-		return routeId;
+	public Route getRouteId() {
+		return route;
 	}
 
-	public void setRouteId(Integer routeId) {
-		this.routeId = routeId;
+	public void setRouteId(Route route) {
+		this.route = route;
 	}
 
 	public Hotel getHotel() {
@@ -113,9 +123,30 @@ public class Package {
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(bus, hotel, packageCost, packageDescription, packageId, packageName, route);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Package other = (Package) obj;
+		return Objects.equals(bus, other.bus) && Objects.equals(hotel, other.hotel)
+				&& Objects.equals(packageCost, other.packageCost)
+				&& Objects.equals(packageDescription, other.packageDescription)
+				&& Objects.equals(packageId, other.packageId) && Objects.equals(packageName, other.packageName)
+				&& Objects.equals(route, other.route);
+	}
+
+	@Override
 	public String toString() {
 		return "Package [packageId=" + packageId + ", packageName=" + packageName + ", packageDescription="
-				+ packageDescription + ", routeId=" + routeId + ", hotel=" + hotel + ", bus=" + bus + ", packageCost="
+				+ packageDescription + ", route=" + route + ", hotel=" + hotel + ", bus=" + bus + ", packageCost="
 				+ packageCost + "]";
 	}
 

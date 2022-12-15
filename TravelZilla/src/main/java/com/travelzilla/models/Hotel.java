@@ -1,10 +1,18 @@
 package com.travelzilla.models;
 
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -36,6 +44,10 @@ public class Hotel {
 	@NotNull(message = "Hotel Status Cannot be Null")
 	private HotelStatus hotelStatus;
 
+	@OneToMany(mappedBy = "hotel",cascade = CascadeType.ALL)
+//	@JsonIgnore
+	private Set<Package> pSet = new HashSet<Package>();
+	
 	public Hotel() {
 		// TODO Auto-generated constructor stub
 	}
@@ -62,6 +74,12 @@ public class Hotel {
 
 	public String getHotelName() {
 		return hotelName;
+	}
+
+
+	
+	public void setpSet(Set<Package> pSet) {
+		this.pSet = pSet;
 	}
 
 	public void setHotelName(String hotelName) {
@@ -106,6 +124,29 @@ public class Hotel {
 
 	public void setHotelStatus(HotelStatus hotelStatus) {
 		this.hotelStatus = hotelStatus;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(hotelAddress, hotelDescription, hotelName, hotelRent, hotelStatus, hotelType, hotel_Id,
+				pSet);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Hotel other = (Hotel) obj;
+		return Objects.equals(hotelAddress, other.hotelAddress)
+				&& Objects.equals(hotelDescription, other.hotelDescription)
+				&& Objects.equals(hotelName, other.hotelName)
+				&& Double.doubleToLongBits(hotelRent) == Double.doubleToLongBits(other.hotelRent)
+				&& hotelStatus == other.hotelStatus && hotelType == other.hotelType
+				&& Objects.equals(hotel_Id, other.hotel_Id) && Objects.equals(pSet, other.pSet);
 	}
 
 	@Override
