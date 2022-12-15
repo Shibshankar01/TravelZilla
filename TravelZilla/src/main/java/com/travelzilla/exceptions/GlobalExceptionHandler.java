@@ -51,6 +51,25 @@ public class GlobalExceptionHandler {
 	}
 	
 
+	@ExceptionHandler(AdminException.class)
+	public ResponseEntity<MyErrorDetails> AdminExceptionHandler(AdminException ae, WebRequest web){
+		MyErrorDetails myerr = new MyErrorDetails();
+		myerr.setTimestamp(LocalDateTime.now());
+		myerr.setMessage(ae.getMessage());
+		myerr.setDetails(web.getDescription(false));
+		
+		return new ResponseEntity<MyErrorDetails>(myerr, HttpStatus.BAD_GATEWAY);
+	}
+	
+	@ExceptionHandler(ReportException.class)
+	public ResponseEntity<MyErrorDetails> ReportExceptionHandler(ReportException ae, WebRequest web){
+		MyErrorDetails myerr = new MyErrorDetails();
+		myerr.setTimestamp(LocalDateTime.now());
+		myerr.setMessage(ae.getMessage());
+		myerr.setDetails(web.getDescription(false));
+		
+		return new ResponseEntity<MyErrorDetails>(myerr, HttpStatus.BAD_GATEWAY);
+	}
 	
 	@ExceptionHandler(HotelException.class)
 	public ResponseEntity<MyErrorDetails> HotelExceptionHandler(HotelException pException, WebRequest wRequest) {
