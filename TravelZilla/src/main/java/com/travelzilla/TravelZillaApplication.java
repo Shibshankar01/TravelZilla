@@ -8,6 +8,9 @@ public class TravelZillaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TravelZillaApplication.class, args);
+		
+		
+		
 	}
 
 }
