@@ -13,6 +13,6 @@ public interface HotelServices {
 
 	public Hotel searchHotelById(Integer id) throws HotelException;
 
-	public List<Hotel> viewAllHotels() throws HotelException;
+	public List<Hotel> viewAllHotels();
 
 }

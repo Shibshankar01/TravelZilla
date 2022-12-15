@@ -12,6 +12,6 @@ public interface PackageServices {
 
 	public Package searchPackageById(Integer id) throws PackageException;
 
-	public List<Package> viewAllPackages() throws PackageException;
+	public List<Package> viewAllPackages();
 
 }

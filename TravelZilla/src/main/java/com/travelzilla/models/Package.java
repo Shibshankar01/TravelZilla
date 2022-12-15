@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -18,18 +19,18 @@ public class Package {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
 	private Integer packageId;
 
-	@NotNull(message = "Package Name Cannot Be Null!")
+
+	@NotBlank(message = "Package Name Cannot Be Blank!")
 	@Size(min = 10, max = 100, message = "Package Name Length must be between 10 to 100 characters.")
 	private String packageName;
 
-	@NotNull(message = "Package Description Cannot Be Null!")
+	@NotBlank(message = "Package Description Cannot Be Blank!")
 	@Size(min = 10, max = 1000, message = "Package Description Length must be between 10 to 1000 characters.")
 	private String packageDescription;
 
-	@NotNull(message = "Route ID Cannot Be Null!")
+	@NotNull(message = "Route Cannot Be Null!")
 	@Min(value = 1, message = "Invalid Route ID, must be > 0")
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "routeId")
