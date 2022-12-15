@@ -1,8 +1,8 @@
-package com.travelzilla.service;
+package com.travelzilla.services;
 
 import java.util.List;
 
-import com.travelzilla.Exception.RouteException;
+import com.travelzilla.exceptions.RouteException;
 import com.travelzilla.models.Route;
 
 public interface RouteService {

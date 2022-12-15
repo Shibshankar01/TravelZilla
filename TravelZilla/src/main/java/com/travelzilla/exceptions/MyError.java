@@ -1,4 +1,4 @@
-package com.travelzilla.Exception;
+package com.travelzilla.exceptions;
 
 import java.time.LocalDateTime;
 
