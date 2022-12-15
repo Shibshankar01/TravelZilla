@@ -1,4 +1,4 @@
-package com.travelzilla.service;
+package com.travelzilla.services;
 
 import java.util.List;
 import java.util.Optional;

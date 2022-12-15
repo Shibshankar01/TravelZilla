@@ -27,8 +27,8 @@ public class Hotel {
 	@Size(min = 1, max = 20, message = "Hotel Name Must be Between 1 to 20 Characters")
 	private String hotelName;
 	
-	@NotNull(message = "Hotel Type Cannot be Null")
-	private HotelType hotelType;
+
+	private HotelType hotelType = HotelType.AC;
 	
 	@Size(min = 10, max = 1000, message = "Hotel Must be Described in 10 to 1000 Charcters" )
 	private String hotelDescription;
@@ -41,8 +41,8 @@ public class Hotel {
 	@Min(1)
 	private double hotelRent;
 	
-	@NotNull(message = "Hotel Status Cannot be Null")
-	private HotelStatus hotelStatus;
+
+	private HotelStatus hotelStatus = HotelStatus.ROOM_AVAILABLE;
 
 	@OneToMany(mappedBy = "hotel",cascade = CascadeType.ALL)
 //	@JsonIgnore

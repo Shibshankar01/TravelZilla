@@ -1,8 +1,8 @@
-package com.travelzilla.service;
+package com.travelzilla.services;
 
 import java.util.List;
 
-import com.travelzilla.Exception.TravelsException;
+import com.travelzilla.exceptions.TravelsException;
 import com.travelzilla.models.Travels;
 
 

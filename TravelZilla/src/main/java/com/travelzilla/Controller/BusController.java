@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.travelzilla.Exception.BusException;
 import com.travelzilla.models.Bus;
-import com.travelzilla.service.BusService;
+import com.travelzilla.services.BusService;
 
 @RestController
 public class BusController {

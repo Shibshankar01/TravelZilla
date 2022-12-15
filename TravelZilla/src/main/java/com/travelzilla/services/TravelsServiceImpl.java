@@ -1,4 +1,4 @@
-package com.travelzilla.service;
+package com.travelzilla.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.travelzilla.Exception.TravelsException;
+import com.travelzilla.exceptions.TravelsException;
 import com.travelzilla.models.Travels;
 import com.travelzilla.repositories.TravelsDTO;
 

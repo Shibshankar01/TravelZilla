@@ -1,11 +1,13 @@
-package com.travelzilla.service;
+package com.travelzilla.services;
 
 import java.util.List;
+
+import org.springframework.stereotype.Service;
 
 import com.travelzilla.Exception.BusException;
 import com.travelzilla.models.Bus;
 
-
+@Service
 public interface BusService {
 	
 	public Bus  registerBus(Bus bus)throws BusException;

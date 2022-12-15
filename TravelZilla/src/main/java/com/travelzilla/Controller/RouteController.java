@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.travelzilla.Exception.RouteException;
+import com.travelzilla.exceptions.RouteException;
 import com.travelzilla.models.Route;
-import com.travelzilla.service.RouteService;
+import com.travelzilla.services.RouteService;
 
 @RestController
 public class RouteController {
