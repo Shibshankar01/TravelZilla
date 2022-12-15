@@ -1,5 +1,6 @@
 package com.travelzilla.models;
 
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -170,12 +171,7 @@ public String toString() {
 			+ ", fare=" + fare + ", packageList=" + packageList + ", busList=" + busList + "]";
 }
 	
-	
 
 	
-	
-	
-	
-	
-
 }
+
