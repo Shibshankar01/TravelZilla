@@ -4,8 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
-public class Package {
+public class Customer {
 @Id
-private int packageId;
-	
+private int customerId;
 }
