@@ -1,14 +1,30 @@
 package com.travelzilla.models;
 
-import java.time.LocalDate;
 
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+
+@Entity
 public class Feedback {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@NotBlank
 	private Integer feedbackId;
+	@NotBlank
 	private String feedback;
+	@NotBlank
 	private Integer rating;
-	private LocalDate submitDate;
+	@NotBlank
+	private LocalDateTime submitDate;
+	@NotBlank
 	private Integer customerId;
+	@NotBlank
 	private Integer bookingId;
 	
 	public Feedback() {

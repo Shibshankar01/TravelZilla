@@ -1,13 +1,32 @@
 package com.travelzilla.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+@Entity
 public class Customer {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer customerId;
+	@NotBlank
 	private String customerName;
+	@NotBlank
 	private String customerPassword;
+	@NotBlank
 	private String address;
+	@NotBlank
+	@Email
 	private String email;
+	@NotBlank
+	@Size(min = 10, max = 10)
 	private String mobile;
+	@NotBlank
 	private Integer userId;
 	
 	public Customer() {
