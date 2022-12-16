@@ -55,8 +55,12 @@ public class Packages {
 		return packageStatus;
 	}
 
-	public void setPackageStatus() {
+	public void setPackageStatus(Integer noOfPerson) {
+		if(bus.getAvailabeSeat()>=noOfPerson) {
+		bus.setAvailabeSeat(bus.getAvailabeSeat()-noOfPerson);
+		}
 		if(bus.getAvailabeSeat() <= 0 || hotel.getHotelStatus() == HotelStatus.SOLD_OUT) {
+			
 			packageStatus = PackageStatus.SOLD_OUT;
 		}
 		else {

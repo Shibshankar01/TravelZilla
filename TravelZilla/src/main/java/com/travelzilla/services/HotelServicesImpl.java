@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.travelzilla.exceptions.HotelException;
 import com.travelzilla.models.Hotel;
+import com.travelzilla.models.HotelStatusDTO;
 import com.travelzilla.repositories.HotelDAO;
 
 @Service
@@ -16,8 +17,8 @@ public class HotelServicesImpl implements HotelServices {
 	private HotelDAO hDao;
 
 	@Override
-	public Hotel addHotel(Hotel pack) {
-		return hDao.save(pack);
+	public Hotel addHotel(Hotel hotel) {
+		return hDao.save(hotel);
 	}
 
 	@Override
@@ -38,6 +39,17 @@ public class HotelServicesImpl implements HotelServices {
 	@Override
 	public List<Hotel> viewAllHotels() {
 		return hDao.findAll();
+	}
+
+	@Override
+	public Hotel updateHotelStatus(HotelStatusDTO hotelStatusDTO) throws HotelException {
+	
+		Hotel h = hDao.findById(hotelStatusDTO.getHotel_Id()).orElseThrow(() -> new HotelException("Hotel Not Found With Hotel ID :" + hotelStatusDTO.getHotel_Id()));
+		h.setHotelStatus(hotelStatusDTO.getUpdatedHotelStatus());
+		hDao.save(h);
+		return h;
+		
+		
 	}
 
 }
