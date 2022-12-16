@@ -51,6 +51,7 @@ public class Packages {
 	
 	private PackageStatus packageStatus = PackageStatus.AVAILABLE;
 
+
 	public PackageStatus getPackageStatus() {
 		return packageStatus;
 	}
@@ -63,6 +64,7 @@ public class Packages {
 			packageStatus = PackageStatus.AVAILABLE;
 		}
 	}
+
 
 	public Packages() {
 		// TODO Auto-generated constructor stub

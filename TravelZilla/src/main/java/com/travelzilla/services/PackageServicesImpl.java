@@ -15,10 +15,12 @@ import com.travelzilla.models.Hotel;
 import com.travelzilla.models.PackageDTO;
 import com.travelzilla.models.Packages;
 import com.travelzilla.models.Route;
-import com.travelzilla.repositories.BusDTO;
+import com.travelzilla.repositories.BusDAO;
+
 import com.travelzilla.repositories.HotelDAO;
 import com.travelzilla.repositories.PackageDAO;
-import com.travelzilla.repositories.RouteDTO;
+import com.travelzilla.repositories.RouteDAO;
+
 
 @Service
 public class PackageServicesImpl implements PackageServices {
@@ -29,10 +31,10 @@ public class PackageServicesImpl implements PackageServices {
 	private HotelDAO hDAO;
 
 	@Autowired
-	private BusDTO bDAO;
+	private BusDAO bDAO;
 
 	@Autowired
-	private RouteDTO rDAO;
+	private RouteDAO rDAO;
 
 	@Override
 	public Packages addPackage(PackageDTO pDto) throws BusException, RouteException, HotelException {
