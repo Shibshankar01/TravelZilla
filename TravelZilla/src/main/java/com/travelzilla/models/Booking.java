@@ -31,7 +31,7 @@ private Customer customerId;
 @ManyToOne
 @JoinColumn(name = "packageId")
 @NotBlank(message="packageId cannot be null")
-private Package packageId;
+private Packages packageId;
 
 @OneToOne
 @PrimaryKeyJoinColumn
@@ -48,7 +48,7 @@ public Booking(@NotBlank(message = "bookingId cannot be null") int bookingId,
 		@NotBlank(message = "bookingTitle cannot be null") String bookingTitle,
 		@NotBlank(message = "bookingDate cannot be null") LocalDateTime bookingDate,
 		@NotBlank(message = "customerId cannot be null") Customer customerId,
-		@NotBlank(message = "packageId cannot be null") Package packageId, @NotBlank TicketDetails ticketId) {
+		@NotBlank(message = "packageId cannot be null") Packages packageId, @NotBlank TicketDetails ticketId) {
 	super();
 	this.bookingId = bookingId;
 	this.bookingType = bookingType;
@@ -116,12 +116,12 @@ public void setCustomerId(Customer customerId) {
 }
 
 
-public Package getPackageId() {
+public Packages getPackageId() {
 	return packageId;
 }
 
 
-public void setPackageId(Package packageId) {
+public void setPackageId(Packages packageId) {
 	this.packageId = packageId;
 }
 
