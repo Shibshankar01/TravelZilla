@@ -3,8 +3,10 @@ package com.travelzilla.models;
 
 import java.time.LocalDateTime;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+
 
 @Entity
 public class Feedback {
@@ -19,6 +21,7 @@ public class Feedback {
 	private Integer rating;
 	@NotBlank
 	private LocalDateTime submitDate;
+	
 	@NotBlank
 	private Integer customerId;
 	@NotBlank

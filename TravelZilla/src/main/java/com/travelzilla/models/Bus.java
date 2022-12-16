@@ -1,5 +1,6 @@
 package com.travelzilla.models;
 
+
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.*;
@@ -117,10 +118,5 @@ public class Bus {
 				+ ticketdetails + "]";
 	}
 	
-	
-	
-	
-	
-	
-	
+
 }

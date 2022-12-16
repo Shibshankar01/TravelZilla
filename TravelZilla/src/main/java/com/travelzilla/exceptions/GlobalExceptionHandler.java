@@ -14,6 +14,10 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 	
+	
+	
+
+	
 	@ExceptionHandler(RouteException.class)
 	public ResponseEntity<MyErrorDetails> GlobalExceptionHandler(RouteException cm,WebRequest req){
 		
