@@ -4,6 +4,8 @@ package com.travelzilla.models;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,7 +18,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-public class Package {
+public class Packages {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,27 +37,30 @@ public class Package {
 	@Min(value = 1, message = "Invalid Route ID, must be > 0")
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "routeId")
+	@JsonIgnore
 	private Route route;
 
 	@NotNull(message = "Hotel Cannot Be Null!")
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "hotel_Id")
+	@JsonIgnore
 	private Hotel hotel;
 
 	@NotNull(message = "Bus Cannot be Null")
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "busId")
+	@JsonIgnore
 	private Bus bus;
 
 	@NotNull(message = "Package Cost Cannot be Null")
 	@Min(value = 2000, message = "Package Cost Cannot be Less Than 2000.")
 	private Integer packageCost;
 
-	public Package() {
+	public Packages() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Package(Integer packageId, String packageName, String packageDescription, Route route, Hotel hotel, Bus bus,
+	public Packages(Integer packageId, String packageName, String packageDescription, Route route, Hotel hotel, Bus bus,
 			Integer packageCost) {
 		super();
 		this.packageId = packageId;
@@ -137,7 +142,7 @@ public class Package {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Package other = (Package) obj;
+		Packages other = (Packages) obj;
 		return Objects.equals(bus, other.bus) && Objects.equals(hotel, other.hotel)
 				&& Objects.equals(packageCost, other.packageCost)
 				&& Objects.equals(packageDescription, other.packageDescription)
