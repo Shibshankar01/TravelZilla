@@ -1,7 +1,9 @@
 package com.travelzilla.models;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,15 +17,15 @@ public class Route {
 	private Integer routeId;
 	private String routeFrom;
 	private String routeTo;
-	private LocalDateTime  departureTime;
-	private LocalDateTime  arrivalTime;
-	private LocalDateTime  doj;
+	private LocalTime  departureTime;
+	private LocalTime  arrivalTime;
+	private LocalDate  doj;
 	private String pickupPoint;
 	private double fare;
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<Package> packageList;
+	private List<Packages> packageList;
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL)
@@ -41,8 +43,10 @@ public class Route {
 	
 	
 	
-	public Route(Integer routeId, String routeFrom, String routeTo, LocalDateTime departureTime,
-			LocalDateTime arrivalTime, LocalDateTime doj, String pickupPoint, double fare, List<Package> packageList,
+
+	public Route(Integer routeId, String routeFrom, String routeTo, LocalTime departureTime,
+			LocalTime arrivalTime, LocalDate doj, String pickupPoint, double fare, List<Packages> packageList,
+
 			List<Bus> busList) {
 		super();
 		this.routeId = routeId;
@@ -94,32 +98,32 @@ public void setRouteTo(String routeTo) {
 }
 
 
-public LocalDateTime getDepartureTime() {
+public LocalTime getDepartureTime() {
 	return departureTime;
 }
 
 
-public void setDepartureTime(LocalDateTime departureTime) {
+public void setDepartureTime(LocalTime departureTime) {
 	this.departureTime = departureTime;
 }
 
 
-public LocalDateTime getArrivalTime() {
+public LocalTime getArrivalTime() {
 	return arrivalTime;
 }
 
 
-public void setArrivalTime(LocalDateTime arrivalTime) {
+public void setArrivalTime(LocalTime arrivalTime) {
 	this.arrivalTime = arrivalTime;
 }
 
 
-public LocalDateTime getDoj() {
+public LocalDate getDoj() {
 	return doj;
 }
 
 
-public void setDoj(LocalDateTime doj) {
+public void setDoj(LocalDate doj) {
 	this.doj = doj;
 }
 
@@ -144,12 +148,12 @@ public void setFare(double fare) {
 }
 
 
-public List<Package> getPackageList() {
+public List<Packages> getPackageList() {
 	return packageList;
 }
 
 
-public void setPackageList(List<Package> packageList) {
+public void setPackageList(List<Packages> packageList) {
 	this.packageList = packageList;
 }
 

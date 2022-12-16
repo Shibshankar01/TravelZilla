@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.travelzilla.models.Route;
 
 @Repository
-public interface RouteDTO extends JpaRepository<Route, Integer>{
+public interface RouteDAO extends JpaRepository<Route, Integer>{
 
 }

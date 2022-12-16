@@ -15,7 +15,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(RouteException.class)
-	public ResponseEntity<MyErrorDetails> GlobalExceptionHandler(RouteException cm,WebRequest req){
+	public ResponseEntity<MyErrorDetails> RouteExceptionHandler(RouteException cm,WebRequest req){
 		
 		MyErrorDetails er=new MyErrorDetails();
 		er.setTimestamp(LocalDateTime.now());
@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
 	}
 	
 	@ExceptionHandler(BusException.class)
-	public ResponseEntity<MyErrorDetails> GlobalExceptionHandler(BusException cm,WebRequest req){
+	public ResponseEntity<MyErrorDetails> BusExceptionHandler(BusException cm,WebRequest req){
 		
 		MyErrorDetails er=new MyErrorDetails();
 		er.setTimestamp(LocalDateTime.now());
@@ -39,7 +39,7 @@ public class GlobalExceptionHandler {
 	}
 	
 	@ExceptionHandler(TravelsException.class)
-	public ResponseEntity<MyErrorDetails> GlobalExceptionHandler(TravelsException cm,WebRequest req){
+	public ResponseEntity<MyErrorDetails> TravelsExceptionHandler(TravelsException cm,WebRequest req){
 		
 		MyErrorDetails er=new MyErrorDetails();
 		er.setTimestamp(LocalDateTime.now());

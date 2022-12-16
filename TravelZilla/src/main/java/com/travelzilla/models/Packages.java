@@ -16,7 +16,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-public class Package {
+public class Packages {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,11 +51,11 @@ public class Package {
 	@Min(value = 2000, message = "Package Cost Cannot be Less Than 2000.")
 	private Integer packageCost;
 
-	public Package() {
+	public Packages() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Package(Integer packageId, String packageName, String packageDescription, Route route, Hotel hotel, Bus bus,
+	public Packages(Integer packageId, String packageName, String packageDescription, Route route, Hotel hotel, Bus bus,
 			Integer packageCost) {
 		super();
 		this.packageId = packageId;
@@ -137,7 +137,7 @@ public class Package {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Package other = (Package) obj;
+		Packages other = (Packages) obj;
 		return Objects.equals(bus, other.bus) && Objects.equals(hotel, other.hotel)
 				&& Objects.equals(packageCost, other.packageCost)
 				&& Objects.equals(packageDescription, other.packageDescription)
