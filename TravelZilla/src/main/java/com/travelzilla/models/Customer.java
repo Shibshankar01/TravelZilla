@@ -116,7 +116,5 @@ public class Customer {
 				+ userId + "]";
 	}
 	
-	
-	
 
 }
