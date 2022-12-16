@@ -2,6 +2,8 @@ package com.travelzilla.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +19,6 @@ import com.travelzilla.exceptions.HotelException;
 import com.travelzilla.models.Hotel;
 import com.travelzilla.services.HotelServicesImpl;
 
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/hotel")
