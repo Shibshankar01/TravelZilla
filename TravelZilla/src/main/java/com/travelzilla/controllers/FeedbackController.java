@@ -1,5 +1,7 @@
 package com.travelzilla.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +16,7 @@ import com.travelzilla.exceptions.FeedbackException;
 import com.travelzilla.models.Feedback;
 import com.travelzilla.services.FeedbackServices;
 
-import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/feedbacks")

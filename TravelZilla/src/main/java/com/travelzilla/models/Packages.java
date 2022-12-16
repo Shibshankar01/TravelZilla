@@ -6,16 +6,10 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Packages {
@@ -33,12 +27,11 @@ public class Packages {
 	@Size(min = 10, max = 1000, message = "Package Description Length must be between 10 to 1000 characters.")
 	private String packageDescription;
 
-	@NotNull(message = "Route ID Cannot Be Null!")
-	@Min(value = 1, message = "Invalid Route ID, must be > 0")
+	@NotNull(message = "Route Cannot Be Null!")
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "routeId")
 	@JsonIgnore
-	private Route route;
+	private Route route; 	
 
 	@NotNull(message = "Hotel Cannot Be Null!")
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -55,6 +48,21 @@ public class Packages {
 	@NotNull(message = "Package Cost Cannot be Null")
 	@Min(value = 2000, message = "Package Cost Cannot be Less Than 2000.")
 	private Integer packageCost;
+	
+	private PackageStatus packageStatus = PackageStatus.AVAILABLE;
+
+	public PackageStatus getPackageStatus() {
+		return packageStatus;
+	}
+
+	public void setPackageStatus() {
+		if(bus.getAvailabeSeat() <= 0 || hotel.getHotelStatus() == HotelStatus.SOLD_OUT) {
+			packageStatus = PackageStatus.SOLD_OUT;
+		}
+		else {
+			packageStatus = PackageStatus.AVAILABLE;
+		}
+	}
 
 	public Packages() {
 		// TODO Auto-generated constructor stub
@@ -97,11 +105,11 @@ public class Packages {
 		this.packageDescription = packageDescription;
 	}
 
-	public Route getRouteId() {
+	public Route getRoute() {
 		return route;
 	}
 
-	public void setRouteId(Route route) {
+	public void setRoute(Route route) {
 		this.route = route;
 	}
 
