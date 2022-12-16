@@ -78,9 +78,13 @@ public class Hotel {
 
 
 	
-	public void setpSet(Set<Packages> pSet) {
-		this.pSet = pSet;
+	
+
+	public Set<Packages> getpSet() {
+		return pSet;
 	}
+
+	
 
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;

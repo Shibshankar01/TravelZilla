@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.travelzilla.exceptions.BusException;
+import com.travelzilla.exceptions.HotelException;
 import com.travelzilla.exceptions.PackageException;
+import com.travelzilla.exceptions.RouteException;
+import com.travelzilla.models.PackageDTO;
 import com.travelzilla.models.Packages;
 import com.travelzilla.services.PackageServices;
 
@@ -26,28 +30,33 @@ public class PackageController {
 
 	@Autowired
 	private PackageServices pService;
-	
-	@PostMapping("/addPackage")
-	public ResponseEntity<Packages> addPackage(@Valid @RequestBody Packages pack){
-		return new ResponseEntity<Packages>(pService.addPackage(pack), HttpStatus.OK);
+
+	@PostMapping("/addPackageByIds")
+	public ResponseEntity<Packages> addPackage(@Valid @RequestBody PackageDTO pDto)
+			throws HotelException, BusException, RouteException {
+
+		return new ResponseEntity<Packages>(pService.addPackage(pDto), HttpStatus.OK);
 	}
-	
-	
+	@PostMapping("/addPackage")
+	public ResponseEntity<Packages> addPackage(@Valid @RequestBody Packages packages)
+			throws HotelException, BusException, RouteException {
+System.out.println(packages);
+		return new ResponseEntity<Packages>(pService.addPackage(packages), HttpStatus.OK);
+	}
+
 	@DeleteMapping("/deletePackage/{id}")
-	public ResponseEntity<Packages> deletePackage(@PathVariable("id") Integer id) throws PackageException{
+	public ResponseEntity<Packages> deletePackage(@PathVariable("id") Integer id) throws PackageException {
 		return new ResponseEntity<Packages>(pService.deletePackageById(id), HttpStatus.OK);
 	}
-	
-	
+
 	@GetMapping("/searchPackageById/{id}")
-	public ResponseEntity<Packages> searchPackageById(@PathVariable("id") Integer id) throws PackageException{
+	public ResponseEntity<Packages> searchPackageById(@PathVariable("id") Integer id) throws PackageException {
 		return new ResponseEntity<Packages>(pService.searchPackageById(id), HttpStatus.OK);
 	}
-	
-	
+
 	@GetMapping("/viewAllPackages")
-	public ResponseEntity<List<Packages>> viewAllPackages(){
-		return new ResponseEntity <List<Packages>>(pService.viewAllPackages(), HttpStatus.OK);
+	public ResponseEntity<List<Packages>> viewAllPackages() {
+		return new ResponseEntity<List<Packages>>(pService.viewAllPackages(), HttpStatus.OK);
 	}
-	
+
 }
