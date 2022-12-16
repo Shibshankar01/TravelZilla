@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 public class Feedback {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotBlank
 	private Integer feedbackId;
 	@NotBlank

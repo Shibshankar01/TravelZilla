@@ -1,5 +1,6 @@
 package com.travelzilla.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,17 +19,16 @@ public class Travels {
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "travel")
-	private List<Bus> bus;
+	private List<Bus> busList = new ArrayList<>();
 
-	public Travels(Integer travelId, String travelName, String agentName, String address, String contact,
-			List<Bus> bus) {
+	public Travels(Integer travelId, String travelName, String agentName, String address, String contact) {
 		super();
 		this.travelId = travelId;
 		this.travelName = travelName;
 		this.agentName = agentName;
 		this.address = address;
 		this.contact = contact;
-		this.bus = bus;
+	
 	}
 
 	public Travels() {
@@ -75,18 +75,15 @@ public class Travels {
 		this.contact = contact;
 	}
 
-	public List<Bus> getBus() {
-		return bus;
+	public List<Bus> getBusList() {
+		return busList;
 	}
 
-	public void setBus(List<Bus> bus) {
-		this.bus = bus;
-	}
-
+	
 	@Override
 	public String toString() {
 		return "Travels [travelId=" + travelId + ", travelName=" + travelName + ", agentName=" + agentName
-				+ ", address=" + address + ", contact=" + contact + ", bus=" + bus + "]";
+				+ ", address=" + address + ", contact=" + contact + ", bus=" + busList + "]";
 	}
 	
 	
