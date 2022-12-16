@@ -2,6 +2,8 @@ package com.travelzilla.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,39 +15,49 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.travelzilla.exceptions.BusException;
+import com.travelzilla.exceptions.HotelException;
 import com.travelzilla.exceptions.PackageException;
-import com.travelzilla.services.PackageServicesImpl;
+import com.travelzilla.exceptions.RouteException;
+import com.travelzilla.models.PackageDTO;
+import com.travelzilla.models.Packages;
+import com.travelzilla.services.PackageServices;
 
-import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/package")
 public class PackageController {
 
 	@Autowired
-	PackageServicesImpl pService;
-	
+	private PackageServices pService;
+
+	@PostMapping("/addPackageByIds")
+	public ResponseEntity<Packages> addPackage(@Valid @RequestBody PackageDTO pDto)
+			throws HotelException, BusException, RouteException {
+
+		return new ResponseEntity<Packages>(pService.addPackage(pDto), HttpStatus.OK);
+	}
 	@PostMapping("/addPackage")
-	public ResponseEntity<Package> addPackage(@Valid @RequestBody Package pack){
-		return new ResponseEntity<Package>(pService.addPackage(pack), HttpStatus.OK);
+	public ResponseEntity<Packages> addPackage(@Valid @RequestBody Packages packages)
+			throws HotelException, BusException, RouteException {
+System.out.println(packages);
+		return new ResponseEntity<Packages>(pService.addPackage(packages), HttpStatus.OK);
 	}
-	
-	
+
 	@DeleteMapping("/deletePackage/{id}")
-	public ResponseEntity<Package> deletePackage(@PathVariable("id") Integer id) throws PackageException{
-		return new ResponseEntity<Package>(pService.deletePackageById(id), HttpStatus.OK);
+	public ResponseEntity<Packages> deletePackage(@PathVariable("id") Integer id) throws PackageException {
+		return new ResponseEntity<Packages>(pService.deletePackageById(id), HttpStatus.OK);
 	}
-	
-	
+
 	@GetMapping("/searchPackageById/{id}")
-	public ResponseEntity<Package> searchPackageById(@PathVariable("id") Integer id) throws PackageException{
-		return new ResponseEntity<Package>(pService.searchPackageById(id), HttpStatus.OK);
+	public ResponseEntity<Packages> searchPackageById(@PathVariable("id") Integer id) throws PackageException {
+		return new ResponseEntity<Packages>(pService.searchPackageById(id), HttpStatus.OK);
 	}
-	
-	
+
 	@GetMapping("/viewAllPackages")
-	public ResponseEntity<List<Package>> viewAllPackages(){
-		return new ResponseEntity <List<Package>>(pService.viewAllPackages(), HttpStatus.OK);
+	public ResponseEntity<List<Packages>> viewAllPackages() {
+		return new ResponseEntity<List<Packages>>(pService.viewAllPackages(), HttpStatus.OK);
 	}
-	
+
 }

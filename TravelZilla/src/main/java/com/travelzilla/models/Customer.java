@@ -1,12 +1,9 @@
 package com.travelzilla.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Customer {
@@ -26,6 +23,7 @@ public class Customer {
 	@NotBlank
 	@Size(min = 10, max = 10)
 	private String mobile;
+	
 	@NotBlank
 	private Integer userId;
 	
@@ -117,8 +115,6 @@ public class Customer {
 				+ customerPassword + ", address=" + address + ", email=" + email + ", mobile=" + mobile + ", userId="
 				+ userId + "]";
 	}
-	
-	
 	
 
 }

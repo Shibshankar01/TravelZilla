@@ -6,16 +6,10 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Hotel {
@@ -45,7 +39,7 @@ public class Hotel {
 	private HotelStatus hotelStatus;
 
 	@OneToMany(mappedBy = "hotel",cascade = CascadeType.ALL)
-//	@JsonIgnore
+	@JsonIgnore
 	private Set<Packages> pSet = new HashSet<Packages>();
 	
 	public Hotel() {
@@ -78,9 +72,15 @@ public class Hotel {
 
 
 	
-	public void setpSet(Set<Packages> pSet) {
-		this.pSet = pSet;
+
+	
+
+	public Set<Packages> getpSet() {
+		return pSet;
+
 	}
+
+	
 
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;

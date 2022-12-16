@@ -1,5 +1,6 @@
 package com.travelzilla.exceptions;
 
+
 import java.time.LocalDateTime;
 
 public class MyErrorDetails {
