@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.*;
 
+import javax.persistence.Entity;
+
 import javax.persistence.*;
 
 @Entity
