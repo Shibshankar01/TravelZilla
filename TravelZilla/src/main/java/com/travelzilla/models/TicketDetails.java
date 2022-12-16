@@ -61,8 +61,5 @@ public class TicketDetails {
 		super();
 	}
 	
-	
-	
-	
 
 }
