@@ -14,8 +14,20 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 	
+	@ExceptionHandler(SessionException.class)
+	public ResponseEntity<MyErrorDetails> SessionExceptionHandler(SessionException se,WebRequest req){
+		
+		MyErrorDetails er=new MyErrorDetails();
+		er.setTimestamp(LocalDateTime.now());
+		er.setMessage(se.getMessage());
+		er.setDetails(req.getDescription(false));
+		
+		return new ResponseEntity<MyErrorDetails>(er, HttpStatus.BAD_REQUEST);
+		
+	}
+	
 	@ExceptionHandler(RouteException.class)
-	public ResponseEntity<MyErrorDetails> GlobalExceptionHandler(RouteException cm,WebRequest req){
+	public ResponseEntity<MyErrorDetails> RouteExceptionHandler(RouteException cm,WebRequest req){
 		
 		MyErrorDetails er=new MyErrorDetails();
 		er.setTimestamp(LocalDateTime.now());
@@ -27,7 +39,7 @@ public class GlobalExceptionHandler {
 	}
 	
 	@ExceptionHandler(BusException.class)
-	public ResponseEntity<MyErrorDetails> GlobalExceptionHandler(BusException cm,WebRequest req){
+	public ResponseEntity<MyErrorDetails> BusExceptionHandler(BusException cm,WebRequest req){
 		
 		MyErrorDetails er=new MyErrorDetails();
 		er.setTimestamp(LocalDateTime.now());
@@ -39,7 +51,7 @@ public class GlobalExceptionHandler {
 	}
 	
 	@ExceptionHandler(TravelsException.class)
-	public ResponseEntity<MyErrorDetails> GlobalExceptionHandler(TravelsException cm,WebRequest req){
+	public ResponseEntity<MyErrorDetails> TravelsExceptionHandler(TravelsException cm,WebRequest req){
 		
 		MyErrorDetails er=new MyErrorDetails();
 		er.setTimestamp(LocalDateTime.now());
@@ -48,6 +60,16 @@ public class GlobalExceptionHandler {
 		
 		return new ResponseEntity<MyErrorDetails>(er, HttpStatus.BAD_REQUEST);
 		
+	}
+	
+	@ExceptionHandler(CustomerException.class)
+	public ResponseEntity<MyErrorDetails> CustomerExceptionHandler(CustomerException ce, WebRequest web){
+		MyErrorDetails myerr = new MyErrorDetails();
+		myerr.setTimestamp(LocalDateTime.now());
+		myerr.setMessage(ce.getMessage());
+		myerr.setDetails(web.getDescription(false));
+		
+		return new ResponseEntity<MyErrorDetails>(myerr, HttpStatus.BAD_GATEWAY);
 	}
 	
 
