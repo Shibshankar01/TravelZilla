@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 
 import com.travelzilla.exceptions.TravelsException;
 import com.travelzilla.models.Travels;
-import com.travelzilla.repositories.TravelsDTO;
+import com.travelzilla.repositories.TravelsDAO;
 
 @Service
 public class TravelsServiceImpl implements TravelsService {
 	
 	@Autowired
-	private TravelsDTO erepo;
+	private TravelsDAO erepo;
 
 	@Override
 	public Travels registerTravels(Travels travels) throws TravelsException {

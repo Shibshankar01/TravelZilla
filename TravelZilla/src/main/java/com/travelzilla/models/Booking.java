@@ -8,144 +8,144 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Booking {
-@Id
-@NotBlank(message="bookingId cannot be null")
-private int bookingId;
-@NotBlank(message="bookingType cannot be null")
-private String bookingType;
-@NotBlank(message="description cannot be null")
-private String description;
-@NotBlank(message="bookingTitle cannot be null")
-private String bookingTitle;
-@NotBlank(message="bookingDate cannot be null")
-private LocalDateTime bookingDate;
+	@Id
+	@NotBlank(message = "bookingId cannot be null")
+	private int bookingId;
+	@NotBlank(message = "description cannot be null")
+	private String description;
+	@NotBlank(message = "bookingTitle cannot be null")
+	private String bookingTitle;
+	@NotBlank(message = "bookingDate cannot be null")
+	private LocalDateTime bookingDate;
 
-@OneToOne
-@PrimaryKeyJoinColumn
-@NotBlank(message="customerId cannot be null")
-private Customer customerId;
-
-@ManyToOne
-@JoinColumn(name = "packageId")
-@NotBlank(message="packageId cannot be null")
-private Packages packageId;
-
-@OneToOne
-@PrimaryKeyJoinColumn
-@NotBlank
-private TicketDetails ticketId;
+	private Double totalCost;
 
 
-public Booking() {
-	// TODO Auto-generated constructor stub
-}
-public Booking(@NotBlank(message = "bookingId cannot be null") int bookingId,
-		@NotBlank(message = "bookingType cannot be null") String bookingType,
-		@NotBlank(message = "description cannot be null") String description,
-		@NotBlank(message = "bookingTitle cannot be null") String bookingTitle,
-		@NotBlank(message = "bookingDate cannot be null") LocalDateTime bookingDate,
-		@NotBlank(message = "customerId cannot be null") Customer customerId,
-		@NotBlank(message = "packageId cannot be null") Packages packageId, @NotBlank TicketDetails ticketId) {
-	super();
-	this.bookingId = bookingId;
-	this.bookingType = bookingType;
-	this.description = description;
-	this.bookingTitle = bookingTitle;
-	this.bookingDate = bookingDate;
-	this.customerId = customerId;
-	this.packageId = packageId;
-	this.ticketId = ticketId;
-}
-
-public int getBookingId() {
-	return bookingId;
-}
+	private BookingStatus bookingStatus = BookingStatus.PAYMENT_PENDING;
+	
+	@NotNull(message = "Number Of Person Cannot Be Null")
+	@Min(value = 1, message = "Number Of Person Should Be Atleast 1")
+	private Integer noOfPersons;	
 
 
-public void setBookingId(int bookingId) {
-	this.bookingId = bookingId;
-}
+	@OneToOne
+	@PrimaryKeyJoinColumn
+	@NotBlank(message = "customerId cannot be null")
+	private Customer customer;
 
+	@ManyToOne
+	@JoinColumn(name = "packages")
+	@NotBlank(message = "package cannot be null")
+	private Packages packages;
 
-public String getBookingType() {
-	return bookingType;
-}
+	@OneToOne
+	@PrimaryKeyJoinColumn
+	@NotBlank
+	private TicketDetails ticket;
 
-public void setBookingType(String bookingType) {
-	this.bookingType = bookingType;
-}
+	public Booking() {
+		// TODO Auto-generated constructor stub
+	}
 
+	public Booking(@NotBlank(message = "bookingId cannot be null") int bookingId,
+			@NotBlank(message = "description cannot be null") String description,
+			@NotBlank(message = "bookingTitle cannot be null") String bookingTitle,
+			@NotBlank(message = "bookingDate cannot be null") LocalDateTime bookingDate,
+			@NotBlank(message = "customerId cannot be null") Customer customerId,
+			@NotBlank(message = "packages cannot be null") Packages packages, @NotBlank TicketDetails ticketId) {
+		super();
+		this.bookingId = bookingId;
+		this.description = description;
+		this.bookingTitle = bookingTitle;
+		this.bookingDate = bookingDate;
+		this.customer = customerId;
+		this.packages = packages;
+		this.ticket = ticketId;
+	}
+	
+	
+	
+	public Double getTotalCost() {
+		return totalCost;
+	}
 
-public String getDescription() {
-	return description;
-}
+	public void setTotalCost(Double totalCost) {
+		this.totalCost = totalCost;
+	}
 
+	public Integer getNoOfPersons() {
+		return noOfPersons;
+	}
 
-public void setDescription(String description) {
-	this.description = description;
-}
+	public void setNoOfPersons(Integer noOfPersons) {
+		this.noOfPersons = noOfPersons;
+	}
+	public int getBookingId() {
+		return bookingId;
+	}
 
+	public void setBookingId(int bookingId) {
+		this.bookingId = bookingId;
+	}
 
-public String getBookingTitle() {
-	return bookingTitle;
-}
+	public String getDescription() {
+		return description;
+	}
 
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-public void setBookingTitle(String bookingTitle) {
-	this.bookingTitle = bookingTitle;
-}
+	public String getBookingTitle() {
+		return bookingTitle;
+	}
 
-public LocalDateTime getBookingDate() {
-	return bookingDate;
-}
+	public void setBookingTitle(String bookingTitle) {
+		this.bookingTitle = bookingTitle;
+	}
 
-public void setBookingDate(LocalDateTime bookingDate) {
-	this.bookingDate = bookingDate;
-}
+	public LocalDateTime getBookingDate() {
+		return bookingDate;
+	}
 
-public Customer getCustomerId() {
-	return customerId;
-}
+	public void setBookingDate(LocalDateTime bookingDate) {
+		this.bookingDate = bookingDate;
+	}
 
+	public Customer getCustomer() {
+		return customer;
+	}
 
-public void setCustomerId(Customer customerId) {
-	this.customerId = customerId;
-}
+	public void setCustomer(Customer customerId) {
+		this.customer = customerId;
+	}
 
+	public Packages getPackages() {
+		return packages;
+	}
 
-public Packages getPackageId() {
-	return packageId;
-}
+	public void setPackages(Packages packages) {
+		this.packages = packages;
+	}
 
+	public TicketDetails getTicket() {
+		return ticket;
+	}
 
-public void setPackageId(Packages packageId) {
-	this.packageId = packageId;
-}
+	public void setTicket(TicketDetails ticket) {
+		this.ticket = ticket;
+	}
+	public BookingStatus getBookingStatus() {
+		return bookingStatus;
+	}
 
-
-public TicketDetails getTicketId() {
-	return ticketId;
-}
-
-
-public void setTicketId(TicketDetails ticketId) {
-	this.ticketId = ticketId;
-}
-
-
-
-
-
-
-
-
-
-
-
-
+	public void setBookingStatus(BookingStatus bookingStatus) {
+		this.bookingStatus = bookingStatus;
+	}
 }

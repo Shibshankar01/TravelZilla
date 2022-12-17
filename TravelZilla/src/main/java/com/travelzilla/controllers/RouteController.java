@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +22,7 @@ public class RouteController {
 	@Autowired
 	private RouteService cont;
 	
-	@GetMapping("/route")
+	@PostMapping("/route")
 	public ResponseEntity<Route> registerRouteHandler(@RequestBody Route route) throws RouteException{
 		
 		Route route1= cont.registerRoute(route);

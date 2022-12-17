@@ -1,5 +1,6 @@
 package com.travelzilla.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,84 +14,109 @@ import com.travelzilla.exceptions.RouteException;
 import com.travelzilla.models.Bus;
 import com.travelzilla.models.Hotel;
 import com.travelzilla.models.PackageDTO;
+import com.travelzilla.models.PackageUpdateDTO;
 import com.travelzilla.models.Packages;
 import com.travelzilla.models.Route;
-import com.travelzilla.repositories.BusDTO;
+import com.travelzilla.repositories.BusDAO;
 import com.travelzilla.repositories.HotelDAO;
 import com.travelzilla.repositories.PackageDAO;
-import com.travelzilla.repositories.RouteDTO;
+import com.travelzilla.repositories.RouteDAO;
+
 
 @Service
 public class PackageServicesImpl implements PackageServices {
 
 	@Autowired
-	private PackageDAO pDao;
+	private PackageDAO packageDAO;
 	@Autowired
-	private HotelDAO hDAO;
+	private HotelDAO hotelDAO;
 
 	@Autowired
-	private BusDTO bDAO;
+	private BusDAO busDAO;
 
 	@Autowired
-	private RouteDTO rDAO;
+	private RouteDAO routeDAO;
 
 	@Override
 	public Packages addPackage(PackageDTO pDto) throws BusException, RouteException, HotelException {
 
+		System.out.println("kk");
+		
 		Packages pack = new Packages();
-
+		System.out.println("kk");
+//		(Integer packageId, String packageName, String packageDescription, Route route, Hotel hotel, Bus bus,
+//				Double packageCost)
 		pack.setPackageName(pDto.getPackageName());
 		pack.setPackageDescription(pDto.getPackageDescription());
 		pack.setPackageCost(pDto.getPackageCost());
 
-		Hotel h = hDAO.findById(pDto.getHotel_Id())
+		Hotel h = hotelDAO.findById(pDto.getHotel_Id())
 				.orElseThrow(() -> new HotelException("Hotel Not Found With HotelID : " + pDto.getHotel_Id()));
-		pack.setHotel(h);
-		h.getpSet().add(pack);
-		hDAO.save(h);
+		System.out.println(h.toString());
 		
-		Bus b = bDAO.findById(pDto.getBusId())
+		
+		
+
+		Bus b = busDAO.findById(pDto.getBusId())
 				.orElseThrow(() -> new BusException("Bust Not Found With Bus ID : " + pDto.getBusId()));
-		pack.setBus(b);
-
-		Route r = rDAO.findById(pDto.getRouteId())
-				.orElseThrow(() -> new RouteException("Route Not Found With Route ID : " + pDto.getRouteId()));
-		pack.setRoute(r);
-		r.getPackageList().add(pack);
-		rDAO.save(r);
+		System.out.println(b.toString());
 		
 
-		return pDao.save(pack);
+		Route r = routeDAO.findById(pDto.getRouteId())
+				.orElseThrow(() -> new RouteException("Route Not Found With Route ID : " + pDto.getRouteId()));
+		System.out.println(r.toString());
+		pack.setRoute(r);
+		pack.setHotel(h);
+		pack.setBus(b);
+		
+		
+		
+		Packages newPackage = packageDAO.save(pack);
+		h.getpSet().add(newPackage);
+		r.getPackageList().add(newPackage);
+		hotelDAO.save(h);
+		routeDAO.save(r);
+		System.out.println(h.toString() + b.toString() + r.toString());
+		return newPackage;
 	}
 
 	@Override
 	public Packages deletePackageById(Integer id) throws PackageException {
-		Packages p = pDao.findById(id)
+		Packages p = packageDAO.findById(id)
 				.orElseThrow(() -> new PackageException("Packages Not Found With Packages ID :" + id));
 
 		if (p != null) {
-			pDao.deleteById(id);
+			packageDAO.deleteById(id);
 		}
 		return p;
 	}
 
 	@Override
 	public Packages searchPackageById(Integer id) throws PackageException {
-		return pDao.findById(id).orElseThrow(() -> new PackageException("Packages Not Found With Packages ID :" + id));
+		return packageDAO.findById(id)
+				.orElseThrow(() -> new PackageException("Packages Not Found With Packages ID :" + id));
 	}
 
 	@Override
 	public List<Packages> viewAllPackages() {
-		return pDao.findAll();
+		return packageDAO.findAll();
 	}
 
 	@Override
-	public Packages addPackage(Packages packages) {
-		packages.getHotel().getpSet().add(packages);
-		packages.getRoute().getPackageList().add(packages);
-//		packages.getBus().
-		return pDao.save(packages);
-		
+	public List<Packages> viewPackagesBySourceAndDestination(String source, String destination) {
+		source = source.toLowerCase();
+		destination = destination.toLowerCase();
+		List<Route> routeList = routeDAO.findByRouteFromAndRouteTo(source, destination);
+		for(Route r : routeList) {
+			packageDAO.findByRoute(r);
+		}
+		return new ArrayList<Packages>();
+	}
+
+	@Override
+	public Packages updatePackage(PackageUpdateDTO packageUpdateDTO) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

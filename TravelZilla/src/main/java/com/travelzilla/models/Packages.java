@@ -21,10 +21,12 @@ public class Packages {
 
 	@NotNull(message = "Package Name Cannot Be Null!")
 	@Size(min = 10, max = 100, message = "Package Name Length must be between 10 to 100 characters.")
+
 	private String packageName;
 
 	@NotNull(message = "Package Description Cannot Be Null!")
 	@Size(min = 10, max = 1000, message = "Package Description Length must be between 10 to 1000 characters.")
+
 	private String packageDescription;
 
 	@NotNull(message = "Route Cannot Be Null!")
@@ -47,14 +49,19 @@ public class Packages {
 
 	@NotNull(message = "Package Cost Cannot be Null")
 	@Min(value = 2000, message = "Package Cost Cannot be Less Than 2000.")
-	private Integer packageCost;
+	private Double packageCost;
 	
+	@JsonIgnore
 	private PackageStatus packageStatus = PackageStatus.AVAILABLE;
 
 	public PackageStatus getPackageStatus() {
 		return packageStatus;
 	}
 
+	public void setPackageStatus(PackageStatus packageStatus) {
+		this.packageStatus = packageStatus;
+	}
+	
 	public void setPackageStatus(Integer noOfPerson) {
 		if(bus.getAvailabeSeat()>=noOfPerson) {
 		bus.setAvailabeSeat(bus.getAvailabeSeat()-noOfPerson);
@@ -73,7 +80,7 @@ public class Packages {
 	}
 
 	public Packages(Integer packageId, String packageName, String packageDescription, Route route, Hotel hotel, Bus bus,
-			Integer packageCost) {
+			Double packageCost) {
 		super();
 		this.packageId = packageId;
 		this.packageName = packageName;
@@ -133,11 +140,11 @@ public class Packages {
 		this.bus = bus;
 	}
 
-	public Integer getPackageCost() {
+	public Double getPackageCost() {
 		return packageCost;
 	}
 
-	public void setPackageCost(Integer packageCost) {
+	public void setPackageCost(Double packageCost) {
 		this.packageCost = packageCost;
 	}
 

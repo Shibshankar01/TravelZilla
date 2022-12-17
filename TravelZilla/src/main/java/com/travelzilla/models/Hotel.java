@@ -32,14 +32,14 @@ public class Hotel {
 	private HotelAddress hotelAddress;
 	
 	@NotNull(message =  "Hotel Rent Cannot be Null")
-	@Min(1)
+	@Min(2000)
 	private double hotelRent;
 	
 	@NotNull(message = "Hotel Status Cannot be Null")
 	private HotelStatus hotelStatus;
 
 	@OneToMany(mappedBy = "hotel",cascade = CascadeType.ALL)
-//	@JsonIgnore
+	@JsonIgnore
 	private Set<Packages> pSet = new HashSet<Packages>();
 	
 	public Hotel() {

@@ -9,18 +9,18 @@ public class PaymentDTO {
 	@NotNull(message = "Payment Cannot be Done Without Booking ID")
 	private Integer bookingId;
 	@NotNull(message = "Payment Cannot be Done Without UPI ID")
-	private Integer upi_Id;
-	
+	private String upi_Id;
+
 	@NotNull(message = "Pin Is Required To Make Payment")
 	@Min(value = 6, message = "Pin Must Be 6 Digit Long")
 	@Max(value = 6, message = "Pin Must Be 6 Digit Long")
 	private Integer pin;
-	
+
 	public PaymentDTO() {
-		// TODO Auto-generated constructor stub
+
 	}
 
-	public PaymentDTO(Integer bookingId, Integer upi_Id, Integer pin) {
+	public PaymentDTO(Integer bookingId, String upi_Id, Integer pin) {
 		super();
 		this.bookingId = bookingId;
 		this.upi_Id = upi_Id;
@@ -35,11 +35,11 @@ public class PaymentDTO {
 		this.bookingId = bookingId;
 	}
 
-	public Integer getUpi_Id() {
+	public String getUpi_Id() {
 		return upi_Id;
 	}
 
-	public void setUpi_Id(Integer upi_Id) {
+	public void setUpi_Id(String upi_Id) {
 		this.upi_Id = upi_Id;
 	}
 
@@ -47,6 +47,4 @@ public class PaymentDTO {
 		return pin;
 	}
 
-	
-	
 }

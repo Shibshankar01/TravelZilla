@@ -14,42 +14,43 @@ import com.travelzilla.repositories.HotelDAO;
 public class HotelServicesImpl implements HotelServices {
 
 	@Autowired
-	private HotelDAO hDao;
+	private HotelDAO hotelDAO;
 
 	@Override
 	public Hotel addHotel(Hotel hotel) {
-		return hDao.save(hotel);
+		return hotelDAO.save(hotel);
 	}
 
 	@Override
 	public Hotel deleteHotelById(Integer id) throws HotelException {
-		Hotel h = hDao.findById(id).orElseThrow(() -> new HotelException("Hotel Not Found With Hotel ID :" + id));
+		Hotel h = hotelDAO.findById(id).orElseThrow(() -> new HotelException("Hotel Not Found With Hotel ID :" + id));
 
 		if (h != null) {
-			hDao.deleteById(id);
+			hotelDAO.deleteById(id);
 		}
 		return h;
 	}
 
 	@Override
 	public Hotel searchHotelById(Integer id) throws HotelException {
-		return hDao.findById(id).orElseThrow(() -> new HotelException("Hotel Not Found With Hotel ID :" + id));
+		return hotelDAO.findById(id).orElseThrow(() -> new HotelException("Hotel Not Found With Hotel ID :" + id));
 	}
 
 	@Override
 	public List<Hotel> viewAllHotels() {
-		return hDao.findAll();
+		return hotelDAO.findAll();
 	}
 
 	@Override
 	public Hotel updateHotelStatus(HotelStatusDTO hotelStatusDTO) throws HotelException {
-	
-		Hotel h = hDao.findById(hotelStatusDTO.getHotel_Id()).orElseThrow(() -> new HotelException("Hotel Not Found With Hotel ID :" + hotelStatusDTO.getHotel_Id()));
+
+		Hotel h = hotelDAO.findById(hotelStatusDTO.getHotel_Id()).orElseThrow(
+				() -> new HotelException("Hotel Not Found With Hotel ID :" + hotelStatusDTO.getHotel_Id()));
+
 		h.setHotelStatus(hotelStatusDTO.getUpdatedHotelStatus());
-		hDao.save(h);
+		hotelDAO.save(h);
 		return h;
-		
-		
+
 	}
 
 }

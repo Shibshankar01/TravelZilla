@@ -15,11 +15,34 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 public class GlobalExceptionHandler {
 	
 	
+	@ExceptionHandler(BookingException.class)
+	public ResponseEntity<MyErrorDetails> PaymentExceptionHandler(BookingException be,WebRequest req){
+		
+		MyErrorDetails myerr=new MyErrorDetails();
+		myerr.setTimestamp(LocalDateTime.now());
+		myerr.setMessage(be.getMessage());
+		myerr.setDetails(req.getDescription(false));
+		
+		return new ResponseEntity<MyErrorDetails>(myerr, HttpStatus.BAD_REQUEST);
+		
+	}
 	
+	
+	@ExceptionHandler(PaymentException.class)
+	public ResponseEntity<MyErrorDetails> PaymentExceptionHandler(PaymentException pe,WebRequest req){
+		
+		MyErrorDetails myErrDetails=new MyErrorDetails();
+		myErrDetails.setTimestamp(LocalDateTime.now());
+		myErrDetails.setMessage(pe.getMessage());
+		myErrDetails.setDetails(req.getDescription(false));
+		
+		return new ResponseEntity<MyErrorDetails>(myErrDetails, HttpStatus.BAD_REQUEST);
+		
+	}
 
 	
 	@ExceptionHandler(RouteException.class)
-	public ResponseEntity<MyErrorDetails> GlobalExceptionHandler(RouteException cm,WebRequest req){
+	public ResponseEntity<MyErrorDetails> RouteExceptionHandler(RouteException cm,WebRequest req){
 		
 		MyErrorDetails er=new MyErrorDetails();
 		er.setTimestamp(LocalDateTime.now());
@@ -31,7 +54,7 @@ public class GlobalExceptionHandler {
 	}
 	
 	@ExceptionHandler(BusException.class)
-	public ResponseEntity<MyErrorDetails> GlobalExceptionHandler(BusException cm,WebRequest req){
+	public ResponseEntity<MyErrorDetails> BusExceptionHandler(BusException cm,WebRequest req){
 		
 		MyErrorDetails er=new MyErrorDetails();
 		er.setTimestamp(LocalDateTime.now());
@@ -43,7 +66,7 @@ public class GlobalExceptionHandler {
 	}
 	
 	@ExceptionHandler(TravelsException.class)
-	public ResponseEntity<MyErrorDetails> GlobalExceptionHandler(TravelsException cm,WebRequest req){
+	public ResponseEntity<MyErrorDetails> TravelExceptionHandler(TravelsException cm,WebRequest req){
 		
 		MyErrorDetails er=new MyErrorDetails();
 		er.setTimestamp(LocalDateTime.now());

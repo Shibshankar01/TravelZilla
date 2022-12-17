@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.travelzilla.exceptions.BusException;
 import com.travelzilla.models.Bus;
-import com.travelzilla.repositories.BusDTO;
+import com.travelzilla.repositories.BusDAO;
 
 @Service
 public class BusServiceImpl implements BusService {
 	
 	
 	@Autowired
-	private BusDTO erepo;
+	private BusDAO erepo;
 
 	@Override
 	public Bus registerBus(Bus bus) throws BusException {

@@ -23,8 +23,6 @@ import com.travelzilla.models.PackageDTO;
 import com.travelzilla.models.Packages;
 import com.travelzilla.services.PackageServices;
 
-
-
 @RestController
 @RequestMapping("/package")
 public class PackageController {
@@ -37,12 +35,6 @@ public class PackageController {
 			throws HotelException, BusException, RouteException {
 
 		return new ResponseEntity<Packages>(pService.addPackage(pDto), HttpStatus.OK);
-	}
-	@PostMapping("/addPackage")
-	public ResponseEntity<Packages> addPackage(@Valid @RequestBody Packages packages)
-			throws HotelException, BusException, RouteException {
-System.out.println(packages);
-		return new ResponseEntity<Packages>(pService.addPackage(packages), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/deletePackage/{id}")

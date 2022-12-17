@@ -8,13 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.travelzilla.exceptions.RouteException;
 import com.travelzilla.models.Route;
-import com.travelzilla.repositories.RouteDTO;
+import com.travelzilla.repositories.RouteDAO;
+
 
 @Service
 public class RouteServiceImpl implements RouteService{
 	
 	@Autowired
-	private RouteDTO erepo;
+	private RouteDAO erepo;
 
 	@Override
 	public Route registerRoute(Route route) throws RouteException {
