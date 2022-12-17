@@ -1,6 +1,5 @@
 package com.travelzilla.exceptions;
 
-
 import java.time.LocalDateTime;
 
 import org.springframework.http.HttpStatus;
@@ -14,86 +13,110 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-	
+
+	@ExceptionHandler(BookingException.class)
+	public ResponseEntity<MyErrorDetails> BookingExceptionHandler(BookingException be, WebRequest req) {
+
+		MyErrorDetails myerr = new MyErrorDetails();
+		myerr.setTimestamp(LocalDateTime.now());
+		myerr.setMessage(be.getMessage());
+		myerr.setDetails(req.getDescription(false));
+
+		return new ResponseEntity<MyErrorDetails>(myerr, HttpStatus.BAD_REQUEST);
+
+	}
+
+	@ExceptionHandler(PaymentException.class)
+	public ResponseEntity<MyErrorDetails> PaymentExceptionHandler(PaymentException pe, WebRequest req) {
+
+		MyErrorDetails myErrDetails = new MyErrorDetails();
+		myErrDetails.setTimestamp(LocalDateTime.now());
+		myErrDetails.setMessage(pe.getMessage());
+		myErrDetails.setDetails(req.getDescription(false));
+
+		return new ResponseEntity<MyErrorDetails>(myErrDetails, HttpStatus.BAD_REQUEST);
+
+	}
+
 	@ExceptionHandler(SessionException.class)
-	public ResponseEntity<MyErrorDetails> SessionExceptionHandler(SessionException se,WebRequest req){
-		
-		MyErrorDetails er=new MyErrorDetails();
+	public ResponseEntity<MyErrorDetails> SessionExceptionHandler(SessionException se, WebRequest req) {
+
+		MyErrorDetails er = new MyErrorDetails();
 		er.setTimestamp(LocalDateTime.now());
 		er.setMessage(se.getMessage());
 		er.setDetails(req.getDescription(false));
-		
+
 		return new ResponseEntity<MyErrorDetails>(er, HttpStatus.BAD_REQUEST);
-		
+
 	}
-	
+
 	@ExceptionHandler(RouteException.class)
-	public ResponseEntity<MyErrorDetails> RouteExceptionHandler(RouteException cm,WebRequest req){
-		
-		MyErrorDetails er=new MyErrorDetails();
+	public ResponseEntity<MyErrorDetails> RouteExceptionHandler(RouteException cm, WebRequest req) {
+
+		MyErrorDetails er = new MyErrorDetails();
 		er.setTimestamp(LocalDateTime.now());
 		er.setMessage(cm.getMessage());
 		er.setDetails(req.getDescription(false));
-		
+
 		return new ResponseEntity<MyErrorDetails>(er, HttpStatus.BAD_REQUEST);
-		
+
 	}
-	
+
 	@ExceptionHandler(BusException.class)
-	public ResponseEntity<MyErrorDetails> BusExceptionHandler(BusException cm,WebRequest req){
-		
-		MyErrorDetails er=new MyErrorDetails();
+	public ResponseEntity<MyErrorDetails> BusExceptionHandler(BusException cm, WebRequest req) {
+
+		MyErrorDetails er = new MyErrorDetails();
 		er.setTimestamp(LocalDateTime.now());
 		er.setMessage(cm.getMessage());
 		er.setDetails(req.getDescription(false));
-		
+
 		return new ResponseEntity<MyErrorDetails>(er, HttpStatus.BAD_REQUEST);
-		
+
 	}
-	
+
 	@ExceptionHandler(TravelsException.class)
-	public ResponseEntity<MyErrorDetails> TravelsExceptionHandler(TravelsException cm,WebRequest req){
-		
-		MyErrorDetails er=new MyErrorDetails();
+
+	public ResponseEntity<MyErrorDetails> TravelsExceptionHandler(TravelsException cm, WebRequest req) {
+
+		MyErrorDetails er = new MyErrorDetails();
 		er.setTimestamp(LocalDateTime.now());
 		er.setMessage(cm.getMessage());
 		er.setDetails(req.getDescription(false));
-		
+
 		return new ResponseEntity<MyErrorDetails>(er, HttpStatus.BAD_REQUEST);
-		
+
 	}
-	
+
 	@ExceptionHandler(CustomerException.class)
-	public ResponseEntity<MyErrorDetails> CustomerExceptionHandler(CustomerException ce, WebRequest web){
+	public ResponseEntity<MyErrorDetails> CustomerExceptionHandler(CustomerException ce, WebRequest web) {
 		MyErrorDetails myerr = new MyErrorDetails();
 		myerr.setTimestamp(LocalDateTime.now());
 		myerr.setMessage(ce.getMessage());
 		myerr.setDetails(web.getDescription(false));
-		
+
 		return new ResponseEntity<MyErrorDetails>(myerr, HttpStatus.BAD_GATEWAY);
 	}
-	
 
 	@ExceptionHandler(AdminException.class)
-	public ResponseEntity<MyErrorDetails> AdminExceptionHandler(AdminException ae, WebRequest web){
+	public ResponseEntity<MyErrorDetails> AdminExceptionHandler(AdminException ae, WebRequest web) {
 		MyErrorDetails myerr = new MyErrorDetails();
 		myerr.setTimestamp(LocalDateTime.now());
 		myerr.setMessage(ae.getMessage());
 		myerr.setDetails(web.getDescription(false));
-		
+
 		return new ResponseEntity<MyErrorDetails>(myerr, HttpStatus.BAD_GATEWAY);
 	}
-	
+
 	@ExceptionHandler(ReportException.class)
-	public ResponseEntity<MyErrorDetails> ReportExceptionHandler(ReportException ae, WebRequest web){
+	public ResponseEntity<MyErrorDetails> ReportExceptionHandler(ReportException ae, WebRequest web) {
 		MyErrorDetails myerr = new MyErrorDetails();
 		myerr.setTimestamp(LocalDateTime.now());
 		myerr.setMessage(ae.getMessage());
 		myerr.setDetails(web.getDescription(false));
-		
+
 		return new ResponseEntity<MyErrorDetails>(myerr, HttpStatus.BAD_GATEWAY);
 	}
-	
+
 	@ExceptionHandler(HotelException.class)
 	public ResponseEntity<MyErrorDetails> HotelExceptionHandler(HotelException pException, WebRequest wRequest) {
 
@@ -104,8 +127,7 @@ public class GlobalExceptionHandler {
 
 		return new ResponseEntity<MyErrorDetails>(myErrDetails, HttpStatus.BAD_REQUEST);
 	}
-	
-	
+
 	@ExceptionHandler(PackageException.class)
 	public ResponseEntity<MyErrorDetails> PackageExceptionHandler(PackageException pException, WebRequest wRequest) {
 
@@ -138,7 +160,5 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
 
 	}
-
-
 
 }

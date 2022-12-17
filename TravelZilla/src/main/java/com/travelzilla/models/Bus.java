@@ -13,18 +13,20 @@ import javax.persistence.*;
 public class Bus {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer busId ;
 	private String busType;
 	private String busNumber;
 	private Integer capacity;
 	private Integer availabeSeat;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "routeId")
 	@JsonIgnore
 	private Route route;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "travelId")
 	@JsonIgnore
 	private Travels travel;
 	
@@ -32,6 +34,8 @@ public class Bus {
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "bus")
 	List<TicketDetails> ticketdetails;
 
+	
+	
 	public Bus(Integer busId, String busType, String busNumber, Integer capacity, Integer availabeSeat, Route route,
 			Travels travel, List<TicketDetails> ticketdetails) {
 		super();

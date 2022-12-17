@@ -1,10 +1,15 @@
 
 package com.travelzilla.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Customer {
@@ -27,6 +32,14 @@ public class Customer {
 	
 	@NotBlank
 	private Integer userId;
+	
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "customer")
+	@JsonIgnore
+	private List<Booking> bookingList = new ArrayList<Booking>();
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+	@JsonIgnore
+	private List<Feedback> feedbacks = new ArrayList<>();
 	
 	public Customer() {
 		// TODO Auto-generated constructor stub

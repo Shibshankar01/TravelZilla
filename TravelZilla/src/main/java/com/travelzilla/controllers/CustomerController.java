@@ -1,5 +1,7 @@
 package com.travelzilla.controllers;
 
+
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -23,6 +25,7 @@ import com.travelzilla.services.CustomerServices;
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
+
 	
 	@Autowired
 	private CustomerServices customerServices;
@@ -64,5 +67,6 @@ public class CustomerController {
 	}
 	
 	
+
 	
 }

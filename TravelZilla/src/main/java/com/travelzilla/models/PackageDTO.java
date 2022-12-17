@@ -8,27 +8,27 @@ import javax.validation.constraints.Size;
 
 public class PackageDTO {
 
-	@NotNull(message = "Package Name Cannot Be Null!")
-	@Size(min = 10, max = 100, message = "Package Name Length must be between 10 to 100 characters.")
+//	@NotNull(message = "Package Name Cannot Be Null!")
+//	@Size(min = 10, max = 100, message = "Package Name Length must be between 10 to 100 characters.")
 	private String packageName;
 
-	@NotNull(message = "Package Description Cannot Be Null!")
-	@Size(min = 10, max = 1000, message = "Package Description Length must be between 10 to 1000 characters.")
+//	@NotNull(message = "Package Description Cannot Be Null!")
+//	@Size(min = 10, max = 1000, message = "Package Description Length must be between 10 to 1000 characters.")
 	private String packageDescription;
-
-	@NotNull(message = "Route ID Cannot Be Null!")
-	@Min(value = 1, message = "Invalid Route ID, must be > 0")
+//
+//	@NotNull(message = "Route ID Cannot Be Null!")
+//	@Min(value = 1, message = "Invalid Route ID, must be > 0")
 	private Integer routeId;
 
-	@NotNull(message = "Hotel ID Cannot Be Null!")
+//	@NotNull(message = "Hotel ID Cannot Be Null!")
 	private Integer hotel_Id;
 
-	@NotNull(message = "Bus Cannot be Null")
+//	@NotNull(message = "Bus Cannot be Null")
 	private Integer busId;
 
-	@NotNull(message = "Package Cost Cannot be Null")
-	@Min(value = 2000, message = "Package Cost Cannot be Less Than 2000.")
-	private Integer packageCost;
+//	@NotNull(message = "Package Cost Cannot be Null")
+//	@Min(value = 2000, message = "Package Cost Cannot be Less Than 2000.")
+	private Double packageCost;
 	
 	public PackageDTO() {
 		// TODO Auto-generated constructor stub
@@ -40,7 +40,7 @@ public class PackageDTO {
 			@NotNull(message = "Route ID Cannot Be Null!") @Min(value = 1, message = "Invalid Route ID, must be > 0") Integer routeId,
 			@NotNull(message = "Hotel ID Cannot Be Null!") Integer hotel_Id,
 			@NotNull(message = "Bus Cannot be Null") Integer busId,
-			@NotNull(message = "Package Cost Cannot be Null") @Min(value = 2000, message = "Package Cost Cannot be Less Than 2000.") Integer packageCost) {
+			@NotNull(message = "Package Cost Cannot be Null") @Min(value = 2000, message = "Package Cost Cannot be Less Than 2000.") Double packageCost) {
 		super();
 		this.packageName = packageName;
 		this.packageDescription = packageDescription;
@@ -90,11 +90,11 @@ public class PackageDTO {
 		this.busId = busId;
 	}
 
-	public Integer getPackageCost() {
+	public Double getPackageCost() {
 		return packageCost;
 	}
 
-	public void setPackageCost(Integer packageCost) {
+	public void setPackageCost(Double packageCost) {
 		this.packageCost = packageCost;
 	}
 

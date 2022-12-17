@@ -21,12 +21,20 @@ public class Packages {
 
 	@NotNull(message = "Package Name Cannot Be Null!")
 	@Size(min = 10, max = 100, message = "Package Name Length must be between 10 to 100 characters.")
+
 	private String packageName;
 
 	@NotNull(message = "Package Description Cannot Be Null!")
 	@Size(min = 10, max = 1000, message = "Package Description Length must be between 10 to 1000 characters.")
-	private String packageDescription;
 
+	private String packageDescription;
+	
+	@JsonIgnore
+	private PackageStatus packageStatus = PackageStatus.AVAILABLE;
+	
+	private Double packageRating;
+	
+	
 	@NotNull(message = "Route Cannot Be Null!")
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "routeId")
@@ -47,31 +55,23 @@ public class Packages {
 
 	@NotNull(message = "Package Cost Cannot be Null")
 	@Min(value = 2000, message = "Package Cost Cannot be Less Than 2000.")
-	private Integer packageCost;
+	private Double packageCost;
 	
-	private PackageStatus packageStatus = PackageStatus.AVAILABLE;
+	@NotNull(message =  "Capacity cannot be null")
+	private Integer packageCapacity ;
 
-
-	public PackageStatus getPackageStatus() {
-		return packageStatus;
-	}
-
-	public void setPackageStatus() {
-		if(bus.getAvailabeSeat() <= 0 || hotel.getHotelStatus() == HotelStatus.SOLD_OUT) {
-			packageStatus = PackageStatus.SOLD_OUT;
-		}
-		else {
-			packageStatus = PackageStatus.AVAILABLE;
-		}
-	}
-
+	
+	
+	
+	
+	
 
 	public Packages() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Packages(Integer packageId, String packageName, String packageDescription, Route route, Hotel hotel, Bus bus,
-			Integer packageCost) {
+			Double packageCost) {
 		super();
 		this.packageId = packageId;
 		this.packageName = packageName;
@@ -82,6 +82,45 @@ public class Packages {
 		this.packageCost = packageCost;
 
 	}
+	public PackageStatus getPackageStatus() {
+		return packageStatus;
+	}
+
+	public void setPackageStatus(PackageStatus packageStatus) {
+		this.packageStatus = packageStatus;
+	}
+	
+	public void setPackageStatus(Integer noOfPerson) {
+		
+		
+		if(packageCapacity <= 0 || hotel.getHotelStatus() == HotelStatus.SOLD_OUT) {
+			
+			packageStatus = PackageStatus.SOLD_OUT;
+		}
+		else {
+			packageStatus = PackageStatus.AVAILABLE;
+		}
+	}
+
+
+	
+	
+	public Double getPackageRating() {
+		return packageRating;
+	}
+
+	public void setPackageRating(Double packageRating) {
+		this.packageRating = packageRating;
+	}
+
+	public Integer getPackageCapacity() {
+		return packageCapacity;
+	}
+
+	public void setPackageCapacity(Integer packageCapacity) {
+		this.packageCapacity = packageCapacity;
+	}
+
 
 	public Integer getPackageId() {
 		return packageId;
@@ -131,11 +170,11 @@ public class Packages {
 		this.bus = bus;
 	}
 
-	public Integer getPackageCost() {
+	public Double getPackageCost() {
 		return packageCost;
 	}
 
-	public void setPackageCost(Integer packageCost) {
+	public void setPackageCost(Double packageCost) {
 		this.packageCost = packageCost;
 	}
 

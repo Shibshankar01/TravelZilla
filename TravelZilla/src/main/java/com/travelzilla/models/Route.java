@@ -23,12 +23,14 @@ public class Route {
 	private String pickupPoint;
 	private double fare;
 	
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "route")
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL)
 	private List<Packages> packageList;
 	
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "route")
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL)
 	private List<Bus> busList;
 
 	
@@ -65,7 +67,6 @@ public class Route {
 
 public Route() {
 	super();
-	System.out.println("ajaycvbnm,.");
 }
 
 
