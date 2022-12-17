@@ -23,4 +23,6 @@ public interface PackageServices {
 	public List<Packages> viewPackagesBySourceAndDestination(String source, String destination);
 	
 	public Packages updatePackage(PackageUpdateDTO packageUpdateDTO) ;
+
+	Packages updatePackage(Packages p);
 }

@@ -13,15 +13,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.travelzilla.exceptions.AdminException;
 import com.travelzilla.exceptions.BusException;
 import com.travelzilla.exceptions.HotelException;
 import com.travelzilla.exceptions.PackageException;
 import com.travelzilla.exceptions.RouteException;
+import com.travelzilla.exceptions.SessionException;
 import com.travelzilla.models.PackageDTO;
 import com.travelzilla.models.Packages;
+import com.travelzilla.models.Report;
+import com.travelzilla.models.Session;
+import com.travelzilla.models.UserType;
 import com.travelzilla.services.PackageServices;
+import com.travelzilla.services.SessionServices;
 
 @RestController
 @RequestMapping("/package")
@@ -29,12 +36,18 @@ public class PackageController {
 
 	@Autowired
 	private PackageServices pService;
+	
+	private SessionServices sessionServices;
 
 	@PostMapping("/addPackageByIds")
-	public ResponseEntity<Packages> addPackage(@Valid @RequestBody PackageDTO pDto)
-			throws HotelException, BusException, RouteException {
-
-		return new ResponseEntity<Packages>(pService.addPackage(pDto), HttpStatus.OK);
+	public ResponseEntity<Packages> addPackage(@Valid @RequestBody PackageDTO pDto  , @RequestParam("sessionKey")String sessionKey) throws SessionException, HotelException, BusException, RouteException, AdminException {
+		Session session = sessionServices.getASessionByKey(sessionKey);
+		if(session.getUserType()==UserType.ADMIN) {
+			return new ResponseEntity<Packages>(pService.addPackage(pDto), HttpStatus.OK);
+		}
+		throw new AdminException("Please login with the correct credentials");
+		
+		
 	}
 
 	@DeleteMapping("/deletePackage/{id}")

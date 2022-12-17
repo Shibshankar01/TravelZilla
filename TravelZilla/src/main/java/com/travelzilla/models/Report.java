@@ -4,21 +4,27 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Report {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private int reportID;
 	
+	@NotNull
 	@NotBlank
 	private String reportName;
 	
 	@NotNull
 	private ReportType reportType;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@NotNull
+	@ManyToOne
 	@JoinColumn(name = "adminId")
+	@JsonIgnore
 	private Admin admin;
 
 	public int getReportID() {

@@ -11,4 +11,5 @@ import com.travelzilla.models.Route;
 public interface RouteDAO extends JpaRepository<Route, Integer> {
 
 	public List<Route> findByRouteFromAndRouteTo(String routeFrom, String routeTo);
+
 }

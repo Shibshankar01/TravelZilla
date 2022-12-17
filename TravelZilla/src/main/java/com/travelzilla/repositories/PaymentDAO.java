@@ -5,9 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.travelzilla.models.Payment;
 
-
 @Repository
-public interface PaymentDAO extends JpaRepository<Payment, Integer>{
+public interface PaymentDAO extends JpaRepository<Payment, Integer> {
 
-	
 }

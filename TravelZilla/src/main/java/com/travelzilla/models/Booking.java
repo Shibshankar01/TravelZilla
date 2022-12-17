@@ -12,6 +12,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.core.sym.Name;
+
 @Entity
 public class Booking {
 	@Id
@@ -34,14 +36,14 @@ public class Booking {
 	private Integer noOfPersons;	
 
 
-	@OneToOne
-	@PrimaryKeyJoinColumn
-	@NotBlank(message = "customerId cannot be null")
+	@ManyToOne
+	@JoinColumn(name = "customerId" )
+	@NotBlank(message = "customer cannot be null")
 	private Customer customer;
 
 	@ManyToOne
-	@JoinColumn(name = "packages")
-	@NotBlank(message = "package cannot be null")
+	@JoinColumn(name = "packageId")
+	@NotNull(message = "package cannot be null")
 	private Packages packages;
 
 	@OneToOne

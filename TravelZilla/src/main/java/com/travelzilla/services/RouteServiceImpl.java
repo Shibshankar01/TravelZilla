@@ -67,4 +67,16 @@ public class RouteServiceImpl implements RouteService{
 		}
 	}
 
+	@Override
+	public Route modifyRoute(Route route) throws RouteException {
+        Optional<Route> em=erepo.findById(route.getRouteId());
+		
+		if(em.isPresent()) {
+			Route cud1 =erepo.save(route);
+			return cud1;
+		}else {
+			throw new RouteException("Customer Not Found.");
+		} 
+	}
+
 }

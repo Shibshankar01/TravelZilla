@@ -72,10 +72,12 @@ public class Hotel {
 
 
 	
+
 	
 
 	public Set<Packages> getpSet() {
 		return pSet;
+
 	}
 
 	

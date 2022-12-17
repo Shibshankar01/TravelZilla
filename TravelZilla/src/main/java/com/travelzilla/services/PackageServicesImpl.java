@@ -37,6 +37,7 @@ public class PackageServicesImpl implements PackageServices {
 	@Autowired
 	private RouteDAO routeDAO;
 
+
 	@Override
 	public Packages addPackage(PackageDTO pDto) throws BusException, RouteException, HotelException {
 
@@ -115,8 +116,15 @@ public class PackageServicesImpl implements PackageServices {
 
 	@Override
 	public Packages updatePackage(PackageUpdateDTO packageUpdateDTO) {
-		// TODO Auto-generated method stub
+	
 		return null;
+	}
+	
+	@Override
+	public Packages updatePackage(Packages p) {
+	
+		packageDAO.save(p);
+				return null;
 	}
 
 }
