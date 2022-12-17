@@ -1,5 +1,6 @@
 package com.travelzilla.exceptions;
 
+
 import java.time.LocalDateTime;
 
 import org.springframework.http.HttpStatus;
@@ -137,6 +138,7 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
 
 	}
+
 
 
 }

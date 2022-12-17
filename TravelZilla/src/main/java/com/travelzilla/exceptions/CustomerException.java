@@ -2,9 +2,9 @@ package com.travelzilla.exceptions;
 
 public class CustomerException extends Exception{
 
+
 	public CustomerException() {
-		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public CustomerException(String message) {
@@ -12,5 +12,4 @@ public class CustomerException extends Exception{
 		// TODO Auto-generated constructor stub
 	}
 
-	
 }

@@ -1,0 +1,12 @@
+
+
+
+
+	
+	
+	{
+	"busType":"ac",
+	"busNumber": "RJ14-2563",
+	"capacity":50;
+	"availabeSeat":25,
+	}

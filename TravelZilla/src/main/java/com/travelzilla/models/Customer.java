@@ -23,6 +23,7 @@ public class Customer {
 	@NotBlank
 	@Size(min = 10, max = 10)
 	private String mobile;
+	
 	@NotBlank
 	private Integer userId;
 	
@@ -114,8 +115,6 @@ public class Customer {
 				+ customerPassword + ", address=" + address + ", email=" + email + ", mobile=" + mobile + ", userId="
 				+ userId + "]";
 	}
-	
-	
 	
 
 }

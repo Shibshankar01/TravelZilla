@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 
 import com.travelzilla.exceptions.RouteException;
 import com.travelzilla.models.Route;
-import com.travelzilla.repositories.RouteDTO;
+import com.travelzilla.repositories.RouteDAO;
 
 @Service
 public class RouteServiceImpl implements RouteService{
 	
 	@Autowired
-	private RouteDTO erepo;
+	private RouteDAO erepo;
 
 	@Override
 	public Route registerRoute(Route route) throws RouteException {
@@ -64,6 +64,18 @@ public class RouteServiceImpl implements RouteService{
 		}else {
 			throw new RouteException("Route deleted.");
 		}
+	}
+
+	@Override
+	public Route modifyRoute(Route route) throws RouteException {
+        Optional<Route> em=erepo.findById(route.getRouteId());
+		
+		if(em.isPresent()) {
+			Route cud1 =erepo.save(route);
+			return cud1;
+		}else {
+			throw new RouteException("Customer Not Found.");
+		} 
 	}
 
 }
