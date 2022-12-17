@@ -22,8 +22,8 @@ public class BusServiceImpl implements BusService {
 	private BusDAO erepo;
 	@Autowired
 	private RouteDAO route_repo;
-	@Autowired
-	private TravelsDAO travel_repo;
+//	@Autowired
+//	private TravelsDAO travel_repo;
 
 	@Override
 	public Bus registerBus(Bus bus) throws BusException {
@@ -79,7 +79,7 @@ public class BusServiceImpl implements BusService {
 	public Bus  TRYregisterBus(Integer routeId, Bus bus)throws BusException, RouteException {
 		// TODO Auto-generated method stub
 		
-		System.out.println("kvh");
+	
 		
         if(bus !=null) {
         	

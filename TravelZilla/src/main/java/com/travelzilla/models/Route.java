@@ -4,7 +4,10 @@ package com.travelzilla.models;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -17,21 +20,19 @@ public class Route {
 	private Integer routeId;
 	private String routeFrom;
 	private String routeTo;
-	private LocalTime  departureTime;
-	private LocalTime  arrivalTime;
-	private LocalDate  doj;
+	@Embedded
+	private BusTiming time;
 	private String pickupPoint;
 	private double fare;
 	
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Packages> packageList;
-	
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Bus> busList;
 
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "route")
+	private Set<Packages> packageList= new HashSet<>();
 	
+	
+	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "route")
+	private Set<Bus> busList= new HashSet<>();
+
 //	Route and Bus Management
 //	create route
 //	delete route
@@ -41,140 +42,115 @@ public class Route {
 	
 //	 View Routes
 	
-	
-	
+	public Route() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-
-	public Route(Integer routeId, String routeFrom, String routeTo, LocalTime departureTime,
-			LocalTime arrivalTime, LocalDate doj, String pickupPoint, double fare, List<Packages> packageList,
-
-			List<Bus> busList) {
+	public Route(Integer routeId, String routeFrom, String routeTo, BusTiming time, String pickupPoint, double fare,
+			Set<Packages> packageList, Set<Bus> busList) {
 		super();
 		this.routeId = routeId;
 		this.routeFrom = routeFrom;
 		this.routeTo = routeTo;
-		this.departureTime = departureTime;
-		this.arrivalTime = arrivalTime;
-		this.doj = doj;
+		this.time = time;
 		this.pickupPoint = pickupPoint;
 		this.fare = fare;
 		this.packageList = packageList;
 		this.busList = busList;
 	}
 
+	public Integer getRouteId() {
+		return routeId;
+	}
 
-public Route() {
-	super();
-	System.out.println("ajaycvbnm,.");
-}
+	public void setRouteId(Integer routeId) {
+		this.routeId = routeId;
+	}
 
+	public String getRouteFrom() {
+		return routeFrom;
+	}
 
-public Integer getRouteId() {
-	return routeId;
-}
+	public void setRouteFrom(String routeFrom) {
+		this.routeFrom = routeFrom;
+	}
 
+	public String getRouteTo() {
+		return routeTo;
+	}
 
-public void setRouteId(Integer routeId) {
-	this.routeId = routeId;
-}
+	public void setRouteTo(String routeTo) {
+		this.routeTo = routeTo;
+	}
 
+	public BusTiming getTime() {
+		return time;
+	}
 
-public String getRouteFrom() {
-	return routeFrom;
-}
+	public void setTime(BusTiming time) {
+		this.time = time;
+	}
 
+	public String getPickupPoint() {
+		return pickupPoint;
+	}
 
-public void setRouteFrom(String routeFrom) {
-	this.routeFrom = routeFrom;
-}
+	public void setPickupPoint(String pickupPoint) {
+		this.pickupPoint = pickupPoint;
+	}
 
+	public double getFare() {
+		return fare;
+	}
 
-public String getRouteTo() {
-	return routeTo;
-}
+	public void setFare(double fare) {
+		this.fare = fare;
+	}
 
+	public Set<Packages> getPackageList() {
+		return packageList;
+	}
 
-public void setRouteTo(String routeTo) {
-	this.routeTo = routeTo;
-}
+	public void setPackageList(Set<Packages> packageList) {
+		this.packageList = packageList;
+	}
 
+	public Set<Bus> getBusList() {
+		return busList;
+	}
 
-public LocalTime getDepartureTime() {
-	return departureTime;
-}
+	public void setBusList(Set<Bus> busList) {
+		this.busList = busList;
+	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(fare, pickupPoint, routeFrom, routeId, routeTo, time);
+	}
 
-public void setDepartureTime(LocalTime departureTime) {
-	this.departureTime = departureTime;
-}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Route other = (Route) obj;
+		return Double.doubleToLongBits(fare) == Double.doubleToLongBits(other.fare)
+				&& Objects.equals(pickupPoint, other.pickupPoint) && Objects.equals(routeFrom, other.routeFrom)
+				&& Objects.equals(routeId, other.routeId) && Objects.equals(routeTo, other.routeTo)
+				&& Objects.equals(time, other.time);
+	}
 
+	
 
-public LocalTime getArrivalTime() {
-	return arrivalTime;
-}
-
-
-public void setArrivalTime(LocalTime arrivalTime) {
-	this.arrivalTime = arrivalTime;
-}
-
-
-public LocalDate getDoj() {
-	return doj;
-}
-
-
-public void setDoj(LocalDate doj) {
-	this.doj = doj;
-}
-
-
-public String getPickupPoint() {
-	return pickupPoint;
-}
-
-
-public void setPickupPoint(String pickupPoint) {
-	this.pickupPoint = pickupPoint;
-}
-
-
-public double getFare() {
-	return fare;
-}
-
-
-public void setFare(double fare) {
-	this.fare = fare;
-}
-
-
-public List<Packages> getPackageList() {
-	return packageList;
-}
-
-
-public void setPackageList(List<Packages> packageList) {
-	this.packageList = packageList;
-}
+	
+	
+	
 
 
-public List<Bus> getBusList() {
-	return busList;
-}
-
-
-public void setBusList(List<Bus> busList) {
-	this.busList = busList;
-}
-
-
-@Override
-public String toString() {
-	return "Route [routeId=" + routeId + ", routeFrom=" + routeFrom + ", routeTo=" + routeTo + ", departureTime="
-			+ departureTime + ", arrivalTime=" + arrivalTime + ", doj=" + doj + ", pickupPoint=" + pickupPoint
-			+ ", fare=" + fare + ", packageList=" + packageList + ", busList=" + busList + "]";
-}
 	
 
 	

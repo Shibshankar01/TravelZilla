@@ -1,9 +1,13 @@
 package com.travelzilla.models;
 
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.*;
+
 
 import javax.persistence.Entity;
 
@@ -15,25 +19,25 @@ public class Bus {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer busId ;
-	private String busType;
+	private BusType busType;
 	private String busNumber;
 	private Integer capacity;
 	private Integer availabeSeat;
 	
-	@ManyToOne
 	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Route route;
 	
-	@ManyToOne
 	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Travels travel;
 	
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "bus")
-	List<TicketDetails> ticketdetails;
+	@OneToMany(cascade = CascadeType.ALL)
+	private Set<TicketDetails> ticketdetails= new HashSet<>();
 
-	public Bus(Integer busId, String busType, String busNumber, Integer capacity, Integer availabeSeat, Route route,
-			Travels travel, List<TicketDetails> ticketdetails) {
+	public Bus(Integer busId, BusType busType, String busNumber, Integer capacity, Integer availabeSeat, Route route,
+			Travels travel, Set<TicketDetails> ticketdetails) {
 		super();
 		this.busId = busId;
 		this.busType = busType;
@@ -57,11 +61,11 @@ public class Bus {
 		this.busId = busId;
 	}
 
-	public String getBusType() {
+	public BusType getBusType() {
 		return busType;
 	}
 
-	public void setBusType(String busType) {
+	public void setBusType(BusType busType) {
 		this.busType = busType;
 	}
 
@@ -105,20 +109,38 @@ public class Bus {
 		this.travel = travel;
 	}
 
-	public List<TicketDetails> getTicketdetails() {
+	public Set<TicketDetails> getTicketdetails() {
 		return ticketdetails;
 	}
 
-	public void setTicketdetails(List<TicketDetails> ticketdetails) {
+	public void setTicketdetails(Set<TicketDetails> ticketdetails) {
 		this.ticketdetails = ticketdetails;
 	}
 
 	@Override
-	public String toString() {
-		return "Bus [busId=" + busId + ", busType=" + busType + ", busNumber=" + busNumber + ", capacity=" + capacity
-				+ ", availabeSeat=" + availabeSeat + ", route=" + route + ", travel=" + travel + ", ticketdetails="
-				+ ticketdetails + "]";
+	public int hashCode() {
+		return Objects.hash(availabeSeat, busId, busNumber, busType, capacity, ticketdetails);
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Bus other = (Bus) obj;
+		return Objects.equals(availabeSeat, other.availabeSeat) && Objects.equals(busId, other.busId)
+				&& Objects.equals(busNumber, other.busNumber) && busType == other.busType
+				&& Objects.equals(capacity, other.capacity) && Objects.equals(ticketdetails, other.ticketdetails);
+	}
+
+	
+	
+	
+
+	
 	
 
 }
