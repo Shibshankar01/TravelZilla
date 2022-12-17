@@ -3,9 +3,9 @@ package com.travelzilla.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.travelzilla.models.User;
+import com.travelzilla.models.Route;
 
 @Repository
-public interface UserDAO extends JpaRepository<User, Integer>{
+public interface RouteDAO extends JpaRepository<Route, Integer>{
 
 }

@@ -1,0 +1,40 @@
+//           reg bus        ///
+
+localHost:8888/bus           --body
+
+
+{
+    "busId":1
+	"busType":"Ac Bus"
+	"busNumber":"RJ 14 0123"
+	"capacity":50
+	"availabeSeat":50
+
+}
+
+{
+    "busId":2
+	"busType":"Non-Ac Bus"
+	"busNumber":"RJ 14 0124"
+	"capacity":40
+	"availabeSeat":40
+
+}
+
+{
+    "busId":3
+	"busType":"Ac Bus"
+	"busNumber":"RJ 14 0126"
+	"capacity":60
+	"availabeSeat":60
+
+}
+
+{
+    "busId":4
+	"busType":"Ac Bus"
+	"busNumber":"RJ 14 0129"
+	"capacity":80
+	"availabeSeat":80
+
+}

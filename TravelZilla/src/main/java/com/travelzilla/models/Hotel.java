@@ -39,7 +39,7 @@ public class Hotel {
 	private HotelStatus hotelStatus;
 
 	@OneToMany(mappedBy = "hotel",cascade = CascadeType.ALL)
-//	@JsonIgnore
+	@JsonIgnore
 	private Set<Packages> pSet = new HashSet<Packages>();
 	
 	public Hotel() {
@@ -72,10 +72,12 @@ public class Hotel {
 
 
 	
+
 	
 
 	public Set<Packages> getpSet() {
 		return pSet;
+
 	}
 
 	

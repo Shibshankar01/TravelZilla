@@ -3,9 +3,8 @@ package com.travelzilla.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.travelzilla.models.Route;
-
+import com.travelzilla.models.Booking;
 @Repository
-public interface RouteDTO extends JpaRepository<Route, Integer>{
+public interface BookingDao extends JpaRepository<Booking,Integer>{
 
 }
