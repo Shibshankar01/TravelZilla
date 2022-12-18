@@ -16,10 +16,12 @@ public class FeedbackServicesImpl implements FeedbackServices{
 	private FeedbackDAO fDao;
 
 	@Override
-	public Feedback addFeedback(Feedback feedback) throws FeedbackException {
+	public Feedback addFeedback(Feedback feedback) throws FeedbackException { //use feedbackDto
 		
-		return fDao.save(feedback);
-		
+		return fDao.save(feedback); //1
+//		fDao.getavgfeedbackbypackId() //2
+		//update average rating inside package 3
+//		packageService.updatePackage.save(package) //4
 	}
 
 	@Override

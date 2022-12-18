@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -19,27 +20,37 @@ public class Feedback {
 	private String feedback;
 	@NotBlank
 	private Integer rating;
-	@NotBlank
-	private LocalDateTime submitDate;
 	
 	@NotBlank
-	private Integer customerId;
-	@NotBlank
-	private Integer bookingId;
+	private LocalDateTime submitDate = LocalDateTime.now();
 	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "customerId")
+	private Customer customer;
+	
+	@NotNull
+	@OneToOne
+	@JoinColumn(name = "bookingId")
+	private Booking booking;
+	
+	@ManyToOne
+	@JoinColumn(name = "packageId")
+	private Packages packages;
+	 
 	public Feedback() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Feedback(Integer feedbackId, String feedback, Integer rating, LocalDateTime submitDate, Integer customerId,
-			Integer bookingId) {
+	public Feedback(Integer feedbackId, String feedback, Integer rating, LocalDateTime submitDate, Customer customerId,
+			Booking bookingId) {
 		super();
 		this.feedbackId = feedbackId;
 		this.feedback = feedback;
 		this.rating = rating;
 		this.submitDate = submitDate;
-		this.customerId = customerId;
-		this.bookingId = bookingId;
+		this.customer = customerId;
+		this.booking = bookingId;
 	}
 
 	public Integer getFeedbackId() {
@@ -74,26 +85,26 @@ public class Feedback {
 		this.submitDate = submitDate;
 	}
 
-	public Integer getCustomerId() {
-		return customerId;
+	public Customer getCustomerId() {
+		return customer;
 	}
 
-	public void setCustomerId(Integer customerId) {
-		this.customerId = customerId;
+	public void setCustomerId(Customer customerId) {
+		this.customer = customerId;
 	}
 
-	public Integer getBookingId() {
-		return bookingId;
+	public Booking getBookingId() {
+		return booking;
 	}
 
-	public void setBookingId(Integer bookingId) {
-		this.bookingId = bookingId;
+	public void setBookingId(Booking bookingId) {
+		this.booking = bookingId;
 	}
 
 	@Override
 	public String toString() {
 		return "Feedback [feedbackId=" + feedbackId + ", feedback=" + feedback + ", rating=" + rating + ", submitDate="
-				+ submitDate + ", customerId=" + customerId + ", bookingId=" + bookingId + "]";
+				+ submitDate + ", customerId=" + customer + ", bookingId=" + booking + "]";
 	}
 	
 	

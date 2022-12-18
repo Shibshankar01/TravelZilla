@@ -1,5 +1,7 @@
 package com.travelzilla.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +34,26 @@ public class FeedbackController {
 		
 	}
 	
-//	@GetMapping("/feedbackbyfeedbackid/{id}")
-//	public ResponseEntity<Feedback> findFeedbackByFeedbackId(@PathVariable("id") Integer id)
+	@GetMapping("/feedbackbyfeedbackid/{id}")
+	public ResponseEntity<Feedback> findFeedbackByFeedbackId(@PathVariable("id") Integer id) throws FeedbackException{
+		
+		return new ResponseEntity<>(fServices.findFeedbackByFeedbackId(id), HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("/feedbackbycustomerid/{id}")
+	public ResponseEntity<Feedback> findFeedbackByCustomerId(@PathVariable("id") Integer id) throws FeedbackException{
+		
+		return new ResponseEntity<>(fServices.findFeedbackByCustomerId(id), HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("/viewallfeedbacks")
+	public ResponseEntity<List<Feedback>> viewAllFeedbacks() throws FeedbackException{
+		
+		return new ResponseEntity<List<Feedback>>(fServices.viewAllFeedback(),HttpStatus.OK);
+		
+	}
 	
 	
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.travelzilla.exceptions.HotelException;
 import com.travelzilla.models.Hotel;
+import com.travelzilla.models.HotelStatusDTO;
 
 public interface HotelServices {
 
@@ -14,5 +15,7 @@ public interface HotelServices {
 	public Hotel searchHotelById(Integer id) throws HotelException;
 
 	public List<Hotel> viewAllHotels() throws HotelException;
+	
+	public Hotel updateHotelStatus(HotelStatusDTO hotelStatusDTO) throws HotelException;
 
 }

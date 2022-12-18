@@ -15,35 +15,41 @@ import javax.swing.ListSelectionModel;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
 public class Admin {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private int adminID;
 	
+	@NotNull
 	@NotBlank
-	@Max(value = 20)
+	@Size(min = 2, max = 15, message = "Name should be min 2 and maximum 15 characters long")
 	private String adminName;
 	
+	@NotNull
 	@Email
 	private String email;
 	
+	@NotNull
 	@NotBlank
 	@Size(min = 8, max = 15, message = "Password should be minimum 8 and maximum 15 characters long")
 	private String password;
 	
+	@NotNull
+	@NotBlank
 	@Size(min = 10, max = 10, message = "Mobile numbers should be 10 digit long")
 	private String mobile;
-	
-	@OneToOne
-	@JoinColumn(name = "userId")
-	private User user;
 
 	@OneToMany(mappedBy = "admin" ,cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Report> reports = new ArrayList<>();
 	
 	public List<Report> getReports() {
@@ -94,18 +100,11 @@ public class Admin {
 		this.mobile = mobile;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 	@Override
 	public String toString() {
 		return "Admin [adminID=" + adminID + ", adminName=" + adminName + ", email=" + email + ", password=" + password
-				+ ", mobile=" + mobile + ", user=" + user + "]";
+				+ ", mobile=" + mobile + "]";
 	}
 	
 	
