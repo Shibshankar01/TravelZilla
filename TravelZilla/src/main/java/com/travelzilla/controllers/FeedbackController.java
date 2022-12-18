@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.travelzilla.exceptions.BookingException;
 import com.travelzilla.exceptions.FeedbackException;
 import com.travelzilla.models.Feedback;
+import com.travelzilla.models.FeedbackDTO;
 import com.travelzilla.services.FeedbackServices;
 
 
@@ -28,7 +30,7 @@ public class FeedbackController {
 	private FeedbackServices fServices;
 	
 	@PostMapping("/addfeedback")
-	public ResponseEntity<Feedback> addfeedback(@Valid @RequestBody Feedback feedback) throws FeedbackException{
+	public ResponseEntity<Feedback> addfeedback(@Valid @RequestBody FeedbackDTO feedback) throws FeedbackException, BookingException{
 		
 		return new ResponseEntity<Feedback>(fServices.addFeedback(feedback),HttpStatus.OK);
 		

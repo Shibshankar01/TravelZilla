@@ -3,9 +3,7 @@ package com.travelzilla.models;
 
 import java.time.LocalDateTime;
 
-
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 
@@ -14,14 +12,14 @@ public class Feedback {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NotBlank
+	@NotNull
 	private Integer feedbackId;
-	@NotBlank
+	@NotNull
 	private String feedback;
-	@NotBlank
+	@NotNull
 	private Integer rating;
 	
-	@NotBlank
+	@NotNull
 	private LocalDateTime submitDate = LocalDateTime.now();
 	
 	@NotNull
@@ -42,23 +40,21 @@ public class Feedback {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Feedback(Integer feedbackId, String feedback, Integer rating, LocalDateTime submitDate, Customer customerId,
-			Booking bookingId) {
+	public Integer getFeedbackId() {
+		return feedbackId;
+	}
+
+	public Feedback(@NotNull Integer feedbackId, @NotNull String feedback, @NotNull Integer rating,
+			@NotNull LocalDateTime submitDate, @NotNull Customer customer, @NotNull Booking booking,
+			Packages packages) {
 		super();
 		this.feedbackId = feedbackId;
 		this.feedback = feedback;
 		this.rating = rating;
 		this.submitDate = submitDate;
-		this.customer = customerId;
-		this.booking = bookingId;
-	}
-
-	public Integer getFeedbackId() {
-		return feedbackId;
-	}
-
-	public void setFeedbackId(Integer feedbackId) {
-		this.feedbackId = feedbackId;
+		this.customer = customer;
+		this.booking = booking;
+		this.packages = packages;
 	}
 
 	public String getFeedback() {
@@ -85,27 +81,43 @@ public class Feedback {
 		this.submitDate = submitDate;
 	}
 
-	public Customer getCustomerId() {
+	public Customer getCustomer() {
 		return customer;
 	}
 
-	public void setCustomerId(Customer customerId) {
-		this.customer = customerId;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
-	public Booking getBookingId() {
+	public Booking getBooking() {
 		return booking;
 	}
 
-	public void setBookingId(Booking bookingId) {
-		this.booking = bookingId;
+	public void setBooking(Booking booking) {
+		this.booking = booking;
+	}
+
+	public Packages getPackages() {
+		return packages;
+	}
+
+	public void setPackages(Packages packages) {
+		this.packages = packages;
+	}
+
+	public void setFeedbackId(Integer feedbackId) {
+		this.feedbackId = feedbackId;
 	}
 
 	@Override
 	public String toString() {
 		return "Feedback [feedbackId=" + feedbackId + ", feedback=" + feedback + ", rating=" + rating + ", submitDate="
-				+ submitDate + ", customerId=" + customer + ", bookingId=" + booking + "]";
+				+ submitDate + ", customer=" + customer + ", booking=" + booking + ", packages=" + packages + "]";
 	}
+	
+	
+
+	
 	
 	
 

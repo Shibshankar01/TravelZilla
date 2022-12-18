@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.travelzilla.exceptions.BookingException;
 import com.travelzilla.exceptions.FeedbackException;
 import com.travelzilla.models.Feedback;
+import com.travelzilla.models.FeedbackDTO;
 import com.travelzilla.repositories.FeedbackDAO;
 
 @Service
@@ -14,11 +16,21 @@ public class FeedbackServicesImpl implements FeedbackServices{
 	
 	@Autowired
 	private FeedbackDAO fDao;
+	
+	@Autowired
+	private BookingServices bServices;
 
 	@Override
-	public Feedback addFeedback(Feedback feedback) throws FeedbackException { //use feedbackDto
+	public Feedback addFeedback(FeedbackDTO feedback) throws FeedbackException, BookingException { //use feedbackDto
 		
-		return fDao.save(feedback); //1
+		Feedback newFeedback= new Feedback();
+		newFeedback.setFeedback(feedback.getFeedback());
+		newFeedback.setRating(feedback.getRating());
+		newFeedback.setBooking(bServices.ViewBookingById(feedback.getBookingId()));
+		
+		return fDao.save(newFeedback);
+		
+		
 //		fDao.getavgfeedbackbypackId() //2
 		//update average rating inside package 3
 //		packageService.updatePackage.save(package) //4
@@ -41,6 +53,8 @@ public class FeedbackServicesImpl implements FeedbackServices{
 				new FeedbackException("No feedback found with customer Id:- "+customerId));
 		
 	}
+	
+	
 
 	@Override
 	public List<Feedback> viewAllFeedback() throws FeedbackException {

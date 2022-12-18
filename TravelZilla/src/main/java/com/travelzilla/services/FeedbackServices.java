@@ -2,12 +2,14 @@ package com.travelzilla.services;
 
 import java.util.List;
 
+import com.travelzilla.exceptions.BookingException;
 import com.travelzilla.exceptions.FeedbackException;
 import com.travelzilla.models.Feedback;
+import com.travelzilla.models.FeedbackDTO;
 
 public interface FeedbackServices {
 	
-	public Feedback addFeedback(Feedback feedback) throws FeedbackException;
+	public Feedback addFeedback(FeedbackDTO feedback) throws FeedbackException, BookingException;
 	
 	public Feedback findFeedbackByFeedbackId(Integer feedbackId) throws FeedbackException;
 	
