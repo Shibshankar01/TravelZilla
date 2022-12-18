@@ -34,6 +34,8 @@ public class BusController {
 		
 	}
 	
+	
+	
 	@PostMapping("/Addbus/{Route_Id}/{Travel_Id}")
 	public ResponseEntity<Bus> RegisterBusWithRoute_idANDTravels_id(@PathVariable("Route_Id") Integer routeId,@PathVariable("Travel_Id") Integer travelId,@RequestBody Bus bus)throws BusException, RouteException, TravelsException{
 		
