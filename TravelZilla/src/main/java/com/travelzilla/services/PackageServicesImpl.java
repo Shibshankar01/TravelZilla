@@ -22,7 +22,6 @@ import com.travelzilla.repositories.HotelDAO;
 import com.travelzilla.repositories.PackageDAO;
 import com.travelzilla.repositories.RouteDAO;
 
-
 @Service
 public class PackageServicesImpl implements PackageServices {
 
@@ -37,12 +36,11 @@ public class PackageServicesImpl implements PackageServices {
 	@Autowired
 	private RouteDAO routeDAO;
 
-
 	@Override
 	public Packages addPackage(PackageDTO pDto) throws BusException, RouteException, HotelException {
 
 //		System.out.println("kk");
-		
+
 		Packages pack = new Packages();
 //		System.out.println("kk");
 //		(Integer packageId, String packageName, String packageDescription, Route route, Hotel hotel, Bus bus,
@@ -55,14 +53,10 @@ public class PackageServicesImpl implements PackageServices {
 		Hotel h = hotelDAO.findById(pDto.getHotel_Id())
 				.orElseThrow(() -> new HotelException("Hotel Not Found With HotelID : " + pDto.getHotel_Id()));
 //		System.out.println(h.toString());	
-		
-		
-		
 
 		Bus b = busDAO.findById(pDto.getBusId())
 				.orElseThrow(() -> new BusException("Bust Not Found With Bus ID : " + pDto.getBusId()));
 //		System.out.println(b.toString());
-		
 
 		Route r = routeDAO.findById(pDto.getRouteId())
 				.orElseThrow(() -> new RouteException("Route Not Found With Route ID : " + pDto.getRouteId()));
@@ -73,8 +67,7 @@ public class PackageServicesImpl implements PackageServices {
 		pack.setRoute(r);
 		pack.setHotel(h);
 		pack.setBus(b);
-		
-		
+
 		Packages newPackage = packageDAO.save(pack);
 
 //		h.getpSet().add(newPackage);
@@ -114,25 +107,29 @@ public class PackageServicesImpl implements PackageServices {
 	public List<ArrayList<Packages>> viewPackagesBySourceAndDestination(String source, String destination) {
 		source = source.toLowerCase();
 		destination = destination.toLowerCase();
-		
+
 		List<ArrayList<Packages>> sameRoutePackageList = new ArrayList<ArrayList<Packages>>();
 		List<Route> routeList = routeDAO.findByRouteFromAndRouteTo(source, destination);
-		for(Route r : routeList) {
+		for (Route r : routeList) {
 			sameRoutePackageList.add((ArrayList<Packages>) packageDAO.findByRoute(r));
 		}
 		return sameRoutePackageList;
 	}
 
 
+//	@Override
+//	public Packages updatePackage(PackageUpdateDTO packageUpdateDTO) {
+//	
+//		return null;
+//	}
 
 
-	
-	
+
 	@Override
 	public Packages updatePackage(Packages p) {
-	
+
 		packageDAO.save(p);
-				return null;
+		return null;
 	}
 
 
