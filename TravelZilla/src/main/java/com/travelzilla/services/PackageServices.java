@@ -20,7 +20,7 @@ public interface PackageServices {
 
 	public List<Packages> viewAllPackages();
 
-	public List<Packages> viewPackagesBySourceAndDestination(String source, String destination);
+//	public List<Packages> viewPackagesBySourceAndDestination(String source, String destination);
 	
 	public Packages updatePackage(PackageUpdateDTO packageUpdateDTO) ;
 

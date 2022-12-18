@@ -13,8 +13,8 @@ public interface RouteService {
 	public List<Route>  getAllRouteDetails()throws RouteException;
 //	public  Route deleteRouteById(Integer routeId)throws RouteException;
 //	public Route modifyRoute(Route route)throws RouteException;
-	public List<Packages>  getAllRouteByFrom_To(Integer from,Integer to)throws RouteException;
-	public List<Packages>  getAllRouteByFrom(Integer from)throws RouteException;
+	public List<Packages>  getAllRouteByFrom_To(String from,String to)throws RouteException;
+	public List<Packages>  getAllRouteByFrom(String from)throws RouteException;
 	
 	
 	

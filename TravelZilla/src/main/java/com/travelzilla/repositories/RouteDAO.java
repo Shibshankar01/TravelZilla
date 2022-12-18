@@ -16,10 +16,10 @@ import com.travelzilla.models.Route;
 public interface RouteDAO extends JpaRepository<Route, Integer>{
 	
 	@Query("select r.packageList from Route r where r.routeFrom=?1 AND r.routeTo=?2")
-	public Set<Packages> getAllRouteByFrom_To(Integer from, Integer to);
+	public Set<Packages> getAllRouteByFrom_To(String from, String to);
 	
 	@Query("select r.packageList from Route r where r.routeFrom=?1")
-	public Set<Packages> getAllRouteByFrom_To(Integer from);
+	public Set<Packages> getAllRouteByFrom_To(String from);
 
 
 }

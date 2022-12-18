@@ -103,16 +103,16 @@ public class PackageServicesImpl implements PackageServices {
 		return packageDAO.findAll();
 	}
 
-	@Override
-	public List<Packages> viewPackagesBySourceAndDestination(String source, String destination) {
-		source = source.toLowerCase();
-		destination = destination.toLowerCase();
-		List<Route> routeList = routeDAO.findByRouteFromAndRouteTo(source, destination);
-		for(Route r : routeList) {
-			packageDAO.findByRoute(r);
-		}
-		return new ArrayList<Packages>();
-	}
+//	@Override
+//	public List<Packages> viewPackagesBySourceAndDestination(String source, String destination) {
+//		source = source.toLowerCase();
+//		destination = destination.toLowerCase();
+//		List<Route> routeList = routeDAO.findByRouteFromAndRouteTo(source, destination);
+//		for(Route r : routeList) {
+//			packageDAO.findByRoute(r);
+//		}
+//		return new ArrayList<Packages>();
+//	}
 
 	@Override
 	public Packages updatePackage(PackageUpdateDTO packageUpdateDTO) {

@@ -34,10 +34,12 @@ public class BusController {
 		
 	}
 	
+	
+	
 	@PostMapping("/Addbus/{Route_Id}/{Travel_Id}")
 	public ResponseEntity<Bus> RegisterBusWithRoute_idANDTravels_id(@PathVariable("Route_Id") Integer routeId,@PathVariable("Travel_Id") Integer travelId,@RequestBody Bus bus)throws BusException, RouteException, TravelsException{
 		
-		Bus bus1= cont.RegisterBusWithRoute_idANDTravels_id(routeId, routeId, bus);
+		Bus bus1= cont.RegisterBusWithRoute_idANDTravels_id(routeId, travelId, bus);
 		return new ResponseEntity<Bus>(bus1, HttpStatus.CREATED);
 		
 	}

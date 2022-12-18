@@ -5,14 +5,17 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.RouteMatcher.Route;
 
 import com.travelzilla.exceptions.BusException;
 import com.travelzilla.exceptions.RouteException;
 import com.travelzilla.exceptions.TravelsException;
 import com.travelzilla.models.Bus;
+import com.travelzilla.models.Travels;
 import com.travelzilla.repositories.BusDAO;
 
 import com.travelzilla.repositories.RouteDAO;
+import com.travelzilla.repositories.TravelsDAO;
 
 @Service
 public class BusServiceImpl implements BusService {
@@ -57,7 +60,8 @@ public class BusServiceImpl implements BusService {
 	@Override
 	public List<Bus> getAllBusDetails() throws BusException {
 		List<Bus> list = erepo.findAll();
-
+		
+		
 		if (list.size() == 0) {
 			throw new BusException(" no Bus ");
 		} else {
@@ -83,22 +87,31 @@ public class BusServiceImpl implements BusService {
 	@Override
 	public Bus  RegisterBusWithRoute_idANDTravels_id(Integer routeId, Integer travelId, Bus bus)throws BusException, RouteException, TravelsException {
 		// TODO Auto-generated method stub
-		
+
 	
 		
         if(bus !=null) {
+
         	
         	Optional<com.travelzilla.models.Route> rou=route_repo.findById(routeId);
-        	Optional<com.travelzilla.models.Travels> tra=travel_repo.findById(travelId);
+        	
+        	if(rou.isPresent() ) {
 
-    		
-    		if(rou.isPresent() ) {
-    			
-    			if(tra.isPresent()) {
-    				com.travelzilla.models.Route route= rou.get();
-        			com.travelzilla.models.Travels travel= tra.get();
-        			route.getBusList().add(bus);
-        			bus.setRoute(route);
+        		com.travelzilla.models.Route route= rou.get();
+        		
+        		route.getBusList().add(bus);
+    			bus.setRoute(route);
+        	}else {
+    			throw new RouteException("Route Not Found.");
+    		}		
+   
+        	Optional<com.travelzilla.models.Travels> trav= travel_repo.findById(travelId);
+        
+    			if(trav.isPresent()) {
+
+    				
+        			com.travelzilla.models.Travels travel= trav.get();
+        			
         			
         			travel.getBusList().add(bus);
         			bus.setTravel(travel);
@@ -106,9 +119,7 @@ public class BusServiceImpl implements BusService {
     				throw new TravelsException("Travels Not Found");
     			}
       			
-    		}else {
-    			throw new RouteException("Route Not Found.");
-    		}
+    		
 	
         	Bus bus1 =erepo.save(bus);
   
