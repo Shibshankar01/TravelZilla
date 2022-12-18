@@ -9,6 +9,7 @@ import org.springframework.util.RouteMatcher.Route;
 
 import com.travelzilla.exceptions.BusException;
 import com.travelzilla.exceptions.RouteException;
+import com.travelzilla.exceptions.TravelsException;
 import com.travelzilla.models.Bus;
 import com.travelzilla.repositories.BusDAO;
 import com.travelzilla.repositories.RouteDAO;
@@ -22,8 +23,8 @@ public class BusServiceImpl implements BusService {
 	private BusDAO erepo;
 	@Autowired
 	private RouteDAO route_repo;
-//	@Autowired
-//	private TravelsDAO travel_repo;
+	@Autowired
+	private TravelsDAO travel_repo;
 
 	@Override
 	public Bus registerBus(Bus bus) throws BusException {
@@ -61,22 +62,22 @@ public class BusServiceImpl implements BusService {
 		}
 	}
 
-	@Override
-	public Bus deleteBusById(Integer busId) throws BusException {
-        Optional<Bus> em=erepo.findById(busId);
-		
-		if(em.isPresent()) {
-			Bus cus1= em.get();
-			erepo.delete(cus1);
-			
-			return cus1;
-		}else {
-			throw new BusException("Bus deleted.");
-		}
-	}
+//	@Override
+//	public Bus deleteBusById(Integer busId) throws BusException {
+//        Optional<Bus> em=erepo.findById(busId);
+//		
+//		if(em.isPresent()) {
+//			Bus cus1= em.get();
+//			erepo.delete(cus1);
+//			
+//			return cus1;
+//		}else {
+//			throw new BusException("Bus deleted.");
+//		}
+//	}
 
 	@Override
-	public Bus  TRYregisterBus(Integer routeId, Bus bus)throws BusException, RouteException {
+	public Bus  RegisterBusWithRoute_idANDTravels_id(Integer routeId, Integer travelId, Bus bus)throws BusException, RouteException, TravelsException {
 		// TODO Auto-generated method stub
 		
 	
@@ -84,15 +85,23 @@ public class BusServiceImpl implements BusService {
         if(bus !=null) {
         	
         	Optional<com.travelzilla.models.Route> rou=route_repo.findById(routeId);
+        	Optional<com.travelzilla.models.Travels> tra=travel_repo.findById(travelId);
 
     		
-    		if(rou.isPresent()) {
+    		if(rou.isPresent() ) {
     			
-    			com.travelzilla.models.Route route= rou.get();
-    			route.getBusList().add(bus);
-    			bus.setRoute(route);
-//    			route_repo.save(route);
-    			   			
+    			if(tra.isPresent()) {
+    				com.travelzilla.models.Route route= rou.get();
+        			com.travelzilla.models.Travels travel= tra.get();
+        			route.getBusList().add(bus);
+        			bus.setRoute(route);
+        			
+        			travel.getBusList().add(bus);
+        			bus.setTravel(travel);
+    			}else {
+    				throw new TravelsException("Travels Not Found");
+    			}
+      			
     		}else {
     			throw new RouteException("Route Not Found.");
     		}
@@ -101,7 +110,7 @@ public class BusServiceImpl implements BusService {
   
 			return bus1;
 		}else {
-			throw new BusException("Customer is null ");
+			throw new BusException("Bus is null ");
 		}
 	}
 }
