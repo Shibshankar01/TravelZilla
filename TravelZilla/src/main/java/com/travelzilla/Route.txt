@@ -1,60 +1,53 @@
 
 
-Add  route
+Add  route with new bus
 
 
 	
 	{
 	  "routeFrom":"jaipur",
 	  "routeTo":"Delhi",
-	  "departureTime":"10:25:30",
-	  "arrivalTime":"13:35:30",
-	  "doj":"2022-05-25",
+	  "time":{
+	       "departureTime":"10:25:30",
+	       "arrivalTime":"13:35:30",
+	       "doj":"2022-05-25"
+	  }
 	  "pickupPoint":"Mansarovar",
 	  "fare":580.00
+	  "busList":[
+	                  {  
+	                  "busType":"Non-Ac Bus"
+	                  "busNumber":"RJ 14 0124"
+	                  "capacity":40
+	                  "availabeSeat":40
+
+                      },
+
+                      {
+                          
+                      	"busType":"Ac Bus"
+                      	"busNumber":"RJ 14 0126"
+                      	"capacity":60
+                      	"availabeSeat":60
+                      
+                      },
+                      
+                      {
+                          
+                      	"busType":"Ac Bus"
+                      	"busNumber":"RJ 14 0129"
+                      	"capacity":80
+                      	"availabeSeat":80
+                      
+                      }
+	  
+	  
+	            ]
 	
 	}
 	
-	{
-	  "routeFrom":"jaipur",
-	  "routeTo":"Mumbai",
-	  "departureTime":"15:25:30",
-	  "arrivalTime":"13:35:30",
-	  "doj":"2022-05-25",
-	  "pickupPoint":"Mansarovar",
-	  "fare":580.00
 	
-	}
 	
-	{
-	  "routeFrom":"delhi",
-	  "routeTo":"up",
-	  "departureTime":"11:25:30",
-	  "arrivalTime":"13:35:30",
-	  "doj":"2022-05-15",
-	  "pickupPoint":"cp mall",
-	  "fare":1580.00
 	
-	}
 	
-	{
-	  "routeFrom":"mumbai",
-	  "routeTo":"dubai",
-	  "departureTime":"10:25:30",
-	  "arrivalTime":"13:35:30",
-	  "doj":"2022-05-22",
-	  "pickupPoint":"tata building",
-	  "fare":15580.00
-	
-	}
-	
-	{
-	  "routeFrom":"mumbai",
-	  "routeTo":"goa",
-	  "departureTime":"02:25:30",
-	  "arrivalTime":"05:35:30",
-	  "doj":"2022-05-20",
-	  "pickupPoint":"cp mall",
-	  "fare":580.00
-	
-	}
+

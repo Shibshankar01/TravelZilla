@@ -44,22 +44,22 @@ public class RouteController {
 		List<Route> route1= cont.getAllRouteDetails();
 		return new ResponseEntity<List<Route>>(route1, HttpStatus.CREATED);
 	}
-	
-	@DeleteMapping("/route/{id}")
-	public ResponseEntity<Route> deleteRouteByIdHandler(@PathVariable("id") Integer routeId) throws RouteException{
-		
-		Route route1= cont.deleteRouteById(routeId);
-		return new ResponseEntity<Route>(route1, HttpStatus.CREATED);
-		
-	}
-	
-	
-	@PutMapping("/route")
-	public ResponseEntity<Route> modifyRoute(@RequestBody Route route) throws RouteException{
-		
-		Route route1= cont.modifyRoute(route);
-		return new ResponseEntity<Route>(route1, HttpStatus.OK);
-		
-	}
+//	
+//	@DeleteMapping("/route/{id}")
+//	public ResponseEntity<Route> deleteRouteByIdHandler(@PathVariable("id") Integer routeId) throws RouteException{
+//		
+//		Route route1= cont.deleteRouteById(routeId);
+//		return new ResponseEntity<Route>(route1, HttpStatus.CREATED);
+//		
+//	}
+//	
+//	
+//	@PutMapping("/route")
+//	public ResponseEntity<Route> modifyRoute(@RequestBody Route route) throws RouteException{
+//		
+//		Route route1= cont.modifyRoute(route);
+//		return new ResponseEntity<Route>(route1, HttpStatus.OK);
+//		
+//	}
 
 }

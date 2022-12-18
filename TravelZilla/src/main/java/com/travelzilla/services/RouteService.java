@@ -10,8 +10,8 @@ public interface RouteService {
 	public Route  registerRoute(Route route)throws RouteException;
 	public Route getRouteById(Integer route)throws RouteException;
 	public List<Route>  getAllRouteDetails()throws RouteException;
-	public  Route deleteRouteById(Integer routeId)throws RouteException;
-	public Route modifyRoute(Route route)throws RouteException;
+//	public  Route deleteRouteById(Integer routeId)throws RouteException;
+//	public Route modifyRoute(Route route)throws RouteException;
 	
 	
 	
