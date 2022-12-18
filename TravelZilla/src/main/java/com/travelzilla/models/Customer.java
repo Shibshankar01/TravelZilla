@@ -124,13 +124,6 @@ public class Customer {
 	public void setFeedbacks(List<Feedback> feedbacks) {
 		this.feedbacks = feedbacks;
 	}
-
-	@Override
-	public String toString() {
-		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", customerPassword="
-				+ customerPassword + ", address=" + address + ", email=" + email + ", mobile=" + mobile
-				+ ", bookingList=" + bookingList + ", feedbacks=" + feedbacks + "]";
-	}
 	
 	
 	
