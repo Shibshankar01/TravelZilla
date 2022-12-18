@@ -98,7 +98,7 @@ public class TravelsServiceImpl implements TravelsService {
 			Travels cus1= em.get();
 			return cus1;
 		}else {
-			throw new TravelsException("Travels Not Found by Tracler Id- "+travelsID);
+			throw new TravelsException("Travels Not Found by Travels Id- "+travelsID);
 		}
 	}
 
