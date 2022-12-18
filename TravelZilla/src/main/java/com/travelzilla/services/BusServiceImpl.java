@@ -13,6 +13,7 @@ import com.travelzilla.models.Bus;
 import com.travelzilla.repositories.BusDAO;
 
 import com.travelzilla.repositories.RouteDAO;
+import com.travelzilla.repositories.TravelsDAO;
 
 @Service
 public class BusServiceImpl implements BusService {
