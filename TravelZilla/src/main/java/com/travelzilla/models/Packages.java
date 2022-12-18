@@ -58,7 +58,7 @@ public class Packages {
 	private Double packageCost;
 	
 	@NotNull(message =  "Capacity cannot be null")
-	private Integer packageCapacity ;
+	private Integer packageCapacity =2;
 
 	
 	

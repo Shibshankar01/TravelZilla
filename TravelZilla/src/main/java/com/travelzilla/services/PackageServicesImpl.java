@@ -73,11 +73,11 @@ public class PackageServicesImpl implements PackageServices {
 		
 		
 		Packages newPackage = packageDAO.save(pack);
-		h.getpSet().add(newPackage);
-		r.getPackageList().add(newPackage);
-		hotelDAO.save(h);
-		routeDAO.save(r);
-		System.out.println(h.toString() + b.toString() + r.toString());
+//		h.getpSet().add(newPackage);
+//		r.getPackageList().add(newPackage);
+//		hotelDAO.save(h);
+//		routeDAO.save(r);
+//		System.out.println(h.toString() + b.toString() + r.toString());
 		return newPackage;
 	}
 

@@ -36,7 +36,7 @@ public class PackageController {
 
 	@Autowired
 	private PackageServices pService;
-	
+	@Autowired
 	private SessionServices sessionServices;
 
 	@PostMapping("/addPackageByIds")
