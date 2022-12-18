@@ -1,0 +1,48 @@
+
+
+
+Add new travels without bus id
+
+post      localHost:8888/Newtravels
+
+{
+	"travelName":"Raj Travels",
+	"agentName": "RAm mohan sharma",
+    "address":{
+          "state":"rajasthan",
+          "city":"jaipur",
+          "landmark":"park",
+          "pin":"302020"
+    },
+	"contact": "8875751126",
+    "busList":[
+        {
+	"busType":"ac",
+	"busNumber": "RJ14-2561",
+	"capacity":501,
+	"availabeSeat":25
+	},{
+	"busType":"ac",
+	"busNumber": "RJ14-2562",
+	"capacity":502,
+	"availabeSeat":25
+	}
+    ]
+}
+
+Add new travels without bus id
+
+localHost:8888/Newtravels
+
+{
+	"travelName":"Raj Travels",
+	"agentName": "RAm mohan sharma",
+    "address":{
+          "state":"rajasthan",
+          "city":"jaipur",
+          "landmark":"park",
+          "pin":"302020"
+    },
+	"contact": "8875751126",
+    
+}
