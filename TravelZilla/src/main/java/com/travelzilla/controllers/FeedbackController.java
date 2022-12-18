@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.travelzilla.exceptions.BookingException;
+import com.travelzilla.exceptions.CustomerException;
 import com.travelzilla.exceptions.FeedbackException;
+import com.travelzilla.exceptions.PackageException;
 import com.travelzilla.models.Feedback;
+import com.travelzilla.models.FeedbackDTO;
 import com.travelzilla.services.FeedbackServices;
 
 
@@ -28,7 +32,7 @@ public class FeedbackController {
 	private FeedbackServices fServices;
 	
 	@PostMapping("/addfeedback")
-	public ResponseEntity<Feedback> addfeedback(@Valid @RequestBody Feedback feedback) throws FeedbackException{
+	public ResponseEntity<Feedback> addfeedback(@Valid @RequestBody FeedbackDTO feedback) throws FeedbackException, BookingException, PackageException{
 		
 		return new ResponseEntity<Feedback>(fServices.addFeedback(feedback),HttpStatus.OK);
 		
@@ -42,9 +46,16 @@ public class FeedbackController {
 	}
 	
 	@GetMapping("/feedbackbycustomerid/{id}")
-	public ResponseEntity<Feedback> findFeedbackByCustomerId(@PathVariable("id") Integer id) throws FeedbackException{
+	public ResponseEntity<List<Feedback>> findFeedbackByCustomerId(@PathVariable("id") Integer id) throws FeedbackException, CustomerException{
 		
-		return new ResponseEntity<>(fServices.findFeedbackByCustomerId(id), HttpStatus.OK);
+		return new ResponseEntity<List<Feedback>>(fServices.findFeedbackByCustomerId(id), HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("/feedbackbypackageid/{id}")
+	public ResponseEntity<List<Feedback>> findFeedbackByPackageId(@PathVariable("id") Integer id) throws FeedbackException, PackageException{
+		
+		return new ResponseEntity<List<Feedback>>(fServices.findFeedbackByPackageId(id), HttpStatus.OK);
 		
 	}
 	

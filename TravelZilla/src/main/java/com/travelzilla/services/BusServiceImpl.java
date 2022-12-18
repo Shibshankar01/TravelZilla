@@ -67,6 +67,7 @@ public class BusServiceImpl implements BusService {
 	}
 
 
+
 //	@Override
 //	public Bus deleteBusById(Integer busId) throws BusException {
 //        Optional<Bus> em=erepo.findById(busId);
@@ -77,6 +78,7 @@ public class BusServiceImpl implements BusService {
 //			
 //			return cus1;
 //		}else {
+
 //			throw new BusException("Bus deleted.");
 //		}
 //	}

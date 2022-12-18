@@ -30,6 +30,8 @@ public class PackageDTO {
 //	@Min(value = 2000, message = "Package Cost Cannot be Less Than 2000.")
 	private Double packageCost;
 	
+	private Integer packageCapacity;
+	
 	public PackageDTO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -48,6 +50,14 @@ public class PackageDTO {
 		this.hotel_Id = hotel_Id;
 		this.busId = busId;
 		this.packageCost = packageCost;
+	}
+
+	public Integer getPackageCapacity() {
+		return packageCapacity;
+	}
+
+	public void setPackageCapacity(Integer packageCapacity) {
+		this.packageCapacity = packageCapacity;
 	}
 
 	public String getPackageName() {
