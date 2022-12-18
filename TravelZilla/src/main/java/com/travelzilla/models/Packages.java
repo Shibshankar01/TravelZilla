@@ -1,7 +1,5 @@
 package com.travelzilla.models;
 
-	
-
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,18 +26,17 @@ public class Packages {
 	@Size(min = 10, max = 1000, message = "Package Description Length must be between 10 to 1000 characters.")
 
 	private String packageDescription;
-	
+
 	@JsonIgnore
 	private PackageStatus packageStatus = PackageStatus.AVAILABLE;
-	
-	private Double packageRating;
-	
-	
+
+	private String packageRating = "Package Not Rated Yet";
+
 	@NotNull(message = "Route Cannot Be Null!")
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "routeId")
 	@JsonIgnore
-	private Route route; 	
+	private Route route;
 
 	@NotNull(message = "Hotel Cannot Be Null!")
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -56,15 +53,9 @@ public class Packages {
 	@NotNull(message = "Package Cost Cannot be Null")
 	@Min(value = 2000, message = "Package Cost Cannot be Less Than 2000.")
 	private Double packageCost;
-	
-	@NotNull(message =  "Capacity cannot be null")
-	private Integer packageCapacity ;
 
-	
-	
-	
-	
-	
+	@NotNull(message = "Capacity cannot be null")
+	private Integer currentAvailability;
 
 	public Packages() {
 		// TODO Auto-generated constructor stub
@@ -82,45 +73,6 @@ public class Packages {
 		this.packageCost = packageCost;
 
 	}
-	public PackageStatus getPackageStatus() {
-		return packageStatus;
-	}
-
-	public void setPackageStatus(PackageStatus packageStatus) {
-		this.packageStatus = packageStatus;
-	}
-	
-	public void setPackageStatus(Integer noOfPerson) {
-		
-		
-		if(packageCapacity <= 0 || hotel.getHotelStatus() == HotelStatus.SOLD_OUT) {
-			
-			packageStatus = PackageStatus.SOLD_OUT;
-		}
-		else {
-			packageStatus = PackageStatus.AVAILABLE;
-		}
-	}
-
-
-	
-	
-	public Double getPackageRating() {
-		return packageRating;
-	}
-
-	public void setPackageRating(Double packageRating) {
-		this.packageRating = packageRating;
-	}
-
-	public Integer getPackageCapacity() {
-		return packageCapacity;
-	}
-
-	public void setPackageCapacity(Integer packageCapacity) {
-		this.packageCapacity = packageCapacity;
-	}
-
 
 	public Integer getPackageId() {
 		return packageId;
@@ -144,6 +96,18 @@ public class Packages {
 
 	public void setPackageDescription(String packageDescription) {
 		this.packageDescription = packageDescription;
+	}
+
+	public PackageStatus getPackageStatus() {
+		return packageStatus;
+	}
+
+	public String getPackageRating() {
+		return packageRating;
+	}
+
+	public void setPackageRating(String packageRating) {
+		this.packageRating = packageRating;
 	}
 
 	public Route getRoute() {
@@ -176,6 +140,26 @@ public class Packages {
 
 	public void setPackageCost(Double packageCost) {
 		this.packageCost = packageCost;
+	}
+
+	public Integer getCurrentAvailability() {
+		return currentAvailability;
+	}
+
+	public void setCurrentAvailability(Integer currentAvailability) {
+		this.currentAvailability = currentAvailability;
+	}
+
+	public void setPackageStatus(Integer noOfPerson) {
+
+		currentAvailability = currentAvailability - noOfPerson;
+
+		if (currentAvailability <= 0 || hotel.getHotelStatus() == HotelStatus.SOLD_OUT) {
+
+			packageStatus = PackageStatus.SOLD_OUT;
+		} else {
+			packageStatus = PackageStatus.AVAILABLE;
+		}
 	}
 
 	@Override

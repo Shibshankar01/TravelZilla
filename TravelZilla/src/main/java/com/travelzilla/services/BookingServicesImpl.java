@@ -13,6 +13,7 @@ import com.travelzilla.models.BookingStatus;
 import com.travelzilla.models.Bus;
 import com.travelzilla.models.Customer;
 import com.travelzilla.models.Packages;
+import com.travelzilla.models.Session;
 import com.travelzilla.models.TicketDetails;
 import com.travelzilla.repositories.BookingDao;
 import com.travelzilla.repositories.BusDAO;
@@ -37,16 +38,19 @@ public class BookingServicesImpl implements BookingServices {
 	@Autowired
 	private BusDAO busDao;
 
+
+	
 	@Override
-	public Booking makeBooking(BookingDTO bookingDTO) throws BookingException {
+	public Booking makeBooking(BookingDTO bookingDTO, Session session) throws BookingException {
 
 		Packages bookedPackage = packageDAO.findById(bookingDTO.getPackageId())
 				.orElseThrow(() -> new BookingException("Invalid Package ID ! "));
-		Customer currentCustomer = customerDAO.findById(bookingDTO.getCustomerId())
+		
+		Customer currentCustomer = customerDAO.findById(session.getUserId())
 				.orElseThrow(() -> new BookingException("Invalid Customer ID ! "));
 
-		if (bookedPackage != null && currentCustomer != null) {
-			if (bookedPackage.getBus().getAvailabeSeat() >= bookingDTO.getNoOfPersons()) {
+		if (bookedPackage != null ) {
+			if (bookedPackage.getCurrentAvailability() >= bookingDTO.getNoOfPersons()) {
 
 				// Creating New Booking
 				Booking booking = new Booking();

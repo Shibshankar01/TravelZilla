@@ -41,10 +41,10 @@ public class PackageServicesImpl implements PackageServices {
 	@Override
 	public Packages addPackage(PackageDTO pDto) throws BusException, RouteException, HotelException {
 
-		System.out.println("kk");
+//		System.out.println("kk");
 		
 		Packages pack = new Packages();
-		System.out.println("kk");
+//		System.out.println("kk");
 //		(Integer packageId, String packageName, String packageDescription, Route route, Hotel hotel, Bus bus,
 //				Double packageCost)
 		pack.setPackageName(pDto.getPackageName());
@@ -53,31 +53,30 @@ public class PackageServicesImpl implements PackageServices {
 
 		Hotel h = hotelDAO.findById(pDto.getHotel_Id())
 				.orElseThrow(() -> new HotelException("Hotel Not Found With HotelID : " + pDto.getHotel_Id()));
-		System.out.println(h.toString());
+//		System.out.println(h.toString());	
 		
 		
 		
 
 		Bus b = busDAO.findById(pDto.getBusId())
 				.orElseThrow(() -> new BusException("Bust Not Found With Bus ID : " + pDto.getBusId()));
-		System.out.println(b.toString());
+//		System.out.println(b.toString());
 		
 
 		Route r = routeDAO.findById(pDto.getRouteId())
 				.orElseThrow(() -> new RouteException("Route Not Found With Route ID : " + pDto.getRouteId()));
-		System.out.println(r.toString());
+//		System.out.println(r.toString());
 		pack.setRoute(r);
 		pack.setHotel(h);
 		pack.setBus(b);
 		
 		
-		
 		Packages newPackage = packageDAO.save(pack);
 		h.getpSet().add(newPackage);
-		r.getPackageList().add(newPackage);
+//		r.getPackageList().add(newPackage);
 		hotelDAO.save(h);
 		routeDAO.save(r);
-		System.out.println(h.toString() + b.toString() + r.toString());
+//		System.out.println(h.toString() + b.toString() + r.toString());
 		return newPackage;
 	}
 
@@ -104,21 +103,23 @@ public class PackageServicesImpl implements PackageServices {
 	}
 
 	@Override
-	public List<Packages> viewPackagesBySourceAndDestination(String source, String destination) {
+	public List<ArrayList<Packages>> viewPackagesBySourceAndDestination(String source, String destination) {
 		source = source.toLowerCase();
 		destination = destination.toLowerCase();
+		
+		List<ArrayList<Packages>> sameRoutePackageList = new ArrayList<ArrayList<Packages>>();
 		List<Route> routeList = routeDAO.findByRouteFromAndRouteTo(source, destination);
 		for(Route r : routeList) {
-			packageDAO.findByRoute(r);
+			sameRoutePackageList.add((ArrayList<Packages>) packageDAO.findByRoute(r));
 		}
-		return new ArrayList<Packages>();
+		return sameRoutePackageList;
 	}
 
-	@Override
-	public Packages updatePackage(PackageUpdateDTO packageUpdateDTO) {
-	
-		return null;
-	}
+//	@Override
+//	public Packages updatePackage(PackageUpdateDTO packageUpdateDTO) {
+//	
+//		return null;
+//	}
 	
 	@Override
 	public Packages updatePackage(Packages p) {
@@ -126,5 +127,11 @@ public class PackageServicesImpl implements PackageServices {
 		packageDAO.save(p);
 				return null;
 	}
+
+//	@Override
+//	public Packages updatePackage(PackageUpdateDTO packageUpdateDTO) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 }

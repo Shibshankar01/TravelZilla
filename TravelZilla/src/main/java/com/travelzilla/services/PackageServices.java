@@ -1,5 +1,6 @@
 package com.travelzilla.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.travelzilla.exceptions.BusException;
@@ -20,9 +21,9 @@ public interface PackageServices {
 
 	public List<Packages> viewAllPackages();
 
-	public List<Packages> viewPackagesBySourceAndDestination(String source, String destination);
+	public List<ArrayList<Packages>> viewPackagesBySourceAndDestination(String source, String destination);
 	
-	public Packages updatePackage(PackageUpdateDTO packageUpdateDTO) ;
+//	public Packages updatePackage(PackageUpdateDTO packageUpdateDTO) ;
 
 	Packages updatePackage(Packages p);
 }
