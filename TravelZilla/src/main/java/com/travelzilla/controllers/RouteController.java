@@ -50,7 +50,7 @@ public class RouteController {
 
 	
 	@GetMapping("/GetPackagesFromRoute_From/{Routefrom}")
-	public ResponseEntity<List<Packages>> getAllRouteByFrom(@PathVariable("Routefrom") Integer from) throws RouteException{
+	public ResponseEntity<List<Packages>> getAllRouteByFrom(@PathVariable("Routefrom") String from) throws RouteException{
 		
 		List<Packages> route1= cont.getAllRouteByFrom(from);
 		return new ResponseEntity<List<Packages>> (route1, HttpStatus.CREATED);

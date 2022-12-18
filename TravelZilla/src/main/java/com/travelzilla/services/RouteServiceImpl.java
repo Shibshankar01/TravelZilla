@@ -84,13 +84,13 @@ public class RouteServiceImpl implements RouteService{
 //	}
 
 	@Override
-	public List<Packages> getAllRouteByFrom(Integer from) throws RouteException {
+	public List<Packages> getAllRouteByFrom(String from) throws RouteException {
        Set<Packages> package1= Rrepo.getAllRouteByFrom_To(from);
 		
 		if(package1.size() > 0)
 		{
 		
-		List<Packages> list=new ArrayList<>(package1);
+		List<Packages> list= new ArrayList<>(package1);
 		
 		return list;
 		}else {

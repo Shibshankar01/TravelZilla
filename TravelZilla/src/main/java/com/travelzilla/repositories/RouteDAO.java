@@ -21,7 +21,7 @@ public interface RouteDAO extends JpaRepository<Route, Integer>{
 	public Set<Packages> getAllRouteByFrom_To(Integer from, Integer to);
 	
 	@Query("select r.packageList from Route r where r.routeFrom=?1")
-	public Set<Packages> getAllRouteByFrom_To(Integer from);
+	public Set<Packages> getAllRouteByFrom_To(String from);
 	
 	public  List<Route> findByRouteFromAndRouteTo(String source, String destination);
 	
