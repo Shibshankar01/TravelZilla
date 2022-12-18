@@ -1,6 +1,30 @@
 
 
+
+Add  route
+
+
+{
+	  "routeFrom":"jaipur",
+	  "routeTo":"Delhi",
+	  "time":{
+	       "departureTime":"10:25:30",
+	       "arrivalTime":"13:35:30",
+	       "doj":"2022-05-25"
+	  },
+	  "pickupPoint":"Mansarovar",
+	  "fare":580.00
+	 
+	
+	}
+	
+	
+
 Add  route with new bus
+
+
+
+
 
 
 	

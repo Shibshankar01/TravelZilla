@@ -170,7 +170,8 @@ public class Packages {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(bus, hotel, packageCost, packageDescription, packageId, packageName, route);
+		return Objects.hash(currentAvailability, packageCost, packageDescription, packageId, packageName, packageRating,
+				packageStatus);
 	}
 
 	@Override
@@ -182,18 +183,13 @@ public class Packages {
 		if (getClass() != obj.getClass())
 			return false;
 		Packages other = (Packages) obj;
-		return Objects.equals(bus, other.bus) && Objects.equals(hotel, other.hotel)
+		return Objects.equals(currentAvailability, other.currentAvailability)
 				&& Objects.equals(packageCost, other.packageCost)
 				&& Objects.equals(packageDescription, other.packageDescription)
 				&& Objects.equals(packageId, other.packageId) && Objects.equals(packageName, other.packageName)
-				&& Objects.equals(route, other.route);
+				&& Objects.equals(packageRating, other.packageRating) && packageStatus == other.packageStatus;
 	}
 
-	@Override
-	public String toString() {
-		return "Package [packageId=" + packageId + ", packageName=" + packageName + ", packageDescription="
-				+ packageDescription + ", route=" + route + ", hotel=" + hotel + ", bus=" + bus + ", packageCost="
-				+ packageCost + "]";
-	}
+	
 
 }
