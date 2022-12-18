@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class Bus {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer busId ;
 	private BusType busType;
 	private String busNumber;
@@ -36,8 +36,10 @@ public class Bus {
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<TicketDetails> ticketdetails= new HashSet<>();
 
+
 	public Bus(Integer busId, BusType busType, String busNumber, Integer capacity, Integer availabeSeat, Route route,
 			Travels travel, Set<TicketDetails> ticketdetails) {
+
 		super();
 		this.busId = busId;
 		this.busType = busType;

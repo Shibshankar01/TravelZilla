@@ -10,5 +10,7 @@ public interface AdminServices {
 	public Admin getAdminById(int adminID)throws AdminException;
 	
 	public Admin deleteAdminById(int adminID)throws AdminException;
+	
+	public Admin updateAdmin(Admin admin)throws AdminException;
 
 }

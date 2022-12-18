@@ -2,5 +2,5 @@ package com.travelzilla.models;
 
 public enum HotelStatus {
 
-	ROOM_AVAILABLE, SOLD_OUT
+	SOLD_OUT , ROOM_AVAILABLE
 }

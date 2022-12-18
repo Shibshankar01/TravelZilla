@@ -63,10 +63,9 @@ public class Route {
 	public Integer getRouteId() {
 		return routeId;
 	}
-
-	public void setRouteId(Integer routeId) {
-		this.routeId = routeId;
-	}
+  public void setRouteId(Integer routeId) {
+	this.routeId = routeId;
+}
 
 	public String getRouteFrom() {
 		return routeFrom;
