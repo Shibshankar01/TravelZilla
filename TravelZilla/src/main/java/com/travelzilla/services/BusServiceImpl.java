@@ -22,6 +22,11 @@ public class BusServiceImpl implements BusService {
 	@Autowired
 	private RouteDAO route_repo;
 
+//	@Autowired
+//	private TravelsDAO travel_repo;
+
+
+
 	@Override
 	public Bus registerBus(Bus bus) throws BusException {
 		// TODO Auto-generated method stub
@@ -76,6 +81,7 @@ public class BusServiceImpl implements BusService {
 	public Bus TRYregisterBus(Integer routeId, Bus bus) throws BusException, RouteException {
 		// TODO Auto-generated method stub
 
+
 		System.out.println("kvh");
 
 		if (bus != null) {
@@ -87,6 +93,7 @@ public class BusServiceImpl implements BusService {
 				com.travelzilla.models.Route route = rou.get();
 				route.getBusList().add(bus);
 				bus.setRoute(route);
+
 //    			route_repo.save(route);
 
 			} else {
