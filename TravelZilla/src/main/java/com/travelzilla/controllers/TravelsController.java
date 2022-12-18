@@ -36,23 +36,23 @@ public class TravelsController {
 		
 	}
 	
-	@PostMapping("/NewBusIntravels/{id}")
-	public ResponseEntity<Travels> registerNewBusInTravels(@Valid @PathVariable("id") Integer tid,@RequestBody Bus bus) throws TravelsException{
+	@PostMapping("/AddNewBusIn_travels/{Travel_id}")
+	public ResponseEntity<Travels> registerNewBusInTravels(@Valid @PathVariable("Travel_id") Integer tid,@RequestBody Bus bus) throws TravelsException{
 		
 		Travels travels1=cont.registerNewBusInTravels(tid, bus);
 		return new ResponseEntity<Travels>(travels1, HttpStatus.OK);
 		
 	}
-	@PutMapping("/oldBusIntravels/{tid}/{bid}")
-	public ResponseEntity<Travels> registerOldBusInTravels(@Valid @PathVariable("tid") Integer tid,@PathVariable("bid") Integer bid) throws TravelsException, BusException{
+	@PutMapping("/AddOldBusIntravels/{Travel_id}/{Bus_Id}")
+	public ResponseEntity<Travels> registerOldBusInTravels(@Valid @PathVariable("Travel_id") Integer tid,@PathVariable("Bus_Id") Integer bid) throws TravelsException, BusException{
 		
 		Travels travels1=cont.registerOldBusInTravels(tid, bid);
 		return new ResponseEntity<Travels>(travels1, HttpStatus.OK);
 	}
 	
 
-	@GetMapping("/travelsById/{id}")
-	public ResponseEntity<Travels> getTravelsByIdHandler(@PathVariable("id") Integer travelsID) throws TravelsException{
+	@GetMapping("/GettravelsById/{Travel_id}")
+	public ResponseEntity<Travels> getTravelsByIdHandler(@PathVariable("Travel_id") Integer travelsID) throws TravelsException{
 		Travels travels1= cont.getTravelsById(travelsID);
 		return new ResponseEntity<Travels>(travels1, HttpStatus.CREATED);
 	}

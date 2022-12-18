@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.travelzilla.exceptions.RouteException;
+import com.travelzilla.models.Packages;
 import com.travelzilla.models.Route;
 import com.travelzilla.services.RouteService;
 
@@ -23,7 +24,7 @@ public class RouteController {
 	@Autowired
 	private RouteService cont;
 	
-	@PostMapping("/route")
+	@PostMapping("/AddRoute")
 	public ResponseEntity<Route> registerRouteHandler(@RequestBody Route route) throws RouteException{
 		
 		Route route1= cont.registerRoute(route);
@@ -32,18 +33,34 @@ public class RouteController {
 		
 	}
 	
-	@GetMapping("/route/{id}")
-	public ResponseEntity<Route> getRouteByIdHandler(@PathVariable("id") Integer routeID) throws RouteException{
+	@GetMapping("/Route/{Route_id}")
+	public ResponseEntity<Route> getRouteByIdHandler(@PathVariable("Route_id") Integer routeID) throws RouteException{
 		Route route1= cont.getRouteById(routeID);
 		return new ResponseEntity<Route>(route1, HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/routes")
+	@GetMapping("/GetAllRoutes")
 	public ResponseEntity<List<Route>> getAllRouteDetails() throws RouteException{
 		
 		List<Route> route1= cont.getAllRouteDetails();
 		return new ResponseEntity<List<Route>>(route1, HttpStatus.CREATED);
 	}
+	
+//	@GetMapping("/GetPackagesFromRoute_From_To/{Routefrom}/{Routeto}")
+//	public ResponseEntity<List<Packages>> getAllRouteByFrom_To(@PathVariable("Routefrom") Integer from,@PathVariable("Routeto") Integer to) throws RouteException{
+//		
+//		List<Packages> route1= cont.getAllRouteByFrom_To(from, to);
+//		return new ResponseEntity<List<Packages>> (route1, HttpStatus.CREATED);
+//	}
+	
+	@GetMapping("/GetPackagesFromRoute_From/{Routefrom}")
+	public ResponseEntity<List<Packages>> getAllRouteByFrom(@PathVariable("Routefrom") Integer from) throws RouteException{
+		
+		List<Packages> route1= cont.getAllRouteByFrom(from);
+		return new ResponseEntity<List<Packages>> (route1, HttpStatus.CREATED);
+	}
+	
+	
 //	
 //	@DeleteMapping("/route/{id}")
 //	public ResponseEntity<Route> deleteRouteByIdHandler(@PathVariable("id") Integer routeId) throws RouteException{

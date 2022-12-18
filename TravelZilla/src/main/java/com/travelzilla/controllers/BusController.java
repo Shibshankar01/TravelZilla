@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.travelzilla.exceptions.BusException;
 import com.travelzilla.exceptions.RouteException;
+import com.travelzilla.exceptions.TravelsException;
 import com.travelzilla.models.Bus;
 import com.travelzilla.services.BusService;
 
@@ -24,7 +25,7 @@ public class BusController {
 	@Autowired
 	private BusService cont;
 	
-	@PostMapping("/bus")
+	@PostMapping("/AddBus")
 	public ResponseEntity<Bus> registerBusHandler(@RequestBody Bus bus) throws BusException{
 		
 		Bus bus1= cont.registerBus(bus);
@@ -33,22 +34,22 @@ public class BusController {
 		
 	}
 	
-	@PostMapping("/bus/{id}")
-	public ResponseEntity<Bus>  TRYregisterBus(@PathVariable("id") Integer routeId, @RequestBody Bus bus)throws BusException, RouteException{
+	@PostMapping("/Addbus/{Route_Id}/{Travel_Id}")
+	public ResponseEntity<Bus> RegisterBusWithRoute_idANDTravels_id(@PathVariable("Route_Id") Integer routeId,@PathVariable("Travel_Id") Integer travelId,@RequestBody Bus bus)throws BusException, RouteException, TravelsException{
 		
-		Bus bus1= cont.TRYregisterBus(routeId, bus);
+		Bus bus1= cont.RegisterBusWithRoute_idANDTravels_id(routeId, routeId, bus);
 		return new ResponseEntity<Bus>(bus1, HttpStatus.CREATED);
 		
 	}
 	
-	@GetMapping("/bus/{id}")
-	public ResponseEntity<Bus> getBusByIdHandler(@PathVariable("id") Integer busID) throws BusException{
+	@GetMapping("/GetBus/{Bus_Id}")
+	public ResponseEntity<Bus> getBusByIdHandler(@PathVariable("Bus_Id") Integer busID) throws BusException{
 		Bus bus1= cont.getBusById(busID);
 		return new ResponseEntity<Bus>(bus1, HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/buss")
-	public ResponseEntity<List<Bus>> getAllBusDetails() throws BusException{
+	@GetMapping("/GetAllBuses")
+	public ResponseEntity<List<Bus>> getAllBusDetailsHandler() throws BusException{
 		
 		List<Bus> bus1= cont.getAllBusDetails();
 		return new ResponseEntity<List<Bus>>(bus1, HttpStatus.CREATED);

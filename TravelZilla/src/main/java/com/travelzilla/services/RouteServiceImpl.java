@@ -1,5 +1,6 @@
 package com.travelzilla.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -65,6 +66,39 @@ public class RouteServiceImpl implements RouteService{
 			return list;
 		}
 	}
+
+//	@Override
+//	public List<Packages> getAllRouteByFrom_To(Integer from, Integer to) throws RouteException {
+//		// TODO Auto-generated method stub
+//		Set<Packages> package1= Rrepo.getAllRouteByFrom_To(from, to);
+//		
+//		if(package1.size() > 0)
+//		{
+//		
+//		List<Packages> list=new ArrayList<>(package1);
+//		
+//		return list;
+//		}else {
+//			throw new RouteException("Route does not exist from "+from+" to "+to);
+//		}
+//	}
+
+	@Override
+	public List<Packages> getAllRouteByFrom(Integer from) throws RouteException {
+       Set<Packages> package1= Rrepo.getAllRouteByFrom_To(from);
+		
+		if(package1.size() > 0)
+		{
+		
+		List<Packages> list=new ArrayList<>(package1);
+		
+		return list;
+		}else {
+			throw new RouteException("Route does not exist from "+from);
+		}
+	}
+
+	
 
 //	@Override
 //	public Route deleteRouteById(Integer routeId) throws RouteException {
