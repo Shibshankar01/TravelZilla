@@ -25,7 +25,9 @@ public class Packages {
 	@NotNull(message = "Package Description Cannot Be Null!")
 	@Size(min = 10, max = 1000, message = "Package Description Length must be between 10 to 1000 characters.")
 
+
 	private String packageDescription;
+
 
 	@JsonIgnore
 	private PackageStatus packageStatus = PackageStatus.AVAILABLE;
@@ -53,6 +55,10 @@ public class Packages {
 	@NotNull(message = "Package Cost Cannot be Null")
 	@Min(value = 2000, message = "Package Cost Cannot be Less Than 2000.")
 	private Double packageCost;
+
+//	@NotNull(message =  "Capacity cannot be null")
+//	private Integer packageCapacity;
+
 
 	@NotNull(message = "Capacity cannot be null")
 	private Integer currentAvailability;
@@ -153,7 +159,7 @@ public class Packages {
 	public void setPackageStatus(Integer noOfPerson) {
 
 		currentAvailability = currentAvailability - noOfPerson;
-
+		
 		if (currentAvailability <= 0 || hotel.getHotelStatus() == HotelStatus.SOLD_OUT) {
 
 			packageStatus = PackageStatus.SOLD_OUT;

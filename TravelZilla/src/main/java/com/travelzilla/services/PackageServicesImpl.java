@@ -47,8 +47,9 @@ public class PackageServicesImpl implements PackageServices {
 //		System.out.println("kk");
 //		(Integer packageId, String packageName, String packageDescription, Route route, Hotel hotel, Bus bus,
 //				Double packageCost)
+		pack.setCurrentAvailability(pDto.getPackageCapacity());
 		pack.setPackageName(pDto.getPackageName());
-		pack.setPackageDescription(pDto.getPackageDescription());
+		
 		pack.setPackageCost(pDto.getPackageCost());
 
 		Hotel h = hotelDAO.findById(pDto.getHotel_Id())
@@ -65,14 +66,20 @@ public class PackageServicesImpl implements PackageServices {
 
 		Route r = routeDAO.findById(pDto.getRouteId())
 				.orElseThrow(() -> new RouteException("Route Not Found With Route ID : " + pDto.getRouteId()));
-//		System.out.println(r.toString());
+
+		System.out.println(r.toString());
+		pack.setPackageDescription(r.getRouteFrom()+" " +r.getRouteTo()+ "\n" + pDto.getPackageDescription());
+
 		pack.setRoute(r);
 		pack.setHotel(h);
 		pack.setBus(b);
 		
 		
 		Packages newPackage = packageDAO.save(pack);
-		h.getpSet().add(newPackage);
+
+//		h.getpSet().add(newPackage);
+
+
 //		r.getPackageList().add(newPackage);
 		hotelDAO.save(h);
 		routeDAO.save(r);
@@ -115,11 +122,9 @@ public class PackageServicesImpl implements PackageServices {
 		return sameRoutePackageList;
 	}
 
-//	@Override
-//	public Packages updatePackage(PackageUpdateDTO packageUpdateDTO) {
-//	
-//		return null;
-//	}
+
+
+	
 	
 	@Override
 	public Packages updatePackage(Packages p) {
@@ -128,10 +133,5 @@ public class PackageServicesImpl implements PackageServices {
 				return null;
 	}
 
-//	@Override
-//	public Packages updatePackage(PackageUpdateDTO packageUpdateDTO) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,23 +15,25 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Customer {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer customerId;
-	@NotBlank
+	
+	@NotNull
 	private String customerName;
-	@NotBlank
+	
+	@NotNull
 	private String customerPassword;
-	@NotBlank
+	
+	@NotNull
 	private String address;
-	@NotBlank
+	
+	@NotNull
 	@Email
 	private String email;
-	@NotBlank
+	
+	@NotNull
 	@Size(min = 10, max = 10)
 	private String mobile;
-	
-	@NotBlank
-	private Integer userId;
 	
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "customer")
 	@JsonIgnore
@@ -44,9 +46,10 @@ public class Customer {
 	public Customer() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Customer(Integer customerId, String customerName, String customerPassword, String address, String email,
-			String mobile, Integer userId) {
+
+	public Customer(Integer customerId, @NotNull String customerName, @NotNull String customerPassword,
+			@NotNull String address, @NotNull @Email String email, @NotNull @Size(min = 10, max = 10) String mobile,
+			List<Booking> bookingList, List<Feedback> feedbacks) {
 		super();
 		this.customerId = customerId;
 		this.customerName = customerName;
@@ -54,70 +57,81 @@ public class Customer {
 		this.address = address;
 		this.email = email;
 		this.mobile = mobile;
-		this.userId = userId;
+		this.bookingList = bookingList;
+		this.feedbacks = feedbacks;
 	}
-	
+
 	public Integer getCustomerId() {
 		return customerId;
 	}
-	
+
 	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
 	}
-	
+
 	public String getCustomerName() {
 		return customerName;
 	}
-	
+
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
-	
+
 	public String getCustomerPassword() {
 		return customerPassword;
 	}
-	
+
 	public void setCustomerPassword(String customerPassword) {
 		this.customerPassword = customerPassword;
 	}
-	
+
 	public String getAddress() {
 		return address;
 	}
-	
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
-	
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public String getMobile() {
 		return mobile;
 	}
-	
+
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-	
-	public Integer getUserId() {
-		return userId;
+
+	public List<Booking> getBookingList() {
+		return bookingList;
 	}
-	
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+
+	public void setBookingList(List<Booking> bookingList) {
+		this.bookingList = bookingList;
 	}
-	
+
+	public List<Feedback> getFeedbacks() {
+		return feedbacks;
+	}
+
+	public void setFeedbacks(List<Feedback> feedbacks) {
+		this.feedbacks = feedbacks;
+	}
+
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", customerPassword="
-				+ customerPassword + ", address=" + address + ", email=" + email + ", mobile=" + mobile + ", userId="
-				+ userId + "]";
+				+ customerPassword + ", address=" + address + ", email=" + email + ", mobile=" + mobile
+				+ ", bookingList=" + bookingList + ", feedbacks=" + feedbacks + "]";
 	}
+	
+	
 	
 }

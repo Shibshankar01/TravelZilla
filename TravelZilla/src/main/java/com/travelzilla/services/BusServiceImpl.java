@@ -13,6 +13,7 @@ import com.travelzilla.models.Bus;
 import com.travelzilla.repositories.BusDAO;
 
 import com.travelzilla.repositories.RouteDAO;
+import com.travelzilla.repositories.TravelsDAO;
 
 @Service
 public class BusServiceImpl implements BusService {
@@ -66,6 +67,7 @@ public class BusServiceImpl implements BusService {
 	}
 
 
+
 //	@Override
 //	public Bus deleteBusById(Integer busId) throws BusException {
 //        Optional<Bus> em=erepo.findById(busId);
@@ -76,6 +78,7 @@ public class BusServiceImpl implements BusService {
 //			
 //			return cus1;
 //		}else {
+
 //			throw new BusException("Bus deleted.");
 //		}
 //	}
