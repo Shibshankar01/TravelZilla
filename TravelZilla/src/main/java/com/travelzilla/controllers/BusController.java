@@ -54,13 +54,13 @@ public class BusController {
 		return new ResponseEntity<List<Bus>>(bus1, HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping("/bus/{id}")
-	public ResponseEntity<Bus> deleteBusByIdHandler(@PathVariable("id") Integer busId) throws BusException{
-		
-		Bus bus1= cont.deleteBusById(busId);
-		System.out.println(bus1);
-		return new ResponseEntity<Bus>(bus1, HttpStatus.CREATED);
-		
-	}
+//	@DeleteMapping("/bus/{id}")
+//	public ResponseEntity<Bus> deleteBusByIdHandler(@PathVariable("id") Integer busId) throws BusException{
+//		
+//		Bus bus1= cont.deleteBusById(busId);
+//		System.out.println(bus1);
+//		return new ResponseEntity<Bus>(bus1, HttpStatus.CREATED);
+//		
+//	}
 
 }

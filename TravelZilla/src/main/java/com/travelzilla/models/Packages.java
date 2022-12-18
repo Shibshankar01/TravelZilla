@@ -27,7 +27,7 @@ public class Packages {
 	@NotNull(message = "Package Description Cannot Be Null!")
 	@Size(min = 10, max = 1000, message = "Package Description Length must be between 10 to 1000 characters.")
 
-	private String packageDescription;
+	private String packageDescription ;
 	
 	@JsonIgnore
 	private PackageStatus packageStatus = PackageStatus.AVAILABLE;

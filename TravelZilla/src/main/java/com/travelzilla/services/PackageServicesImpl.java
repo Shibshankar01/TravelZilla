@@ -48,7 +48,7 @@ public class PackageServicesImpl implements PackageServices {
 //		(Integer packageId, String packageName, String packageDescription, Route route, Hotel hotel, Bus bus,
 //				Double packageCost)
 		pack.setPackageName(pDto.getPackageName());
-		pack.setPackageDescription(pDto.getPackageDescription());
+		
 		pack.setPackageCost(pDto.getPackageCost());
 
 		Hotel h = hotelDAO.findById(pDto.getHotel_Id())
@@ -66,6 +66,7 @@ public class PackageServicesImpl implements PackageServices {
 		Route r = routeDAO.findById(pDto.getRouteId())
 				.orElseThrow(() -> new RouteException("Route Not Found With Route ID : " + pDto.getRouteId()));
 		System.out.println(r.toString());
+		pack.setPackageDescription(r.getRouteFrom()+" " +r.getRouteTo()+ "\n" + pDto.getPackageDescription());
 		pack.setRoute(r);
 		pack.setHotel(h);
 		pack.setBus(b);
@@ -75,8 +76,8 @@ public class PackageServicesImpl implements PackageServices {
 		Packages newPackage = packageDAO.save(pack);
 //		h.getpSet().add(newPackage);
 //		r.getPackageList().add(newPackage);
-//		hotelDAO.save(h);
-//		routeDAO.save(r);
+		hotelDAO.save(h);
+		routeDAO.save(r);
 //		System.out.println(h.toString() + b.toString() + r.toString());
 		return newPackage;
 	}

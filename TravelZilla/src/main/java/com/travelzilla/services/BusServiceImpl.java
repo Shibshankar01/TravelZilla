@@ -63,19 +63,19 @@ public class BusServiceImpl implements BusService {
 		}
 	}
 
-	@Override
-	public Bus deleteBusById(Integer busId) throws BusException {
-		Optional<Bus> em = erepo.findById(busId);
-
-		if (em.isPresent()) {
-			Bus cus1 = em.get();
-			erepo.delete(cus1);
-
-			return cus1;
-		} else {
-			throw new BusException("Bus deleted.");
-		}
-	}
+//	@Override
+//	public Bus deleteBusById(Integer busId) throws BusException {
+//		Optional<Bus> em = erepo.findById(busId);
+//
+//		if (em.isPresent()) {
+//			Bus cus1 = em.get();
+//			erepo.delete(cus1);
+//
+//			return cus1;
+//		} else {
+//			throw new BusException("Bus deleted.");
+//		}
+//	}
 
 	@Override
 	public Bus TRYregisterBus(Integer routeId, Bus bus) throws BusException, RouteException {
