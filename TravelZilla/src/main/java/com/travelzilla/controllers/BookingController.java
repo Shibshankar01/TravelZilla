@@ -22,6 +22,9 @@ import com.travelzilla.exceptions.CustomerException;
 import com.travelzilla.exceptions.SessionException;
 import com.travelzilla.models.Booking;
 import com.travelzilla.models.BookingDTO;
+import com.travelzilla.exceptions.SessionException;
+import com.travelzilla.models.Admin;
+import com.travelzilla.models.Report;
 import com.travelzilla.models.Session;
 import com.travelzilla.models.UserType;
 import com.travelzilla.services.BookingServices;
@@ -32,13 +35,16 @@ import com.travelzilla.services.SessionServices;
 public class BookingController {
 
 	@Autowired
+
 	private BookingServices bookingService;
+
 
 	@Autowired
 	private SessionServices sessionService;
 	
 	
 	@PostMapping("/makeBooking")
+
 	public ResponseEntity<Booking> makeBooking(@Valid @RequestBody BookingDTO booking, @RequestParam("sessionKey") String sessionKey) throws BookingException, SessionException, CustomerException {
 		Session session = sessionService.getASessionByKey(sessionKey);
 		if(session.getUserType()==UserType.CUSTOMER) {
@@ -72,5 +78,6 @@ public class BookingController {
 		return new ResponseEntity<List<Booking>>(bookingService.viewAllBookings(), HttpStatus.OK);
 	}
 	throw new AdminException("Please login with the correct credentials");
+
 	}
 }
