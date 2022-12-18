@@ -1,6 +1,8 @@
 package com.travelzilla.repositories;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 
@@ -20,6 +22,12 @@ public interface RouteDAO extends JpaRepository<Route, Integer>{
 	
 	@Query("select r.packageList from Route r where r.routeFrom=?1")
 	public Set<Packages> getAllRouteByFrom_To(String from);
+
+
+
+	
+	public  List<Route> findByRouteFromAndRouteTo(String source, String destination);
+	
 
 
 }

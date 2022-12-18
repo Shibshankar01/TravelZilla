@@ -67,6 +67,7 @@ public class RouteServiceImpl implements RouteService{
 		}
 	}
 
+
 	@Override
 	public List<Packages> getAllRouteByFrom_To(String from, String to) throws RouteException {
 		// TODO Auto-generated method stub
@@ -83,6 +84,7 @@ public class RouteServiceImpl implements RouteService{
 		}
 	}
 
+
 	@Override
 	public List<Packages> getAllRouteByFrom(String from) throws RouteException {
        Set<Packages> package1= Rrepo.getAllRouteByFrom_To(from);
@@ -90,7 +92,7 @@ public class RouteServiceImpl implements RouteService{
 		if(package1.size() > 0)
 		{
 		
-		List<Packages> list=new ArrayList<>(package1);
+		List<Packages> list= new ArrayList<>(package1);
 		
 		return list;
 		}else {

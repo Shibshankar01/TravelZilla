@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.travelzilla.exceptions.CustomerException;
 import com.travelzilla.models.Customer;
 import com.travelzilla.services.CustomerServices;
+import com.travelzilla.services.SessionServices;
 
 @RestController
 @RequestMapping("/customers")
@@ -30,15 +31,18 @@ public class CustomerController {
 	@Autowired
 	private CustomerServices customerServices;
 	
+	@Autowired
+	private SessionServices sServices;
+	
 	@PostMapping("/addcustomer")
 	public ResponseEntity<Customer> addCustomer(@Valid @RequestBody Customer customer) throws CustomerException{
 		
-		return new ResponseEntity<Customer>(customerServices.addCustomer(customer),HttpStatus.OK);
+		return new ResponseEntity<Customer>(customerServices.addCustomer(customer),HttpStatus.ACCEPTED);
 		
 	}
 	
 	@DeleteMapping("/deletecustomer/{cid}")
-	public ResponseEntity<Customer> deleteCustomerbyIdHandler(Integer customerId) throws CustomerException{
+	public ResponseEntity<Customer> deleteCustomerbyIdHandler(@PathVariable Integer customerId) throws CustomerException{
 		Customer dc = customerServices.deleteCustomer(customerId) ;
 		return new ResponseEntity<Customer>(dc, HttpStatus.OK);
 	}
