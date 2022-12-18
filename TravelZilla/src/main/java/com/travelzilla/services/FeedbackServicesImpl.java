@@ -42,20 +42,20 @@ public class FeedbackServicesImpl implements FeedbackServices{
 		
 		newFeedback.setPackages(p);
 		
-		Feedback f= fDao.save(newFeedback);
+		Feedback feedback2= fDao.save(newFeedback);
 		
 		List<Feedback> feedbacks= findFeedbackByPackageId(p.getPackageId());
 		double sum=0;
-		for (Feedback feedback2 : feedbacks) {
-			sum+=feedback2.getRating();
+		for (Feedback feedback21 : feedbacks) {
+			sum+=feedback21.getRating();
 		}
 		double avg =sum/feedbacks.size();
 		
-		p.setPackageRating(avg);
+		p.setPackageRating(avg+"");
 		
 		pServices.updatePackage(p);
 		
-		return f;
+		return feedback2;
 		
 //		fDao.getavgfeedbackbypackId() //2
 		//update average rating inside package 3

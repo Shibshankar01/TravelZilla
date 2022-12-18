@@ -46,12 +46,8 @@ public class RouteController {
 		return new ResponseEntity<List<Route>>(route1, HttpStatus.CREATED);
 	}
 	
-//	@GetMapping("/GetPackagesFromRoute_From_To/{Routefrom}/{Routeto}")
-//	public ResponseEntity<List<Packages>> getAllRouteByFrom_To(@PathVariable("Routefrom") Integer from,@PathVariable("Routeto") Integer to) throws RouteException{
-//		
-//		List<Packages> route1= cont.getAllRouteByFrom_To(from, to);
-//		return new ResponseEntity<List<Packages>> (route1, HttpStatus.CREATED);
-//	}
+
+
 	
 	@GetMapping("/GetPackagesFromRoute_From/{Routefrom}")
 	public ResponseEntity<List<Packages>> getAllRouteByFrom(@PathVariable("Routefrom") Integer from) throws RouteException{

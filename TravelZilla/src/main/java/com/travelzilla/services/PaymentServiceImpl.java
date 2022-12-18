@@ -13,6 +13,7 @@ import com.travelzilla.models.Packages;
 import com.travelzilla.models.Payment;
 import com.travelzilla.models.PaymentDTO;
 import com.travelzilla.models.PaymentStatus;
+import com.travelzilla.models.Session;
 import com.travelzilla.repositories.BookingDao;
 import com.travelzilla.repositories.BusDAO;
 import com.travelzilla.repositories.PackageDAO;
@@ -34,7 +35,7 @@ public class PaymentServiceImpl implements PaymentServices {
 	BusDAO busDao;
 
 	@Override
-	public Payment makePayment(PaymentDTO paymentDTO) throws PaymentException {
+	public Payment makePayment(PaymentDTO paymentDTO, Session session) throws PaymentException {
 
 		Booking currentBooking = bookingDao.findById(paymentDTO.getBookingId()).orElseThrow(() -> new PaymentException(
 				"Payment Cannot Be Done For Inavalid Booking ID : " + paymentDTO.getBookingId()));
@@ -42,9 +43,12 @@ public class PaymentServiceImpl implements PaymentServices {
 
 		Payment newPayment = new Payment();
 
-		if (paymentDTO.getUpi_Id().equals("123@abc") && paymentDTO.getPin() == 123456
+		String correctUpiId = currentBooking.getCustomer().getCustomerName() +"@upi";
+		
+		if (paymentDTO.getUpi_Id().equals(correctUpiId) && paymentDTO.getPin() == 123456
 				&& currentBooking.getBookingStatus() == BookingStatus.PAYMENT_PENDING
-				&& bookedPackage.getPackageStatus() == PackageStatus.AVAILABLE) {
+				&& bookedPackage.getPackageStatus() == PackageStatus.AVAILABLE
+				&& currentBooking.getCustomer().getCustomerId() == session.getUserId()) {
 
 			newPayment.setBooking(currentBooking);
 			newPayment.setPaymentStatus(PaymentStatus.SUCCESSFULL);

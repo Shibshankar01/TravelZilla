@@ -23,7 +23,7 @@ public interface PackageServices {
 
 	public List<ArrayList<Packages>> viewPackagesBySourceAndDestination(String source, String destination);
 	
-	public Packages updatePackage(PackageUpdateDTO packageUpdateDTO) ;
+//	public Packages updatePackage(PackageUpdateDTO packageUpdateDTO) ;
 
 	Packages updatePackage(Packages p);
 }

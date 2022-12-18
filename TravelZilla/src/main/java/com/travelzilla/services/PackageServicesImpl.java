@@ -41,40 +41,45 @@ public class PackageServicesImpl implements PackageServices {
 	@Override
 	public Packages addPackage(PackageDTO pDto) throws BusException, RouteException, HotelException {
 
-		System.out.println("kk");
+//		System.out.println("kk");
 		
 		Packages pack = new Packages();
-		System.out.println("kk");
+//		System.out.println("kk");
 //		(Integer packageId, String packageName, String packageDescription, Route route, Hotel hotel, Bus bus,
 //				Double packageCost)
+		pack.setCurrentAvailability(pDto.getPackageCapacity());
 		pack.setPackageName(pDto.getPackageName());
 		
 		pack.setPackageCost(pDto.getPackageCost());
 
 		Hotel h = hotelDAO.findById(pDto.getHotel_Id())
 				.orElseThrow(() -> new HotelException("Hotel Not Found With HotelID : " + pDto.getHotel_Id()));
-		System.out.println(h.toString());
+//		System.out.println(h.toString());	
 		
 		
 		
 
 		Bus b = busDAO.findById(pDto.getBusId())
 				.orElseThrow(() -> new BusException("Bust Not Found With Bus ID : " + pDto.getBusId()));
-		System.out.println(b.toString());
+//		System.out.println(b.toString());
 		
 
 		Route r = routeDAO.findById(pDto.getRouteId())
 				.orElseThrow(() -> new RouteException("Route Not Found With Route ID : " + pDto.getRouteId()));
+
 		System.out.println(r.toString());
 		pack.setPackageDescription(r.getRouteFrom()+" " +r.getRouteTo()+ "\n" + pDto.getPackageDescription());
+
 		pack.setRoute(r);
 		pack.setHotel(h);
 		pack.setBus(b);
 		
 		
-		
 		Packages newPackage = packageDAO.save(pack);
+
 //		h.getpSet().add(newPackage);
+
+
 //		r.getPackageList().add(newPackage);
 		hotelDAO.save(h);
 		routeDAO.save(r);
@@ -118,11 +123,8 @@ public class PackageServicesImpl implements PackageServices {
 	}
 
 
-	@Override
-	public Packages updatePackage(PackageUpdateDTO packageUpdateDTO) {
+
 	
-		return null;
-	}
 	
 	@Override
 	public Packages updatePackage(Packages p) {
@@ -130,5 +132,6 @@ public class PackageServicesImpl implements PackageServices {
 		packageDAO.save(p);
 				return null;
 	}
+
 
 }
