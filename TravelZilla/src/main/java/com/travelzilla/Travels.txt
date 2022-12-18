@@ -43,6 +43,6 @@ localHost:8888/Newtravels
           "landmark":"park",
           "pin":"302020"
     },
-	"contact": "8875751126",
+	"contact": "8875751126"
     
 }

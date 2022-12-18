@@ -26,6 +26,7 @@ public class Route {
 	private double fare;
 	
 
+	
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "route")
 	private Set<Packages> packageList= new HashSet<>();
 	

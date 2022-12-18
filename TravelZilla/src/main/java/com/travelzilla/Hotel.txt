@@ -5,7 +5,7 @@
 localHost:8888/hotel/searchHotelById/1
 
 {
-    "hotel_Id": 1,
+    
     "hotelName": "taj palace",
     "hotelType": "AC",
     "hotelDescription": "nice hotrl",
