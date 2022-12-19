@@ -86,7 +86,7 @@ public class RouteController {
 	@GetMapping("/GetPackagesFromRoute_From_To/{Routefrom}/{Routeto}")
 	public ResponseEntity<List<Packages>> getAllRouteByFrom_To(@Valid  @PathVariable("Routefrom") String from,@PathVariable("Routeto") String to ,@RequestParam("sessionKey") String key) throws RouteException, SessionException{
 		Session session= service.getASessionByKey(key);
-		if(session.getUserType()==UserType.ADMIN) {
+		if(session !=null) {
 			List<Packages> route1= cont.getAllRouteByFrom_To(from, to);
 			return new ResponseEntity<List<Packages>> (route1, HttpStatus.CREATED);
 			
@@ -100,7 +100,7 @@ public class RouteController {
 	@GetMapping("/GetPackagesFromRoute_From/{Routefrom}")
 	public ResponseEntity<List<Packages>> getAllRouteByFrom(@Valid  @PathVariable("Routefrom") String from ,@RequestParam("sessionKey") String key) throws RouteException, SessionException{
 		Session session= service.getASessionByKey(key);
-		if(session.getUserType()==UserType.ADMIN) {
+		if(session!=null) {
 			List<Packages> route1= cont.getAllRouteByFrom(from);
 			return new ResponseEntity<List<Packages>> (route1, HttpStatus.CREATED);
 			

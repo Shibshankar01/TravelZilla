@@ -6,13 +6,14 @@ import java.time.LocalDateTime;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Feedback {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NotNull
 	private Integer feedbackId;
 	@NotNull
 	private String feedback;
@@ -25,11 +26,13 @@ public class Feedback {
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "customerId")
+	@JsonIgnore
 	private Customer customer;
 	
 	@NotNull
 	@OneToOne
 	@JoinColumn(name = "bookingId")
+	@JsonIgnore
 	private Booking booking;
 	
 	@ManyToOne

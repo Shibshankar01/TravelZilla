@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +25,6 @@ import com.travelzilla.models.UserType;
 import com.travelzilla.services.PaymentServices;
 import com.travelzilla.services.SessionServices;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @RequestMapping("/payment")
@@ -40,7 +40,7 @@ public class PaymentController {
 	@PostMapping("/makePayment")
 	public ResponseEntity<Payment> makePayment(@Valid @RequestBody PaymentDTO pDto, @RequestParam("sessionKey") String sessionKey) throws PaymentException, AdminException, SessionException {
 		Session session = sessionService.getASessionByKey(sessionKey);
-		if (session.getUserType() == UserType.ADMIN) {
+		if (session.getUserType() == UserType.CUSTOMER) {
 		return new ResponseEntity<Payment>(paymentService.makePayment(pDto, session), HttpStatus.OK);
 	}
 	throw new AdminException("Please login with the correct credentials");

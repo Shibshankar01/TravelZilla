@@ -4,19 +4,19 @@ localHost:8888/bus           --body
 
 
 {
-    "busId":1
-	"busType":"Ac Bus"
-	"busNumber":"RJ 14 0123"
-	"capacity":50
+  
+	"busType":2,
+	"busNumber":"RJ 14 0123",
+	"capacity":50,
 	"availabeSeat":50
 
 }
 
 {
-    "busId":2
-	"busType":"Non-Ac Bus"
-	"busNumber":"RJ 14 0124"
-	"capacity":40
+   
+	"busType":3,
+	"busNumber":"RJ 14 0124",
+	"capacity":40,
 	"availabeSeat":40
 
 }

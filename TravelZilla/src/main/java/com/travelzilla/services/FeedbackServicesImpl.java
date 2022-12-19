@@ -37,7 +37,7 @@ public class FeedbackServicesImpl implements FeedbackServices{
 		newFeedback.setFeedback(feedback.getFeedback());
 		newFeedback.setRating(feedback.getRating());
 		newFeedback.setBooking(bServices.ViewBookingById(feedback.getBookingId()));
-		
+		newFeedback.setCustomer(bServices.ViewBookingById(feedback.getBookingId()).getCustomer());
 		Packages p= pServices.searchPackageById(feedback.getPackageId());
 		
 		newFeedback.setPackages(p);
