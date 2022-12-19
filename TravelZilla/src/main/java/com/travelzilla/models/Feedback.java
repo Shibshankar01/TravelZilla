@@ -109,16 +109,6 @@ public class Feedback {
 		this.feedbackId = feedbackId;
 	}
 
-	@Override
-	public String toString() {
-		return "Feedback [feedbackId=" + feedbackId + ", feedback=" + feedback + ", rating=" + rating + ", submitDate="
-				+ submitDate + ", customer=" + customer + ", booking=" + booking + ", packages=" + packages + "]";
-	}
-	
-	
-
-	
-	
 	
 
 }

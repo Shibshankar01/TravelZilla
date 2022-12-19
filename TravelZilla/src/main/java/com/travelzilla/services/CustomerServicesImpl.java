@@ -25,9 +25,10 @@ public class CustomerServicesImpl implements CustomerServices{
 	}
 
 	@Override
-	public Customer updateCustomer(Customer customer, String key) throws CustomerException {
-		// TODO Auto-generated method stub
-		return null;
+	public Customer updateCustomer(Customer customer) throws CustomerException {
+		cDao.findById(customer.getCustomerId()).orElseThrow(()-> new CustomerException("Customer does not exist with Id:- "+customer.getCustomerId()));
+		
+		return cDao.save(customer);
 	}
 
 	@Override

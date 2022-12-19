@@ -9,7 +9,7 @@ public interface CustomerServices {
 	
 	public Customer addCustomer(Customer customer) throws CustomerException;
 	
-	public Customer updateCustomer(Customer customer, String key) throws CustomerException;
+	public Customer updateCustomer(Customer customer) throws CustomerException;
 	
 	public Customer deleteCustomer(Integer customerId) throws CustomerException;
 	
