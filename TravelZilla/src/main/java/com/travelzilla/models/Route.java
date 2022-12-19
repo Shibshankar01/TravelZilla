@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Route {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer routeId;
 	@NotNull(message = "Route From Cannot Be Null!")
 	private String routeFrom;
