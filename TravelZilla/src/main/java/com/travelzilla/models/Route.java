@@ -12,17 +12,24 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Route {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer routeId;
+	@NotNull(message = "Route From Cannot Be Null!")
 	private String routeFrom;
+	@NotNull(message = "Route To Cannot Be Null!")
 	private String routeTo;
+	
+	@NotNull(message = "Time Cannot Be Null!")
 	@Embedded
 	private BusTiming time;
+	@NotNull(message = "pickupPoint Cannot Be Null!")
 	private String pickupPoint;
+	@NotNull(message = "Fare Cannot Be Null!")
 	private double fare;
 	
 
