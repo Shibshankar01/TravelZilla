@@ -62,7 +62,7 @@ public class PackageServicesImpl implements PackageServices {
 				.orElseThrow(() -> new RouteException("Route Not Found With Route ID : " + pDto.getRouteId()));
 
 		System.out.println(r.toString());
-		pack.setPackageDescription(r.getRouteFrom()+" " +r.getRouteTo()+ "\n" + pDto.getPackageDescription());
+		pack.setPackageDescription(r.getRouteFrom()+" " +r.getRouteTo()+ " - " + pDto.getPackageDescription());
 
 		pack.setRoute(r);
 		pack.setHotel(h);

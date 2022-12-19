@@ -12,8 +12,8 @@ public class PaymentDTO {
 	private String upi_Id;
 
 	@NotNull(message = "Pin Is Required To Make Payment")
-	@Min(value = 6, message = "Pin Must Be 6 Digit Long")
-	@Max(value = 6, message = "Pin Must Be 6 Digit Long")
+	@Min(value = 123456, message = "Pin Must Be 6 Digit Long")
+	@Max(value = 123456, message = "Pin Must Be 6 Digit Long")
 	private Integer pin;
 
 	public PaymentDTO() {

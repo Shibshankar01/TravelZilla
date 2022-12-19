@@ -31,5 +31,5 @@ localHost:8888/hotel/searchHotelById/1
         "pin": null
     },
     "hotelRent": 2012.0,
-    "hotelStatus": "SOLD_OUT"
+    "hotelStatus": 1
 }

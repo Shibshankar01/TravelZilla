@@ -67,7 +67,7 @@ public class PaymentServiceImpl implements PaymentServices {
 			busDao.save(bookedPackage.getBus());
 			bookingDao.save(currentBooking);
 
-			return newPayment;
+			return paymentDAO.save(newPayment) ;
 		} else {
 			newPayment.setBooking(currentBooking);
 			newPayment.setPaymentStatus(PaymentStatus.FAILED);

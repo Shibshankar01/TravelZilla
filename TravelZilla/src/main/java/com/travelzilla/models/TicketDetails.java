@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class TicketDetails {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer ticketdetails_Id ;
 
 	private String type;

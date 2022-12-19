@@ -59,13 +59,14 @@ public class BookingServicesImpl implements BookingServices {
 				booking.setBookingDate(LocalDateTime.now());
 				booking.setBookingTitle(bookedPackage.getPackageName() + " " + bookedPackage.getPackageDescription());
 				booking.setCustomer(currentCustomer);
-				String bookingDescription = "Bus Number : " + bookedPackage.getBus().getBusNumber() + "\n Bus Type : "
-						+ bookedPackage.getBus().getBusType() + "\n Seat Number : Will Be Alloted After Payment."
-						+ "\n Hotel Name : " + bookedPackage.getHotel().getHotelName();
+				String bookingDescription = "Bus Number : " + bookedPackage.getBus().getBusNumber() + " - Bus Type : "
+						+ bookedPackage.getBus().getBusType() + "- Seat Number : Will Be Alloted After Payment."
+						+ " - Hotel Name : " + bookedPackage.getHotel().getHotelName();
 				booking.setDescription(bookingDescription);
 				booking.setBookingStatus(BookingStatus.PAYMENT_PENDING);
 				booking.setPackages(bookedPackage);
 				booking.setTotalCost(bookedPackage.getPackageCost() * bookingDTO.getNoOfPersons());
+				booking.setNoOfPersons(bookingDTO.getNoOfPersons());
 
 				// Creating a New Bus Ticket
 				TicketDetails td = new TicketDetails();
