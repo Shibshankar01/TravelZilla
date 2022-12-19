@@ -4,9 +4,7 @@
    ![Logo](https://img.shields.io/github/contributors/Shibshankar01/-quizzical-drink-5030)
   
  ## Description
-   Myntra is a major Indian fashion e-commerce company. It is a one-stop shop for all your fashion and lifestyle needs. 
-   
-   This is a collaborative project built by a team of 7 members in 5 days.
+   Online Trip Management System where a admin can manage the tours, trips, packages and hotels and a Customer can make a booking, payment and also give feedbacks
    
  ## Tech Stack 💻
 - Java
@@ -31,7 +29,7 @@
   * Tickets
 
 ## Link ✨
-   https://grand-tarsier-842e30.netlify.app/ 
+   https://drive.google.com/file/d/1w6_nmxwHunOYnLnAOY2rsBWipp1bWf72/view 
    
 ## Contributors  😇
 
