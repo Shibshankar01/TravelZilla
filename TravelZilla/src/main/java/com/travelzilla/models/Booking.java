@@ -3,6 +3,8 @@ package com.travelzilla.models;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,6 +20,7 @@ import com.fasterxml.jackson.core.sym.Name;
 public class Booking {
 	@Id
 	@NotBlank(message = "bookingId cannot be null")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int bookingId;
 	@NotBlank(message = "description cannot be null")
 	private String description;
