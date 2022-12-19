@@ -1,7 +1,7 @@
  # [TRAVELZILLA - Onile Trip Management System](https://grand-tarsier-842e30.netlify.app)
-   ![Logo](https://img.shields.io/github/last-commit/Shibshankar01/Myntra)
-   ![Logo](https://img.shields.io/github/languages/code-size/Shibshankar01/Myntra)
-   ![Logo](https://img.shields.io/github/contributors/Shibshankar01/Myntra)
+   ![Logo](https://img.shields.io/github/last-commit/Shibshankar01/-quizzical-drink-5030)
+   ![Logo](https://img.shields.io/github/languages/code-size/Shibshankar01/-quizzical-drink-5030)
+   ![Logo](https://img.shields.io/github/contributors/Shibshankar01/-quizzical-drink-5030)
   
  ## Description
    Myntra is a major Indian fashion e-commerce company. It is a one-stop shop for all your fashion and lifestyle needs. 
