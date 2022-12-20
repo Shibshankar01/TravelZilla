@@ -42,6 +42,12 @@
 ## Screenshots  📸
 
 
+### ER Diagram
+
+![ERDiagram_page-0002](https://user-images.githubusercontent.com/101733074/208608706-417bb0db-cc05-4057-8555-2fb91a3ce80b.jpg)
+
+
+
 
 #### Admin Customer Controller 
 
@@ -87,6 +93,5 @@
 #### Report Controller 
 
 <img src="https://github.com/Shibshankar01/-quizzical-drink-5030/blob/main/TravelZilla/controller-screenshots/report-controller.png" alt="booking-controller" />
-
 
 
