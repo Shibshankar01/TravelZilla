@@ -2,6 +2,9 @@
    ![Logo](https://img.shields.io/github/last-commit/Shibshankar01/-quizzical-drink-5030)
    ![Logo](https://img.shields.io/github/languages/code-size/Shibshankar01/-quizzical-drink-5030)
    ![Logo](https://img.shields.io/github/contributors/Shibshankar01/-quizzical-drink-5030)
+   
+   ![travel](https://user-images.githubusercontent.com/101733074/208613400-5ca12e8c-4d2f-4546-94e1-662f0df26daf.jpg)
+
   
  ## Description
    Online Trip Management System where a admin can manage the tours, trips, packages and hotels and a Customer can make a booking, payment and also give feedbacks
