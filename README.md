@@ -42,29 +42,51 @@
 ## Screenshots  📸
 
 
-#### Homepage
 
-<img src="https://raw.githubusercontent.com/IamSanjayGupta/IamSanjayGupta.github.io/main/src/assets/myntra/1.png" alt="homepage" />
+#### Admin Customer Controller 
 
-
-#### Products
-
-<img src="https://raw.githubusercontent.com/IamSanjayGupta/IamSanjayGupta.github.io/main/src/assets/myntra/2.png" alt="Products" />
+<img src="https://github.com/Shibshankar01/-quizzical-drink-5030/blob/main/TravelZilla/controller-screenshots/admin-customer-controller.png" alt="booking-controller" />
 
 
-#### View Products
-
-<img src="https://raw.githubusercontent.com/IamSanjayGupta/IamSanjayGupta.github.io/main/src/assets/myntra/3.png" alt="view" />
 
 
-#### cart 
+#### Login Out Controller 
 
-<img src="https://raw.githubusercontent.com/IamSanjayGupta/IamSanjayGupta.github.io/main/src/assets/myntra/4.png" alt="cart" />
+<img src="https://github.com/Shibshankar01/-quizzical-drink-5030/blob/main/TravelZilla/controller-screenshots/login-logout-controller.png" alt="booking-controller" />
 
 
-#### payment 
 
-<img src="https://raw.githubusercontent.com/IamSanjayGupta/IamSanjayGupta.github.io/main/src/assets/myntra/5.png" alt="payment" />
+
+#### Package Controller 
+
+<img src="https://github.com/Shibshankar01/-quizzical-drink-5030/blob/main/TravelZilla/controller-screenshots/package-controller.png" alt="booking-controller" />
+
+
+
+
+#### Booking Controller 
+
+<img src="https://github.com/Shibshankar01/-quizzical-drink-5030/blob/main/TravelZilla/controller-screenshots/booking-controller.png" alt="booking-controller" />
+
+
+
+
+
+
+#### Payment Controller 
+
+<img src="https://github.com/Shibshankar01/-quizzical-drink-5030/blob/main/TravelZilla/controller-screenshots/payment-controller.png" alt="booking-controller" />
+
+
+
+#### Feedback Controller 
+
+<img src="https://github.com/Shibshankar01/-quizzical-drink-5030/blob/main/TravelZilla/controller-screenshots/feedback-controller.png" alt="booking-controller" />
+
+
+#### Report Controller 
+
+<img src="https://github.com/Shibshankar01/-quizzical-drink-5030/blob/main/TravelZilla/controller-screenshots/report-controller.png" alt="booking-controller" />
 
 
 
