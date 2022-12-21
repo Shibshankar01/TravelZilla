@@ -36,10 +36,10 @@
    
 ## Contributors  😇
 
-- 👤 [Ajay Singh](https://github.com/Alok470)
+- 👤 [Ajay Singh](https://github.com/Ajay470)
 - 👤 [Akash Samanta](https://github.com/aks-samanta)
 - 👤 [Alok Kumar](https://github.com/alokkr11)
-- 👤 [Karri Naga Durga Amrutha](https://github.com/Vivekkumar06)
+- 👤 [Karri Naga Durga Amrutha](https://github.com/Amrutha010)
 - 👤 [Shibshankar Padhy](https://github.com/Shibshankar01)
 
 ## Screenshots  📸
