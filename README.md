@@ -40,7 +40,7 @@
 - 👤 [Akash Samanta](https://github.com/Shibshankar01)
 - 👤 [Alok Kumar](https://github.com/Kashifrezwi)
 - 👤 [Karri Naga Durga Amrutha](https://github.com/Vivekkumar06)
-- 👤 [Shibshankar Padhy](https://github.com/bkcjanta)
+- 👤 [Shibshankar Padhy](https://github.com/Shibshankar01)
 
 ## Screenshots  📸
 
