@@ -36,7 +36,7 @@ public class AdminController {
 	private SessionServices sServices;
 	
 	@PostMapping("/add")
-	public ResponseEntity<Admin> addAAdmin(@Valid @RequestBody Admin admin){
+	public ResponseEntity<Admin> addAAdmin(@Valid @RequestBody Admin admin) throws AdminException{
 		Admin admin1= aServices.addAdmin(admin);
 		return new ResponseEntity<Admin>(admin1, HttpStatus.ACCEPTED);
 	}

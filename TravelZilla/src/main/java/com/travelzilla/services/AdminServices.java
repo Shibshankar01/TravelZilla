@@ -5,7 +5,7 @@ import com.travelzilla.models.Admin;
 
 public interface AdminServices {
 	
-	public Admin addAdmin(Admin admin);
+	public Admin addAdmin(Admin admin) throws AdminException;
 	
 	public Admin getAdminById(int adminID)throws AdminException;
 	

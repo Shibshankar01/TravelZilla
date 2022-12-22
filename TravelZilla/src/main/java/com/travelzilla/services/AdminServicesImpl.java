@@ -14,8 +14,10 @@ public class AdminServicesImpl implements AdminServices{
 	private AdminDAO aDao;
 	
 	@Override
-	public Admin addAdmin(Admin admin) {
+	public Admin addAdmin(Admin admin) throws AdminException {
 		// TODO Auto-generated method stub
+		if(aDao.findByEmail(admin.getEmail()) != null)
+				throw new AdminException("Admin already present with that email id");
 		return aDao.save(admin);	
 	}
 
