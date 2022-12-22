@@ -19,7 +19,8 @@ public class CustomerServicesImpl implements CustomerServices{
 
 	@Override
 	public Customer addCustomer(Customer customer) throws CustomerException {
-		
+		if(cDao.findByEmail(customer.getEmail())!= null)
+			throw new CustomerException("Customer already present with that email");
 		return cDao.save(customer);
 		
 	}
