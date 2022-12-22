@@ -22,27 +22,29 @@ public class RouteServiceImpl implements RouteService{
 	@Autowired
 	private RouteDAO Rrepo;
 
+//	Resister new Route along with bus.
 	@Override
 	public Route registerRoute(Route route) throws RouteException {
-		// TODO Auto-generated method stub
             if(route !=null) {
 			
-			java.util.Set<Bus> buslist= route.getBusList();
-	
-			for(Bus buss:buslist) {
+//          If any Bus is associated with route it create bus object 
+//          and save data in bus as well as route databases.	
+            	
+		          java.util.Set<Bus> buslist= route.getBusList();
+			      for(Bus buss:buslist) {
+		
+			      	buss.setRoute(route);
 				
-				//associating each student with course
-				buss.setRoute(route);
-				
-			}
+			      }
 			
 			return Rrepo.save(route);
 			
-		}else {
+		   }else {
 			throw new RouteException("Route is null ");
-		}
+		   }
 	}
 
+//	To get specific Route object 
 	@Override
 	public Route getRouteById(Integer routeID) throws RouteException {
 		
@@ -56,6 +58,7 @@ public class RouteServiceImpl implements RouteService{
 		}
 	}
 
+//	It provide all the route from database.
 	@Override
 	public List<Route> getAllRouteDetails() throws RouteException {
           List<Route> list= Rrepo.findAll();
@@ -68,16 +71,18 @@ public class RouteServiceImpl implements RouteService{
 	}
 
 
+//	This function provides all packages based on customer search(destination and origin).
 	@Override
 	public List<Packages> getAllRouteByFrom_To(String from, String to) throws RouteException {
-		// TODO Auto-generated method stub
-		List<Route> package1= Rrepo.getAllRouteByFrom_To(from, to);
 		
+//      Get all Routes.
+		List<Route> Route= Rrepo.getAllRouteByFrom_To(from, to);
 		List<Packages> list=new ArrayList<>();
 		
-		if(package1.size() > 0)
+		if(Route.size() > 0)
 		{
-			for(Route r:package1) {
+			for(Route r:Route) {
+//				get all packages in side a route and add in new List.
 				Set<Packages> pac=r.getPackageList();
 				List<Packages> l=new ArrayList<>(pac);
 				
@@ -93,7 +98,7 @@ public class RouteServiceImpl implements RouteService{
 		}
 	}
 
-
+//	This function provides all packages which is start from origin.
 	@Override
 	public List<Packages> getAllRouteByFrom(String from) throws RouteException {
         List<Route> package1= Rrepo.getAllRouteByFrom(from);
@@ -116,33 +121,5 @@ public class RouteServiceImpl implements RouteService{
 			throw new RouteException("Route does not exist from "+from);
 		}
 	}
-
-	
-
-//	@Override
-//	public Route deleteRouteById(Integer routeId) throws RouteException {
-//        Optional<Route> em=erepo.findById(routeId);
-//		
-//		if(em.isPresent()) {
-//			Route cus1= em.get();
-//			erepo.delete(cus1);
-//			
-//			return cus1;
-//		}else {
-//			throw new RouteException("Route deleted.");
-//		}
-//	}
-
-//	@Override
-//	public Route modifyRoute(Route route) throws RouteException {
-//        Optional<Route> em=erepo.findById(route.getRouteId());
-//		
-//		if(em.isPresent()) {
-//			Route cud1 =erepo.save(route);
-//			return cud1;
-//		}else {
-//			throw new RouteException("Customer Not Found.");
-//		} 
-//	}
 
 }

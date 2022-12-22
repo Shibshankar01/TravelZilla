@@ -18,6 +18,4 @@ public interface BusService {
 	
 	public List<Bus>  getAllBusDetails()throws BusException;
 	
-//	public  Bus deleteBusById(Integer busId)throws BusException;
-
 }

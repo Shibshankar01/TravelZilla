@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,6 +29,7 @@ import com.travelzilla.services.SessionServices;
 import com.travelzilla.services.TravelsService;
 
 @RestController
+@RequestMapping("/Travels")
 public class TravelsController {
 	@Autowired
 	private TravelsService cont;
@@ -36,28 +38,31 @@ public class TravelsController {
 	SessionServices service;
 	
 	
-	
-	@PostMapping("/Newtravels")
-	public ResponseEntity<Travels> registerNewTravels(@Valid @RequestBody Travels travel ,@RequestParam("sessionKey") String key) throws TravelsException, BusException, SessionException{
+//	Register New traveler along with new bus If travels want.
+	@PostMapping("/Register")
+	public ResponseEntity<Travels> registerNewTravelsHandler(@Valid @RequestBody Travels travel ,@RequestParam("sessionKey") String key) throws TravelsException, BusException, SessionException{
 		Session session= service.getASessionByKey(key);
+//		authentication
 		if(session.getUserType()==UserType.ADMIN) {
-			Travels travels1=cont.registerNewTravels(travel);
 			
+//			Main Function calling
+			Travels travels1=cont.registerNewTravels(travel);
 			return new ResponseEntity<Travels>(travels1, HttpStatus.CREATED);
 			
 		}else {
 			throw new SessionException("Please Enter Correct Key..!");
 		}
-		
-		
-		
+
 	}
 	
-	@PostMapping("/AddNewBusIn_travels/{Travel_id}")
-	public ResponseEntity<Travels> registerNewBusInTravels(@Valid @PathVariable("Travel_id") Integer tid,@RequestBody Bus bus ,@RequestParam("sessionKey") String key) throws TravelsException, SessionException{
+//	Add new Bus With existing Travels.
+	@PostMapping("/AddNewBus/{Travel_id}")
+	public ResponseEntity<Travels> registerNewBusInTravelsHandler(@Valid @PathVariable("Travel_id") Integer tid,@RequestBody Bus bus ,@RequestParam("sessionKey") String key) throws TravelsException, SessionException{
 		Session session= service.getASessionByKey(key);
+//		authentication
 		if(session.getUserType()==UserType.ADMIN) {
-
+			
+//			Main Function calling
 			Travels travels1=cont.registerNewBusInTravels(tid, bus);
 			return new ResponseEntity<Travels>(travels1, HttpStatus.OK);
 			
@@ -67,10 +72,15 @@ public class TravelsController {
 		
 		
 	}
-	@PutMapping("/AddOldBusIntravels/{Travel_id}/{Bus_Id}")
-	public ResponseEntity<Travels> registerOldBusInTravels(@Valid @PathVariable("Travel_id") Integer tid,@PathVariable("Bus_Id") Integer bid ,@RequestParam("sessionKey") String key) throws TravelsException, BusException, SessionException{
+	
+//	Register old bus with other travels.
+	@PutMapping("/AddOldBus/{Travel_id}/{Bus_Id}")
+	public ResponseEntity<Travels> registerOldBusInTravelsHandler(@Valid @PathVariable("Travel_id") Integer tid,@PathVariable("Bus_Id") Integer bid ,@RequestParam("sessionKey") String key) throws TravelsException, BusException, SessionException{
 		Session session= service.getASessionByKey(key);
+//		authentication
 		if(session.getUserType()==UserType.ADMIN) {
+			
+//			Main Function calling
 			Travels travels1=cont.registerOldBusInTravels(tid, bid);
 			return new ResponseEntity<Travels>(travels1, HttpStatus.OK);
 			
@@ -81,11 +91,14 @@ public class TravelsController {
 		
 	}
 	
-
-	@GetMapping("/GettravelsById/{Travel_id}")
+//  Search travels with their IDs.
+	@GetMapping("/GetById/{Travel_id}")
 	public ResponseEntity<Travels> getTravelsByIdHandler(@Valid  @PathVariable("Travel_id") Integer travelsID ,@RequestParam("sessionKey") String key) throws TravelsException, SessionException{
 		Session session= service.getASessionByKey(key);
+//		authentication
 		if(session.getUserType()==UserType.ADMIN) {
+			
+//			Main Function calling
 			Travels travels1= cont.getTravelsById(travelsID);
 			return new ResponseEntity<Travels>(travels1, HttpStatus.CREATED);
 			
@@ -96,10 +109,14 @@ public class TravelsController {
 		
 	}
 	
-	@GetMapping("/Alltravels")
-	public ResponseEntity<List<Travels>> getAllTravelsDetails(@Valid  @RequestParam("sessionKey") String key) throws TravelsException, SessionException{
+//	Get all Travels from database.
+	@GetMapping("/GetAll")
+	public ResponseEntity<List<Travels>> getAllTravelsHandler(@Valid  @RequestParam("sessionKey") String key) throws TravelsException, SessionException{
 		Session session= service.getASessionByKey(key);
+//		authentication
 		if(session.getUserType()==UserType.ADMIN) {
+			
+//			Main Function calling
 			List<Travels> travels1= cont.getAllTravelsDetails();
 			return new ResponseEntity<List<Travels>>(travels1, HttpStatus.CREATED);
 			
@@ -109,21 +126,5 @@ public class TravelsController {
 		
 		
 	}
-//	
-//	@DeleteMapping("/travels/{id}")
-//	public ResponseEntity<Travels> deleteTravelsByIdHandler(@Valid  @PathVariable("id") Integer travelsId ,@RequestParam("sessionKey") String key) throws TravelsException{
-//		Session session= service.getASessionByKey(key);
-//	if(session.getUserType()==UserType.ADMIN) {
-//		Travels travels1= cont.deleteTravelsById(travelsId);
-//	return new ResponseEntity<Travels>(travels1, HttpStatus.CREATED);
-//		
-//	}else {
-//		throw new SessionException("Please Enter Correct Key..!");
-//	}
-//	
-//		
-//		
-//	}
-	
-	
+
 }

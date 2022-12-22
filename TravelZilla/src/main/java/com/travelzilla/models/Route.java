@@ -24,6 +24,7 @@ public class Route {
 	@NotNull(message = "Route To Cannot Be Null!")
 	private String routeTo;
 	
+	//Use BusTiming class for neat and clean code.
 	@NotNull(message = "Time Cannot Be Null!")
 	@Embedded
 	private BusTiming time;
@@ -33,22 +34,14 @@ public class Route {
 	private double fare;
 	
 
-	
+	// A route have many packages.
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "route")
 	private Set<Packages> packageList= new HashSet<>();
 	
-	
+	// A route have many Buses.
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "route")
 	private Set<Bus> busList= new HashSet<>();
 
-//	Route and Bus Management
-//	create route
-//	delete route
-//	modify route
-//	
-//	if pacage add rought.package
-	
-//	 View Routes
 	
 	public Route() {
 		super();

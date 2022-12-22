@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,20 +27,24 @@ import com.travelzilla.services.RouteService;
 import com.travelzilla.services.SessionServices;
 
 @RestController
+@RequestMapping("/Route")
 public class RouteController {
 	
 	@Autowired
-	private RouteService cont;
+	private RouteService routeservice;
 	
 	@Autowired
 	SessionServices service;
 	
-	@PostMapping("/AddRoute")
+//	Resister new Route along with bus if admin wants.
+	@PostMapping("/Register")
 	public ResponseEntity<Route> registerRouteHandler(@Valid  @RequestBody Route route,@RequestParam("sessionKey") String key) throws RouteException, SessionException{
-		Session session= service.getASessionByKey(key);
 		
+		Session session= service.getASessionByKey(key);
+//		authentication
 		if(session.getUserType()==UserType.ADMIN) {
-			Route route1= cont.registerRoute(route);
+//			Main Function calling
+			Route route1= routeservice.registerRoute(route);
 			return new ResponseEntity<Route>(route1, HttpStatus.CREATED);
 			
 		}else {
@@ -51,12 +56,13 @@ public class RouteController {
 	}
 	
 	
-	
-	@GetMapping("/Route/{Route_id}")
+//	Search route by id.
+	@GetMapping("/GetById/{Route_id}")
 	public ResponseEntity<Route> getRouteByIdHandler(@Valid  @PathVariable("Route_id") Integer routeID ,@RequestParam("sessionKey") String key) throws RouteException, SessionException{
 		Session session= service.getASessionByKey(key);
+//		authentication	
 		if(session.getUserType()==UserType.ADMIN) {
-			Route route1= cont.getRouteById(routeID);
+//			Main Function			Route route1= routeservice.getRouteById(routeID);
 			return new ResponseEntity<Route>(route1, HttpStatus.CREATED);
 			
 		}else {
@@ -66,11 +72,13 @@ public class RouteController {
 	
 	}
 	
-	@GetMapping("/GetAllRoutes")
+//	Get all routes.
+	@GetMapping("/GetAll")
 	public ResponseEntity<List<Route>> getAllRouteDetails(@Valid  @RequestParam("sessionKey") String key) throws RouteException, SessionException{
 		Session session= service.getASessionByKey(key);
+//		authentication
 		if(session.getUserType()==UserType.ADMIN) {
-			List<Route> route1= cont.getAllRouteDetails();
+//			Main Function			List<Route> route1= routeservice.getAllRouteDetails();
 			return new ResponseEntity<List<Route>>(route1, HttpStatus.CREATED);
 			
 		}else {
@@ -82,12 +90,13 @@ public class RouteController {
 	
 
 	
-	
-	@GetMapping("/GetPackagesFromRoute_From_To/{Routefrom}/{Routeto}")
+//	Search All packages which is associated with (destination and origin) location.
+	@GetMapping("/SearchPackage/{Routefrom}/{Routeto}")
 	public ResponseEntity<List<Packages>> getAllRouteByFrom_To(@Valid  @PathVariable("Routefrom") String from,@PathVariable("Routeto") String to ,@RequestParam("sessionKey") String key) throws RouteException, SessionException{
+//		authentication
 		Session session= service.getASessionByKey(key);
 		if(session !=null) {
-			List<Packages> route1= cont.getAllRouteByFrom_To(from, to);
+//			Main Function			List<Packages> route1= routeservice.getAllRouteByFrom_To(from, to);
 			return new ResponseEntity<List<Packages>> (route1, HttpStatus.CREATED);
 			
 		}else {
@@ -96,12 +105,13 @@ public class RouteController {
 	
 	}
 
-	
-	@GetMapping("/GetPackagesFromRoute_From/{Routefrom}")
+//	Search All packages which is associated with origin location.
+	@GetMapping("/SearchPackageFromOrigin/{Routefrom}")
 	public ResponseEntity<List<Packages>> getAllRouteByFrom(@Valid  @PathVariable("Routefrom") String from ,@RequestParam("sessionKey") String key) throws RouteException, SessionException{
 		Session session= service.getASessionByKey(key);
+//		authentication
 		if(session!=null) {
-			List<Packages> route1= cont.getAllRouteByFrom(from);
+//			Main Function			List<Packages> route1= routeservice.getAllRouteByFrom(from);
 			return new ResponseEntity<List<Packages>> (route1, HttpStatus.CREATED);
 			
 		}else {
@@ -110,38 +120,6 @@ public class RouteController {
 		
 	
 	}
-	
-	
-//	
-//	@DeleteMapping("/route/{id}")
-//	public ResponseEntity<Route> deleteRouteByIdHandler(@Valid  @PathVariable("id") Integer routeId ,@RequestParam("sessionKey") String key) throws RouteException{
-//	Session session= service.getASessionByKey(key);
-//	if(session.getUserType()==UserType.ADMIN) {
-	
-//		Route route1= cont.deleteRouteById(routeId);
-//	return new ResponseEntity<Route>(route1, HttpStatus.CREATED);
-//		
-//	}else {
-//		throw new SessionException("Please Enter Correct Key..!");
-//	}
-//		
-//		
-//	}
-//	
-//	
-//	@PutMapping("/route")
-//	public ResponseEntity<Route> modifyRoute(@Valid  @RequestBody Route route ,@RequestParam("sessionKey") String key) throws RouteException{
-//		
-//	Session session= service.getASessionByKey(key);
-//	if(session.getUserType()==UserType.ADMIN) {
-//			Route route1= cont.modifyRoute(route);
-//	return new ResponseEntity<Route>(route1, HttpStatus.OK);
-//		
-//	}else {
-//		throw new SessionException("Please Enter Correct Key..!");
-//	}
-//	
-//		
-//	}
+
 
 }
