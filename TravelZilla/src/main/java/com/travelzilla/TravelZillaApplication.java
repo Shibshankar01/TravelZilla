@@ -9,7 +9,7 @@ public class TravelZillaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TravelZillaApplication.class, args);
 		
-		System.out.println("Sone");
+		System.out.println("Start");
 		
 	}
 

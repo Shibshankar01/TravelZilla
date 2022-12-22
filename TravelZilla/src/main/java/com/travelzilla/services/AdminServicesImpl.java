@@ -1,5 +1,8 @@
 package com.travelzilla.services;
 
+import java.beans.Encoder;
+import java.util.Base64;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +16,14 @@ public class AdminServicesImpl implements AdminServices{
 	@Autowired
 	private AdminDAO aDao;
 	
+	private EncryptService encrypt=new EncryptServiceImpl();
+	
 	@Override
 	public Admin addAdmin(Admin admin) {
 		// TODO Auto-generated method stub
-		return aDao.save(admin);	
+		Admin admin1= encrypt.EncryptPassword(admin);
+		
+		return aDao.save(admin1);	
 	}
 
 	@Override
