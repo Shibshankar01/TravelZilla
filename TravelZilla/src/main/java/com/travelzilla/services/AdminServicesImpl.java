@@ -19,11 +19,15 @@ public class AdminServicesImpl implements AdminServices{
 	private EncryptService encrypt=new EncryptServiceImpl();
 	
 	@Override
-	public Admin addAdmin(Admin admin) {
-		// TODO Auto-generated method stub
-		Admin admin1= encrypt.EncryptPassword(admin);
-		
-		return aDao.save(admin1);	
+	public Admin addAdmin(Admin admin) throws AdminException {
+
+
+		if(aDao.findByEmail(admin.getEmail()) != null)
+				throw new AdminException("Admin already present with that email id");
+        
+        	Admin admin1= encrypt.EncryptPassword(admin);
+		     return aDao.save(admin1);	
+
 	}
 
 	@Override
