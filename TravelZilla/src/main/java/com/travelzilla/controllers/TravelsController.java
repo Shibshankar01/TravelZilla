@@ -40,18 +40,13 @@ public class TravelsController {
 	
 //	Register New traveler along with new bus If travels want.
 	@PostMapping("/Register")
-	public ResponseEntity<Travels> registerNewTravelsHandler(@Valid @RequestBody Travels travel ,@RequestParam("sessionKey") String key) throws TravelsException, BusException, SessionException{
-		Session session= service.getASessionByKey(key);
-//		authentication
-		if(session.getUserType()==UserType.ADMIN) {
-			
+	public ResponseEntity<Travels> registerNewTravelsHandler(@Valid @RequestBody Travels travel ) throws TravelsException, BusException, SessionException{
+
 //			Main Function calling
 			Travels travels1=cont.registerNewTravels(travel);
 			return new ResponseEntity<Travels>(travels1, HttpStatus.CREATED);
 			
-		}else {
-			throw new SessionException("Please Enter Correct Key..!");
-		}
+		
 
 	}
 	
@@ -60,14 +55,14 @@ public class TravelsController {
 	public ResponseEntity<Travels> registerNewBusInTravelsHandler(@Valid @PathVariable("Travel_id") Integer tid,@RequestBody Bus bus ,@RequestParam("sessionKey") String key) throws TravelsException, SessionException{
 		Session session= service.getASessionByKey(key);
 //		authentication
-		if(session.getUserType()==UserType.ADMIN) {
+		if(session.getUserType()==UserType.ADMIN ||(session.getUserType()==UserType.TRAVELS && session.getUserId()==tid)) {
 			
 //			Main Function calling
 			Travels travels1=cont.registerNewBusInTravels(tid, bus);
 			return new ResponseEntity<Travels>(travels1, HttpStatus.OK);
 			
 		}else {
-			throw new SessionException("Please Enter Correct Key..!");
+			throw new SessionException("Please Enter Correct Key. Or You are not Authorized...!");
 		}
 		
 		
@@ -78,14 +73,14 @@ public class TravelsController {
 	public ResponseEntity<Travels> registerOldBusInTravelsHandler(@Valid @PathVariable("Travel_id") Integer tid,@PathVariable("Bus_Id") Integer bid ,@RequestParam("sessionKey") String key) throws TravelsException, BusException, SessionException{
 		Session session= service.getASessionByKey(key);
 //		authentication
-		if(session.getUserType()==UserType.ADMIN) {
+		if(session.getUserType()==UserType.ADMIN ||(session.getUserType()==UserType.TRAVELS && session.getUserId()==tid) ) {
 			
 //			Main Function calling
 			Travels travels1=cont.registerOldBusInTravels(tid, bid);
 			return new ResponseEntity<Travels>(travels1, HttpStatus.OK);
 			
 		}else {
-			throw new SessionException("Please Enter Correct Key..!");
+			throw new SessionException("Please Enter Correct Key. Or You are not Authorized...!");
 		}
 		
 		
@@ -96,14 +91,14 @@ public class TravelsController {
 	public ResponseEntity<Travels> getTravelsByIdHandler(@Valid  @PathVariable("Travel_id") Integer travelsID ,@RequestParam("sessionKey") String key) throws TravelsException, SessionException{
 		Session session= service.getASessionByKey(key);
 //		authentication
-		if(session.getUserType()==UserType.ADMIN) {
+		if(session.getUserType()==UserType.ADMIN ||(session.getUserType()==UserType.TRAVELS && session.getUserId()==travelsID)) {
 			
 //			Main Function calling
 			Travels travels1= cont.getTravelsById(travelsID);
 			return new ResponseEntity<Travels>(travels1, HttpStatus.CREATED);
 			
 		}else {
-			throw new SessionException("Please Enter Correct Key..!");
+			throw new SessionException("Please Enter Correct Key. Or You are not Authorized...!");
 		}
 		
 		

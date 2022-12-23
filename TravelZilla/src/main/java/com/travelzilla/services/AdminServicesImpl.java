@@ -25,8 +25,9 @@ public class AdminServicesImpl implements AdminServices{
 		if(aDao.findByEmail(admin.getEmail()) != null)
 				throw new AdminException("Admin already present with that email id");
         
-        	Admin admin1= encrypt.EncryptPassword(admin);
-		     return aDao.save(admin1);	
+        	String admin1= encrypt.EncryptPassword(admin.getPassword());
+        	admin.setPassword(admin1);
+		     return aDao.save(admin);	
 
 	}
 

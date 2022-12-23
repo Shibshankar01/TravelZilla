@@ -10,17 +10,30 @@ import com.travelzilla.models.Admin;
 @Service
 public class EncryptServiceImpl implements EncryptService {
 
+//	@Override
+//	public Admin EncryptPassword(Admin admin) {
+//		
+//
+//		java.util.Base64.Encoder encoder = Base64.getEncoder();
+//        String originalString = admin.getPassword();
+//        String encodedString = encoder.encodeToString(originalString.getBytes());
+//        admin.setPassword(encodedString);
+//
+//
+//		return admin;
+//	}
+	
 	@Override
-	public Admin EncryptPassword(Admin admin) {
+	public String EncryptPassword(String str) {
 		
-
+         
 		java.util.Base64.Encoder encoder = Base64.getEncoder();
-        String originalString = admin.getPassword();
+        String originalString = str;
         String encodedString = encoder.encodeToString(originalString.getBytes());
-        admin.setPassword(encodedString);
 
 
-		return admin;
+
+		return encodedString;
 	}
 	
 	@Override

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 
 import com.travelzilla.controllers.BusController;
+import com.travelzilla.exceptions.AdminException;
 import com.travelzilla.exceptions.BusException;
 import com.travelzilla.exceptions.TravelsException;
 import com.travelzilla.models.Bus;
@@ -28,12 +29,17 @@ public class TravelsServiceImpl implements TravelsService {
 	private TravelsDAO Trepo;
 	@Autowired
 	private BusDAO brepo;
+	
+	private EncryptService encrypt=new EncryptServiceImpl();
 
 //	Register New traveler along with new bus If travels want.
 	@Override
 	public Travels registerNewTravels(Travels travel) throws TravelsException {
 
-		if(travel !=null) {
+		if(Trepo.findByEmail(travel.getEmail()) != null)
+			throw new TravelsException("Travels already present with that email id");
+		
+
 			
 			java.util.Set<Bus> buslist= travel.getBusList();
 //			associating each Bus with Travels.		
@@ -42,12 +48,12 @@ public class TravelsServiceImpl implements TravelsService {
 				buss.setTravel(travel);
 				
 			}
+			String admin1= encrypt.EncryptPassword(travel.getTravelPassword());
+			travel.setTravelPassword(admin1);
+			
 			return Trepo.save(travel);
 			
-		}else {
-			throw new TravelsException("Travels is null ");
-		}
-		
+
 		
 	}
 
