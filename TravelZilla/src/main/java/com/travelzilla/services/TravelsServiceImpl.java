@@ -29,21 +29,19 @@ public class TravelsServiceImpl implements TravelsService {
 	@Autowired
 	private BusDAO brepo;
 
+//	Register New traveler along with new bus If travels want.
 	@Override
 	public Travels registerNewTravels(Travels travel) throws TravelsException {
-		// TODO Auto-generated method stub
-//		Add/create traveler with new bus or with out bus.
+
 		if(travel !=null) {
 			
 			java.util.Set<Bus> buslist= travel.getBusList();
-			
+//			associating each Bus with Travels.		
 			for(Bus buss:buslist) {
 				
-				//associating each student with course
 				buss.setTravel(travel);
 				
 			}
-			
 			return Trepo.save(travel);
 			
 		}else {
@@ -53,10 +51,11 @@ public class TravelsServiceImpl implements TravelsService {
 		
 	}
 
+//	Add new Bus With existing Travels.
 	@Override
 	public Travels registerNewBusInTravels(Integer tid, Bus bus) throws TravelsException {
-		// TODO Auto-generated method stub
 		Optional<Travels> tra= Trepo.findById(tid);
+//		Set bus inside Travels if travels exist.
 		if(tra.isPresent()) {
 			Travels travel= tra.get();
 			travel.getBusList().add(bus);
@@ -71,6 +70,7 @@ public class TravelsServiceImpl implements TravelsService {
 	
 	}
 
+//	Register old bus with other travels.
 	@Override
 	public Travels registerOldBusInTravels(Integer tid, Integer bid) throws TravelsException, BusException {
 		
@@ -88,7 +88,7 @@ public class TravelsServiceImpl implements TravelsService {
 	}
 	
 
-
+//  Search travels with their IDs.
 	@Override
 	public Travels getTravelsById(Integer travelsID) throws TravelsException {
 		
@@ -102,6 +102,7 @@ public class TravelsServiceImpl implements TravelsService {
 		}
 	}
 
+//	Get all Travels from database.
 	@Override
 	public List<Travels> getAllTravelsDetails() throws TravelsException {
           List<Travels> list= Trepo.findAll();
@@ -112,23 +113,5 @@ public class TravelsServiceImpl implements TravelsService {
 			return list;
 		}
 	}
-
-//	@Override
-//	public Travels deleteTravelsById(Integer travelsId) throws TravelsException {
-//        Optional<Travels> em=erepo.findById(travelsId);
-//		
-//		if(em.isPresent()) {
-//			Travels cus1= em.get();
-//			Trepo.delete(cus1);
-//			
-//			return cus1;
-//		}else {
-//			throw new TravelsException("Travels deleted.");
-//		}
-//	}
-
-	
-
-	
 
 }

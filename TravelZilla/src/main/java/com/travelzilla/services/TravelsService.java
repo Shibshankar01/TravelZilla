@@ -12,14 +12,15 @@ import com.travelzilla.models.TravelsDTO;
 
 public interface TravelsService {
 	public Travels  registerNewTravels(Travels travel)throws TravelsException;
+	
 	public Travels  registerNewBusInTravels(Integer tid, Bus bus)throws TravelsException;
+	
 	public Travels  registerOldBusInTravels(Integer tid,Integer bid)throws TravelsException,BusException;
 
 	public Travels getTravelsById(Integer travels)throws TravelsException;
 
 	public List<Travels>  getAllTravelsDetails()throws TravelsException;
-//	public  Travels deleteTravelsById(Integer travelsId)throws TravelsException;
-//	public  Travels deleteBusTravels(Integer tid,Integer bid)throws TravelsException;
+
 	
 
 }

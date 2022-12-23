@@ -21,7 +21,7 @@ import com.travelzilla.repositories.TravelsDAO;
 public class BusServiceImpl implements BusService {
 
 	@Autowired
-	private BusDAO erepo;
+	private BusDAO busrepo;
 
 	@Autowired
 	private RouteDAO route_repo;
@@ -31,23 +31,24 @@ public class BusServiceImpl implements BusService {
 
 
 
-
+//	Register New Bus .
 	@Override
 	public Bus registerBus(Bus bus) throws BusException {
-		// TODO Auto-generated method stub
+	
 		if (bus != null) {
 
-			Bus bus1 = erepo.save(bus);
+			Bus bus1 = busrepo.save(bus);
 			return bus1;
 		} else {
 			throw new BusException("Customer is null ");
 		}
 	}
 
+//  Search Bus with their IDs.
 	@Override
 	public Bus getBusById(Integer busID) throws BusException {
 
-		Optional<Bus> em = erepo.findById(busID);
+		Optional<Bus> em = busrepo.findById(busID);
 
 		if (em.isPresent()) {
 			Bus cus1 = em.get();
@@ -57,9 +58,10 @@ public class BusServiceImpl implements BusService {
 		}
 	}
 
+//	Get all Bus from database.
 	@Override
 	public List<Bus> getAllBusDetails() throws BusException {
-		List<Bus> list = erepo.findAll();
+		List<Bus> list = busrepo.findAll();
 		
 		
 		if (list.size() == 0) {
@@ -70,33 +72,16 @@ public class BusServiceImpl implements BusService {
 	}
 
 
-
-//	@Override
-//	public Bus deleteBusById(Integer busId) throws BusException {
-//        Optional<Bus> em=erepo.findById(busId);
-//		
-//		if(em.isPresent()) {
-//			Bus cus1= em.get();
-//			erepo.delete(cus1);
-//			
-//			return cus1;
-//		}else {
-
-//			throw new BusException("Bus deleted.");
-//		}
-//	}
-
+// Register Bus Along with Existing Travels and route.
 	@Override
 	public Bus  RegisterBusWithRoute_idANDTravels_id(Integer routeId, Integer travelId, Bus bus)throws BusException, RouteException, TravelsException {
-		// TODO Auto-generated method stub
 
-	
 		
         if(bus !=null) {
 
         	
         	Optional<com.travelzilla.models.Route> rou=route_repo.findById(routeId);
-        	
+//        	associating route with bus if exist.
         	if(rou.isPresent() ) {
 
         		com.travelzilla.models.Route route= rou.get();
@@ -108,7 +93,7 @@ public class BusServiceImpl implements BusService {
     		}		
    
         	Optional<com.travelzilla.models.Travels> trav= travel_repo.findById(travelId);
-        
+//        	associating Travels with bus if exist.
     			if(trav.isPresent()) {
 
     				
@@ -123,7 +108,7 @@ public class BusServiceImpl implements BusService {
       			
     		
 	
-        	Bus bus1 =erepo.save(bus);
+        	Bus bus1 =busrepo.save(bus);
   
 			return bus1;
 		}else {
