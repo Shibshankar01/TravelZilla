@@ -32,14 +32,24 @@ public class LoginServicesImpl implements LoginServices{
 	@Autowired
 	private CustomerDAO cDao;
 	
+	private EncryptService decrypt=new EncryptServiceImpl();
+	
 	@Override
 	public Session login(LoginDTO loginDto) throws LoginException {
 		// TODO Auto-generated method stub
+		
 		
 		Session mainSession = null;
 		if(loginDto.getUserType()==UserType.ADMIN) {
 			Admin admin =  aDao.findByEmail(loginDto.getEmail());
 		
+//			Admin admin1= decrypt.DecryptPassword(admin);
+			
+			Admin Demo=new Admin();
+			Demo.setPassword(loginDto.getPassword());
+			Admin admin2= decrypt.EncryptPassword(Demo);
+			
+			System.out.println("ajay--"+admin2.getPassword());
 			if(admin == null)
 				throw new LoginException("Admin not present with that email");
 			
@@ -48,7 +58,9 @@ public class LoginServicesImpl implements LoginServices{
 			if(currentSession.isPresent())
 				throw new LoginException("This user is already logged in");
 			
-			if(admin.getPassword().equals(loginDto.getPassword())) {
+			
+			
+			if(admin.getPassword().equals(admin2.getPassword())) {
 				String key = RandomString.make(6);
 				
 				Session session = new Session();

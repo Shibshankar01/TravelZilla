@@ -43,7 +43,7 @@ public class Admin {
 	
 	@NotNull
 	@NotBlank
-	@Size(min = 8, max = 15, message = "Password should be minimum 8 and maximum 15 characters long")
+//	@Size(min = 8, max = 15, message = "Password should be minimum 8 and maximum 15 characters long")
 	private String password;
 	
 	@NotNull
