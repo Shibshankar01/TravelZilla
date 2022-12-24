@@ -16,11 +16,18 @@ public class CustomerServicesImpl implements CustomerServices{
 	
 	@Autowired
 	private CustomerDAO cDao;
+	
+	private EncryptService encrypt=new EncryptServiceImpl();
 
 	@Override
 	public Customer addCustomer(Customer customer) throws CustomerException {
 		if(cDao.findByEmail(customer.getEmail())!= null)
 			throw new CustomerException("Customer already present with that email");
+		
+		String admin1= encrypt.EncryptPassword(customer.getCustomerPassword());
+		customer.setCustomerPassword(admin1);
+	   
+	     
 		return cDao.save(customer);
 		
 	}

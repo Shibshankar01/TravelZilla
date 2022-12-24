@@ -10,6 +10,7 @@ import java.util.Set;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -32,7 +33,34 @@ public class Travels {
 	@Size(min = 10, max = 10)
 	private String contact;
 	
+	@NotNull
+	@Email
+	private String email;
 	
+	@NotNull
+	private String travelPassword;
+	
+	
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public String getTravelPassword() {
+		return travelPassword;
+	}
+
+
+	public void setTravelPassword(String travelPassword) {
+		this.travelPassword = travelPassword;
+	}
+
+
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "travel")
 	private Set<Bus> busList= new HashSet<>();
 
