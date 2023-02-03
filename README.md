@@ -7,7 +7,18 @@
 
   
  ## Description
-   Online Trip Management System where a admin can manage the tours, trips, packages and hotels and a Customer can make a booking, payment and also give feedbacks
+ A web-based platform that streamlines the management of tours, trips, packages, and hotels. This system provides the following features:
+
+### For Admins:
+- Manage tours, trips, packages, and hotels.
+- Maintain records and manage bookings.
+
+### For Customers:
+- Browse and book tours, trips, packages, and hotels.
+- Make secure online payments.
+- Provide feedback and ratings.
+
+This system provides a comprehensive solution for both administrators and customers, making it easier for them to manage and plan their travel arrangements. With its user-friendly interface, the Online Trip Management System is a convenient and efficient tool for anyone looking to plan their next trip.
    
  ## Tech Stack 💻
 - Java
